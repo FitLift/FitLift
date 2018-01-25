@@ -3,13 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "@types/jest": "^22.1.0",
-    "@types/react": "^16.0.35",
-    "@types/react-native": "^0.52.5",
-    "@types/react-test-renderer": "^16.0.0",
     "jest-expo": "25.0.0",
     "react-native-scripts": "1.10.0",
     "react-test-renderer": "16.2.0",
+    "remote-redux-devtools": "^0.5.12",
     "ts-jest": "^22.0.1",
     "typescript": "^2.6.2"
   },
@@ -19,7 +16,8 @@
     "eject": "react-native-scripts eject",
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
-    "test": "node node_modules/jest/bin/jest.js --watch"
+    "test": "node node_modules/jest/bin/jest.js --watch",
+    "ts": "./node_modules/.bin/tsc"
   },
   "jest": {
     "preset": "react-native",
@@ -41,8 +39,20 @@
     "cacheDirectory": ".jest/cache"
   },
   "dependencies": {
+    "@types/jest": "^22.1.0",
+    "@types/prop-types": "^15.5.2",
+    "@types/react": "^16.0.35",
+    "@types/react-native": "^0.52.5",
+    "@types/react-navigation": "^1.0.29",
+    "@types/react-redux": "^5.0.14",
+    "@types/react-test-renderer": "^16.0.0",
+    "@types/remote-redux-devtools": "^0.5.2",
     "expo": "^25.0.0",
     "react": "16.2.0",
-    "react-native": "0.52.0"
+    "react-native": "0.52.0",
+    "react-navigation": "^1.0.0-beta.27",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
   }
 }

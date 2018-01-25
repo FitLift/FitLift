@@ -1,15 +1,24 @@
 import React from 'react';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
 import { StyleSheet, Text, View } from 'react-native';
-import { thing } from './modules/thing'
+import devToolsEnhancer from 'remote-redux-devtools';
+import reducer from './modules/Record/redux';
+import AppWithNavigationState from './AppNavigator';
+
+
+const store = createStore(
+  reducer, 
+  devToolsEnhancer(),
+);
+
 
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-        <Text>{thing}</Text>
-      </View>
+      <Provider store={store}>
+        <AppWithNavigationState />
+      </Provider>
     );
   }
 }
