@@ -7,5 +7,6 @@ jobs:
       - checkout
       - run: ls
       - run: cd app
+      - run: ls
       - run: npm install
       - run: npm test
