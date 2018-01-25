@@ -5,6 +5,7 @@ jobs:
       - image: node:9.2.0
     steps:
       - checkout
+      - run: ls
       - run: cd app
       - run: npm install
       - run: npm test
