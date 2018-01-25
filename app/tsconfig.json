@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+      "moduleResolution": "node",
+      "module": "es6",
+      "noImplicitAny": true,
+      "removeComments": true,
+      "preserveConstEnums": true,
+      "target": "es5",
+      "lib": ["es5", "es6", "es7", "dom", "es2017", "es2015.promise"],
+      "jsx": "react",
+      "watch": true,
+      "allowJs": true,
+      "checkJs":  false,
+      "allowSyntheticDefaultImports": true,
+      "experimentalDecorators": true,
+      "sourceMap": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "outDir": "bin", 
+      "typeRoots": [
+          "node_modules/@types",
+          "@types/**/*.ts"
+      ],
+      "strictNullChecks": true
+  },
+  "types": [
+    "react",
+    "react-native",
+    "jest"
+  ],
+  "include": [
+      "**/*.tsx",
+      "**/*.ts"
+  ],
+  "exclude": [
+      "./node_modules/*"
+  ]
+}
