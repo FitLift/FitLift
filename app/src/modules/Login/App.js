@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
 
 const Login = ({ navigation }) => (
   <View style={styles.container}>
-    <Text style={styles.instructions}>
+    <Text style={styles.welcome}>
       login
     </Text>
     <Button

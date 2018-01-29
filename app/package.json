@@ -3,12 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "babel-eslint": "^8.2.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.1",
+    "eslint": "^4.16.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jest": "^21.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.6.1",
     "jest-expo": "25.0.0",
+    "jest-serializer-enzyme": "^1.0.0",
+    "prop-types": "^15.6.0",
+    "react-dom": "^16.2.0",
+    "react-native-mock": "^0.3.1",
     "react-native-scripts": "1.10.0",
     "react-test-renderer": "16.2.0",
-    "remote-redux-devtools": "^0.5.12",
-    "ts-jest": "^22.0.1",
-    "typescript": "^2.6.2"
+    "remote-redux-devtools": "^0.5.12"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
@@ -21,32 +33,11 @@
   },
   "jest": {
     "preset": "react-native",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
-    ],
-    "transform": {
-      "^.+\\.(js)$": "<rootDir>/node_modules/babel-jest",
-      "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-    },
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
-    "testPathIgnorePatterns": [
-      "\\.snap$",
-      "<rootDir>/node_modules/",
-      "<rootDir>/lib/"
-    ],
-    "cacheDirectory": ".jest/cache"
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?react-native|react-navigation)"
+    ]
   },
   "dependencies": {
-    "@types/jest": "^22.1.0",
-    "@types/prop-types": "^15.5.2",
-    "@types/react": "^16.0.35",
-    "@types/react-native": "^0.52.5",
-    "@types/react-navigation": "^1.0.29",
-    "@types/react-redux": "^5.0.14",
-    "@types/react-test-renderer": "^16.0.0",
-    "@types/remote-redux-devtools": "^0.5.2",
     "expo": "^25.0.0",
     "react": "16.2.0",
     "react-native": "0.52.0",

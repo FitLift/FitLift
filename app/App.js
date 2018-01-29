@@ -1,3 +1,3 @@
-import App from './bin/App';
+import App from './src/App';
 
 export default App;
