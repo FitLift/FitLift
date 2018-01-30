@@ -28,10 +28,6 @@ const Login = ({ navigation }) => (
   </View>
 );
 
-Login.propTypes = {
-  navigation: PropTypes.object.isRequired,
-};
-
 Login.navigationOptions = {
   title: 'Log In',
 };

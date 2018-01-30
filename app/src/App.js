@@ -2,8 +2,8 @@ import React, { PureComponent } from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import devToolsEnhancer from 'remote-redux-devtools';
-import reducer from './modules/Record/redux';
-import AppWithNavigationState from './AppNavigator';
+import reducer from './reducer';
+import AppWithNavigationState from './routes/AppNavigator';
 
 const store = createStore(
   reducer,

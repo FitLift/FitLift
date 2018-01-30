@@ -16,24 +16,20 @@ const styles = StyleSheet.create({
   },
 });
 
-const Record = ({ navigation }) => (
+const Login = ({ navigation }) => (
   <View style={styles.container}>
-    <Text style={styles.instructions}>
-      Record
+    <Text style={styles.welcome}>
+      login
     </Text>
     <Button
-      onPress={() => navigation.dispatch({ type: 'Record' })}
-      title="Record"
+      onPress={() => navigation.dispatch({ type: 'Signup' })}
+      title="Signup"
     />
   </View>
 );
 
-Record.propTypes = {
-  navigation: PropTypes.object.isRequired,
+Login.navigationOptions = {
+  title: 'Sign up',
 };
 
-Record.navigationOptions = {
-  title: 'Record',
-};
-
-export default Record;
+export default Login;

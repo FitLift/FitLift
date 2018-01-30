@@ -22,8 +22,8 @@ const Profile = ({ navigation }) => (
       Profile
     </Text>
     <Button
-      onPress={() => navigation.dispatch({ type: 'Profile' })}
-      title="Profile"
+      onPress={() => navigation.dispatch({ type: 'Logout' })}
+      title="Log Out"
     />
   </View>
 );
