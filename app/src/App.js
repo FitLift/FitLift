@@ -1,13 +1,17 @@
 import React, { PureComponent } from 'react';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 import devToolsEnhancer from 'remote-redux-devtools';
 import reducer from './reducer';
 import Router from './routes';
 
 const store = createStore(
   reducer,
-  devToolsEnhancer(),
+  compose(
+    applyMiddleware(thunk),
+    devToolsEnhancer(),
+  ),
 );
 
 export default class App extends PureComponent {

@@ -21,15 +21,7 @@ export default (state = initialState, action) => {
         state,
       );
     case 'logout':
-      return Navigation.router.getStateForAction(
-        NavigationActions.reset({
-          actions: [
-            NavigationActions.navigate({ routeName: 'login' }),
-          ],
-          index: 0,
-        }),
-        state,
-      );
+      return initialState;
     default:
       return Navigation.router.getStateForAction(action, state);
   }

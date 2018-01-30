@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`action creator tests should fetch reddit slime 1`] = `
+Array [
+  Object {
+    "type": "REQUEST_CURRENT_EXERCISES",
+    "user": 5,
+  },
+  Object {
+    "CurrentExercises": Object {
+      "CurrentExercises": Array [
+        Object {
+          "reps": 12,
+          "sets": 2,
+          "type": "Bicep Curls",
+        },
+        Object {
+          "reps": 1,
+          "sets": 9,
+          "type": "Shoulder Press",
+        },
+        Object {
+          "reps": 6,
+          "sets": 4,
+          "type": "Lateral Raises",
+        },
+      ],
+    },
+    "type": "RECEIVE_CURRENT_EXERCISES",
+    "user": 5,
+  },
+]
+`;

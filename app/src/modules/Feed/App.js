@@ -25,7 +25,7 @@ const Friends = ({ navigation }) => (
 );
 
 Friends.navigationOptions = {
-  title: 'feed',
+  title: 'Feed',
 };
 
 export default Friends;

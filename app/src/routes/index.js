@@ -11,13 +11,16 @@ import feed from './feed';
 import record from './record';
 import profile from './profile';
 
-const tabScreenNavigator = TabNavigator({
+export const tabScreenNavigator = TabNavigator({
   ...feed,
   ...record,
   ...profile,
 }, {
   animationEnabled: true,
   initialRouteName: 'record',
+  paths: {
+    record: 'feed',
+  },
   swipeEnabled: true,
   tabBarOptions: {
     activeTintColor: '#fc4c02',

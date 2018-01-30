@@ -33,7 +33,7 @@ profile.propTypes = {
 };
 
 profile.navigationOptions = {
-  title: 'profile',
+  title: 'Profile',
 };
 
 export default profile;

@@ -15,11 +15,13 @@
     "eslint-plugin-react": "^7.6.1",
     "jest-expo": "25.0.0",
     "jest-serializer-enzyme": "^1.0.0",
+    "nock": "^9.1.6",
     "prop-types": "^15.6.0",
     "react-dom": "^16.2.0",
     "react-native-mock": "^0.3.1",
     "react-native-scripts": "1.10.0",
     "react-test-renderer": "16.2.0",
+    "redux-mock-store": "^1.5.1",
     "remote-redux-devtools": "^0.5.12"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
@@ -38,6 +40,7 @@
     ]
   },
   "dependencies": {
+    "cross-fetch": "^1.1.1",
     "expo": "^25.0.0",
     "react": "16.2.0",
     "react-native": "0.52.0",
