@@ -4,17 +4,18 @@ import { AppNavigator } from './AppNavigator';
 // Start with two routes: The Main screen, with the Login screen on top.
 const firstAction = AppNavigator.router.getActionForPathAndParams('Login');
 const tempNavState = AppNavigator.router.getStateForAction(firstAction);
-const initialNavState = AppNavigator.router.getStateForAction(
+console.log(tempNavState);
+const initialState = AppNavigator.router.getStateForAction(
   NavigationActions.reset({
     actions: [
-      NavigationActions.navigate({ routeName: 'LoggedIn' }),
+      NavigationActions.navigate({ routeName: 'Login' }),
     ],
     index: 0,
   }),
   tempNavState,
 );
 
-export default (state = initialNavState, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
     case 'Login':
       return AppNavigator.router.getStateForAction(

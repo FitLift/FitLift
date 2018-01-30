@@ -17,6 +17,7 @@ const TabScreenNavigator = TabNavigator({
   Profile: { screen: Profile },
 }, {
   animationEnabled: true,
+  initialRouteName: 'Record',
   tabBarOptions: {
     activeTintColor: '#e91e63',
   },
