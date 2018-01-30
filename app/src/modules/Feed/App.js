@@ -19,12 +19,8 @@ const styles = StyleSheet.create({
 const Friends = ({ navigation }) => (
   <View style={styles.container}>
     <Text style={styles.instructions}>
-      Feed
+      This is where you will be able to see your friends workouts.
     </Text>
-    <Button
-      onPress={() => navigation.dispatch({ type: 'Feed' })}
-      title="Feed"
-    />
   </View>
 );
 

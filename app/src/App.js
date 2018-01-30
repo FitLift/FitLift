@@ -3,7 +3,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import devToolsEnhancer from 'remote-redux-devtools';
 import reducer from './reducer';
-import AppWithNavigationState from './routes/AppNavigator';
+import Router from './routes';
 
 const store = createStore(
   reducer,
@@ -14,7 +14,7 @@ export default class App extends PureComponent {
   render() {
     return (
       <Provider store={store}>
-        <AppWithNavigationState />
+        <Router />
       </Provider>
     );
   }

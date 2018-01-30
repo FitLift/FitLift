@@ -6,53 +6,35 @@ import {
   TabNavigator,
   StackNavigator,
 } from 'react-navigation';
-import Feed from '../modules/Feed/App';
 import Login from '../modules/Login/App';
-import Profile from '../modules/Profile/App';
-import Record from '../modules/Record/App';
-import {
-  FeedTabIcon,
-  ProfileTabIcon,
-  RecordTabIcon,
-} from '../components/icons';
+import Feed from './Feed';
+import Record from './Record';
+import Profile from './Profile';
 
 const TabScreenNavigator = TabNavigator({
-  Feed: {
-    navigationOptions: {
-      tabBarIcon: FeedTabIcon,
-    },
-    screen: Feed,
-  },
-  Record: {
-    navigationOptions: {
-      tabBarIcon: RecordTabIcon,
-    },
-    screen: Record,
-  },
-  Profile: {
-    navigationOptions: {
-      tabBarIcon: ProfileTabIcon,
-    },
-    screen: Profile,
-  },
+  ...Feed,
+  ...Record,
+  ...Profile,
 }, {
   animationEnabled: true,
   initialRouteName: 'Record',
+  swipeEnabled: true,
   tabBarOptions: {
-    activeTintColor: '#e91e63',
+    activeTintColor: '#fc4c02',
   },
   tabBarPosition: 'bottom',
 });
 
-
-
-export const AppNavigator = StackNavigator({
+export const Navigation = StackNavigator({
   LoggedIn: { screen: TabScreenNavigator },
   Login: { screen: Login },
 });
 
+const mapStateToProps = state => ({
+  navigation: state.navigation,
+});
 
-class AppWithNavigationState extends PureComponent {
+class Router extends PureComponent {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     navigation: PropTypes.shape({
@@ -71,13 +53,9 @@ class AppWithNavigationState extends PureComponent {
       navigation,
     } = this.props;
     return (
-      <AppNavigator navigation={addNavigationHelpers({ dispatch, state: navigation })} />
+      <Navigation navigation={addNavigationHelpers({ dispatch, state: navigation })} />
     );
   }
 }
 
-const mapStateToProps = state => ({
-  navigation: state.navigation,
-});
-
-export default connect(mapStateToProps)(AppWithNavigationState);
+export default connect(mapStateToProps)(Router);

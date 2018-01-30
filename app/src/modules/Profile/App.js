@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
 const Profile = ({ navigation }) => (
   <View style={styles.container}>
     <Text style={styles.instructions}>
-      Profile
+      This is where you will be able to view your previous workouts.
     </Text>
     <Button
       onPress={() => navigation.dispatch({ type: 'Logout' })}
