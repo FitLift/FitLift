@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Foundation } from 'react-native-vector-icons';
 
-export default function RecordTabIcon({ tintColor }) {
+export default function recordTabIcon({ tintColor }) {
   return (
     <Foundation
       name="record"
@@ -12,6 +12,6 @@ export default function RecordTabIcon({ tintColor }) {
   );
 }
 
-RecordTabIcon.propTypes = {
+recordTabIcon.propTypes = {
   tintColor: PropTypes.string.isRequired,
 };

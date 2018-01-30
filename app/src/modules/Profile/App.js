@@ -16,24 +16,24 @@ const styles = StyleSheet.create({
   },
 });
 
-const Profile = ({ navigation }) => (
+const profile = ({ navigation }) => (
   <View style={styles.container}>
     <Text style={styles.instructions}>
       This is where you will be able to view your previous workouts.
     </Text>
     <Button
-      onPress={() => navigation.dispatch({ type: 'Logout' })}
+      onPress={() => navigation.dispatch({ type: 'logout' })}
       title="Log Out"
     />
   </View>
 );
 
-Profile.propTypes = {
+profile.propTypes = {
   navigation: PropTypes.object.isRequired,
 };
 
-Profile.navigationOptions = {
-  title: 'Profile',
+profile.navigationOptions = {
+  title: 'profile',
 };
 
-export default Profile;
+export default profile;

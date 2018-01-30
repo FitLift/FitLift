@@ -1,9 +1,9 @@
-import FeedTabIcon from './FeedTabIcon';
-import ProfileTabIcon from './ProfileTabIcon';
-import RecordTabIcon from './RecordTabIcon';
+import feedTabIcon from './feedTabIcon';
+import profileTabIcon from './profileTabIcon';
+import recordTabIcon from './recordTabIcon';
 
 export {
-  FeedTabIcon,
-  ProfileTabIcon,
-  RecordTabIcon,
+  feedTabIcon,
+  profileTabIcon,
+  recordTabIcon,
 };

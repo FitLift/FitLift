@@ -16,20 +16,20 @@ const styles = StyleSheet.create({
   },
 });
 
-const Login = ({ navigation }) => (
+const login = ({ navigation }) => (
   <View style={styles.container}>
     <Text style={styles.welcome}>
       login
     </Text>
     <Button
-      onPress={() => navigation.dispatch({ type: 'Login' })}
+      onPress={() => navigation.dispatch({ type: 'login' })}
       title="Log in"
     />
   </View>
 );
 
-Login.navigationOptions = {
+login.navigationOptions = {
   title: 'Log In',
 };
 
-export default Login;
+export default login;

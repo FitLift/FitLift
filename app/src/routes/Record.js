@@ -1,11 +1,11 @@
-import Record from '../modules/Record/App';
-import { RecordTabIcon } from '../components/icons';
+import record from '../modules/record/App';
+import { recordTabIcon } from '../components/icons';
 
 export default {
-  Record: {
+  record: {
     navigationOptions: {
-      tabBarIcon: RecordTabIcon,
+      tabBarIcon: recordTabIcon,
     },
-    screen: Record,
+    screen: record,
   },
 };

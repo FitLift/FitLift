@@ -16,24 +16,24 @@ const styles = StyleSheet.create({
   },
 });
 
-const Record = ({ navigation }) => (
+const record = ({ navigation }) => (
   <View style={styles.container}>
     <Text style={styles.instructions}>
-      Record
+      record
     </Text>
     <Button
-      onPress={() => navigation.dispatch({ type: 'Record' })}
-      title="Record"
+      onPress={() => navigation.dispatch({ type: 'record' })}
+      title="record"
     />
   </View>
 );
 
-Record.propTypes = {
+record.propTypes = {
   navigation: PropTypes.object.isRequired,
 };
 
-Record.navigationOptions = {
-  title: 'Record',
+record.navigationOptions = {
+  title: 'record',
 };
 
-export default Record;
+export default record;

@@ -1,11 +1,11 @@
-import Profile from '../modules/Profile/App';
-import { ProfileTabIcon } from '../components/icons';
+import profile from '../modules/profile/App';
+import { profileTabIcon } from '../components/icons';
 
 export default {
-  Profile: {
+  profile: {
     navigationOptions: {
-      tabBarIcon: ProfileTabIcon,
+      tabBarIcon: profileTabIcon,
     },
-    screen: Profile,
+    screen: profile,
   },
 };

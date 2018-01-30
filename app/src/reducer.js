@@ -1,22 +1,14 @@
 import { combineReducers } from 'redux';
 import navigation from './routes/reducer';
+import feed from './modules/feed/redux';
+import login from './modules/login/redux';
+import profile from './modules/profile/redux';
+import record from './modules/record/redux';
 
-const initialAuthState = { isLoggedIn: false };
-
-function auth(state = initialAuthState, action) {
-  switch (action.type) {
-    case 'Login':
-      return { ...state, isLoggedIn: true };
-    case 'Logout':
-      return { ...state, isLoggedIn: false };
-    default:
-      return state;
-  }
-}
-
-const AppReducer = combineReducers({
-  auth,
+export default combineReducers({
+  feed,
+  login,
   navigation,
+  profile,
+  record,
 });
-
-export default AppReducer;

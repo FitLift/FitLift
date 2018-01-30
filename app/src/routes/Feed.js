@@ -1,11 +1,11 @@
-import Feed from '../modules/Feed/App';
-import { FeedTabIcon } from '../components/icons';
+import feed from '../modules/feed/App';
+import { feedTabIcon } from '../components/icons';
 
 export default {
-  Feed: {
+  feed: {
     navigationOptions: {
-      tabBarIcon: FeedTabIcon,
+      tabBarIcon: feedTabIcon,
     },
-    screen: Feed,
+    screen: feed,
   },
 };

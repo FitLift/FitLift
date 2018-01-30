@@ -6,18 +6,18 @@ import {
   TabNavigator,
   StackNavigator,
 } from 'react-navigation';
-import Login from '../modules/Login/App';
-import Feed from './Feed';
-import Record from './Record';
-import Profile from './Profile';
+import login from '../modules/login/App';
+import feed from './feed';
+import record from './record';
+import profile from './profile';
 
-const TabScreenNavigator = TabNavigator({
-  ...Feed,
-  ...Record,
-  ...Profile,
+const tabScreenNavigator = TabNavigator({
+  ...feed,
+  ...record,
+  ...profile,
 }, {
   animationEnabled: true,
-  initialRouteName: 'Record',
+  initialRouteName: 'record',
   swipeEnabled: true,
   tabBarOptions: {
     activeTintColor: '#fc4c02',
@@ -26,8 +26,8 @@ const TabScreenNavigator = TabNavigator({
 });
 
 export const Navigation = StackNavigator({
-  LoggedIn: { screen: TabScreenNavigator },
-  Login: { screen: Login },
+  loggedIn: { screen: tabScreenNavigator },
+  login: { screen: login },
 });
 
 const mapStateToProps = state => ({
