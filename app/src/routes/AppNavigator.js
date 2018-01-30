@@ -10,11 +10,31 @@ import Feed from '../modules/Feed/App';
 import Login from '../modules/Login/App';
 import Profile from '../modules/Profile/App';
 import Record from '../modules/Record/App';
+import {
+  FeedTabIcon,
+  ProfileTabIcon,
+  RecordTabIcon,
+} from '../components/icons';
 
 const TabScreenNavigator = TabNavigator({
-  Feed: { screen: Feed },
-  Record: { screen: Record },
-  Profile: { screen: Profile },
+  Feed: {
+    navigationOptions: {
+      tabBarIcon: FeedTabIcon,
+    },
+    screen: Feed,
+  },
+  Record: {
+    navigationOptions: {
+      tabBarIcon: RecordTabIcon,
+    },
+    screen: Record,
+  },
+  Profile: {
+    navigationOptions: {
+      tabBarIcon: ProfileTabIcon,
+    },
+    screen: Profile,
+  },
 }, {
   animationEnabled: true,
   initialRouteName: 'Record',
@@ -24,9 +44,11 @@ const TabScreenNavigator = TabNavigator({
   tabBarPosition: 'bottom',
 });
 
+
+
 export const AppNavigator = StackNavigator({
-  Login: { screen: Login },
   LoggedIn: { screen: TabScreenNavigator },
+  Login: { screen: Login },
 });
 
 

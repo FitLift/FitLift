@@ -5,15 +5,20 @@ import { AppNavigator } from './AppNavigator';
 const firstAction = AppNavigator.router.getActionForPathAndParams('Login');
 const tempNavState = AppNavigator.router.getStateForAction(firstAction);
 console.log(tempNavState);
+// const initialState = AppNavigator.router.getStateForAction(
+//   NavigationActions.reset({
+//     actions: [
+//       NavigationActions.navigate({ routeName: 'Login' }),
+//     ],
+//     index: 0,
+//   }),
+//   tempNavState,
+// );
 const initialState = AppNavigator.router.getStateForAction(
-  NavigationActions.reset({
-    actions: [
-      NavigationActions.navigate({ routeName: 'Login' }),
-    ],
-    index: 0,
-  }),
+  NavigationActions.init({ routeName: 'Login' }),
   tempNavState,
 );
+
 
 export default (state = initialState, action) => {
   switch (action.type) {
