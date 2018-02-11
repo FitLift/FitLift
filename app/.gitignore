@@ -3,6 +3,9 @@
 # expo
 .expo/
 
+# code coverage
+coverage/
+
 # dependencies
 /node_modules
 

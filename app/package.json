@@ -4,6 +4,7 @@
   "private": true,
   "devDependencies": {
     "babel-eslint": "^8.2.1",
+    "coveralls": "^3.0.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.1",
@@ -32,7 +33,7 @@
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
     "test": "node node_modules/jest/bin/jest.js --watch",
-    "test.all": "node node_modules/jest/bin/jest.js",
+    "test.coverage": "node node_modules/jest/bin/jest.js --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "db": "json-server --watch ./src/api/db.json"
   },
   "jest": {
@@ -42,6 +43,10 @@
     ],
     "moduleFileExtensions": [
       "js"
+    ],
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/node_modules/**"
     ]
   },
   "dependencies": {
