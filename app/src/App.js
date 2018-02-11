@@ -4,12 +4,12 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import devToolsEnhancer from 'remote-redux-devtools';
 import reducer from './reducer';
-import Router from './routes';
+import Router, { navigationMiddleware } from './routes';
 
 const store = createStore(
   reducer,
   compose(
-    applyMiddleware(thunk),
+    applyMiddleware(thunk, navigationMiddleware),
     devToolsEnhancer(),
   ),
 );

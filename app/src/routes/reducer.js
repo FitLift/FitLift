@@ -1,12 +1,10 @@
 import { NavigationActions } from 'react-navigation';
 import { Navigation } from './index';
 
-const firstAction = Navigation.router.getActionForPathAndParams('login');
-const tempNavState = Navigation.router.getStateForAction(firstAction);
-const initialState = Navigation.router.getStateForAction(
-  NavigationActions.init({ routeName: 'login' }),
-  tempNavState,
-);
+const initialState =
+  Navigation.router.getStateForAction(
+    Navigation.router.getActionForPathAndParams('login'),
+  );
 
 export default (state = initialState, action) => {
   switch (action.type) {

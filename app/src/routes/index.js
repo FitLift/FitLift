@@ -6,6 +6,10 @@ import {
   TabNavigator,
   StackNavigator,
 } from 'react-navigation';
+import {
+  createReactNavigationReduxMiddleware,
+  createReduxBoundAddListener,
+} from 'react-navigation-redux-helpers';
 import login from '../modules/login/App';
 import feed from './feed';
 import record from './record';
@@ -37,6 +41,13 @@ const mapStateToProps = state => ({
   navigation: state.navigation,
 });
 
+export const navigationMiddleware = createReactNavigationReduxMiddleware(
+  'root',
+  state => state.navigation,
+);
+
+const addListener = createReduxBoundAddListener('root');
+
 class Router extends PureComponent {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
@@ -56,7 +67,12 @@ class Router extends PureComponent {
       navigation,
     } = this.props;
     return (
-      <Navigation navigation={addNavigationHelpers({ dispatch, state: navigation })} />
+      <Navigation navigation={addNavigationHelpers({
+        addListener,
+        dispatch,
+        state: navigation,
+      })}
+      />
     );
   }
 }
