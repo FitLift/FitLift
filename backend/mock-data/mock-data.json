@@ -1,0 +1,86 @@
+{
+    "users": {
+        "Swagmo996": {
+            "name": "Teemo",
+            "password": "teemoisgod69"
+        },
+        "SAMPLE_USER": {
+            "name": "Sample User",
+            "password": "asdfasdf1"
+        }
+    },
+    "exercises": {
+        "Swagmo996": {
+            "bicep_curls": {
+                "-L51R8t-443wULWpdAAg": {
+                    "weight": 45,
+                    "unit": "lbs",
+                    "repetitions": 5,
+                    "timestamp": 1516857363
+                },
+                "-GasdfCa16245vvaSdas": {
+                    "weight": 45,
+                    "unit": "lbs",
+                    "repetitions": 7,
+                    "timestamp": 1516857963
+                }
+            },
+            "overhead_press": {
+                "-V23bSDVfdsdfgsBb34f": {
+                    "weight": 70,
+                    "unit": "lbs",
+                    "repetitions": 8,
+                    "timestamp": 1516857363
+                },
+                "-Ajxvc724fSdfv24Sdfg": {
+                    "weight": 70,
+                    "unit": "lbs",
+                    "repetitions": 4,
+                    "timestamp": 1516857963
+                },
+                "-H2vergvRsdfgvsdfg43": {
+                    "weight": 70,
+                    "unit": "lbs",
+                    "repetitions": 7,
+                    "timestamp": 1516858963
+                },
+                "-SJ3sdfgsdVsg42fgjsd": {
+                    "weight": 70,
+                    "unit": "lbs",
+                    "repetitions": 3,
+                    "timestamp": 1516859963
+                }
+            }
+        },
+        "SAMPLE_USER": {
+            "chest_press": {
+                "-Asdcf2345vSDGVsv323": {
+                    "weight": 55,
+                    "unit": "lbs",
+                    "repetitions": 12,
+                    "timestamp": 1516857363
+                },
+                "-Dbrte22frcasAc234gsr": {
+                    "weight": 55,
+                    "unit": "lbs",
+                    "repetitions": 11,
+                    "timestamp": 1516857963
+                },
+                "-Hsklcvblwe52Dgasdf2f": {
+                    "weight": 55,
+                    "unit": "lbs",
+                    "repetitions": 9,
+                    "timestamp": 1516858963
+                }
+            }
+        }
+    },
+    "friends": {
+        "Swagmo996": {
+            "kevanhn": true
+        },
+        "SAMPLE_USER": {
+            "Swagmo996": true
+        }
+    }
+}
