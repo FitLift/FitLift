@@ -1,3 +1,6 @@
+[![Coverage Status](https://coveralls.io/repos/github/FitLift/FitLift/badge.svg?branch=master)](https://coveralls.io/github/FitLift/FitLift?branch=master)
+
+
 Repo of team FitLift
 
 1. Download repo
