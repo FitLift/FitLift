@@ -3,21 +3,23 @@ import renderer from 'react-test-renderer';
 import { RenderContainer, mapStateToProps } from '../App';
 import { new_exercises as newExercises } from '../../../api/db.json';
 
-it('renders without crashing', () => {
-  const props = {
-    navigation: {},
-    newExercises,
-    record: {
-      isLoading: false,
-    },
-  };
-  const rendered = renderer.create(
-    <RenderContainer
-      fetchNewExercises={jest.fn()}
-      {...props}
-    />,
-  ).toJSON();
-  expect(rendered).toMatchSnapshot();
+describe('render tests', () => {
+  it('doesnt crash', () => {
+    const props = {
+      navigation: {},
+      newExercises,
+      record: {
+        isLoading: false,
+      },
+    };
+    const rendered = renderer.create(
+      <RenderContainer
+        fetchNewExercises={jest.fn()}
+        {...props}
+      />,
+    ).toJSON();
+    expect(rendered).toMatchSnapshot();
+  });
 });
 
 describe('mapStateToProps tests', () => {
