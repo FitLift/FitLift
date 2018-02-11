@@ -1,4 +1,4 @@
-import { mapStateToProps } from '../App';
+import { mapStateToProps } from '../App.js';
 
 describe('mapStateToProps tests', () => {
   it('should work with intial state', () => {
