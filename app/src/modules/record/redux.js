@@ -1,7 +1,7 @@
 import fetch from 'cross-fetch';
+import { API_URL } from '../../../config';
 
 export const initialState = {
-  currentExercises: [],
   data: undefined,
   isLoading: false,
 };
@@ -20,15 +20,15 @@ const requestCurrentExercises = user => ({
   user,
 });
 
-const receiveCurrentExercises = (user, json) => ({
-  CurrentExercises: json.data,
+const receiveCurrentExercises = (user, data) => ({
+  data,
   type: TypeKeys.RECEIVE_CURRENT_EXERCISES,
   user,
 });
 
 export const fetchCurrentExercises = user => (dispatch) => {
   dispatch(requestCurrentExercises(user));
-  return fetch(`https://www.fitlift_api.com/${user}.json`)
+  return fetch(`${API_URL}/currentExercises/${user}`)
     .then(
       response => response.json(),
       error => `An error occurred: ${error}`,
@@ -42,7 +42,7 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case TypeKeys.RECEIVE_CURRENT_EXERCISES:
       return {
-        ...state,
+        data: action.data,
         isLoading: false,
       };
     case TypeKeys.LOGIN:
@@ -50,14 +50,6 @@ export default (state = initialState, action) => {
         ...state,
         isLoading: true,
       };
-    case TypeKeys.NAVIGATION:
-      if (action.routeName === 'record') {
-        return {
-          ...state,
-          counter: state.counter + 1,
-        };
-      }
-      return state;
     default:
       return state;
   }

@@ -15,6 +15,7 @@
     "eslint-plugin-react": "^7.6.1",
     "jest-expo": "25.0.0",
     "jest-serializer-enzyme": "^1.0.0",
+    "json-server": "^0.12.1",
     "nock": "^9.1.6",
     "prop-types": "^15.6.0",
     "react-dom": "^16.2.0",
@@ -31,7 +32,7 @@
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
     "test": "node node_modules/jest/bin/jest.js --watch",
-    "ts": "./node_modules/.bin/tsc"
+    "db": "json-server --watch ./src/api/db.json"
   },
   "jest": {
     "preset": "react-native",
@@ -42,6 +43,7 @@
   "dependencies": {
     "cross-fetch": "^1.1.1",
     "expo": "^25.0.0",
+    "nock": "^9.1.6",
     "react": "16.2.0",
     "react-native": "0.52.0",
     "react-native-vector-icons": "^4.5.0",

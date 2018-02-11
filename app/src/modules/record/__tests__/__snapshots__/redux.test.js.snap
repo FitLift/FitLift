@@ -1,31 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`action creator tests should fetch reddit slime 1`] = `
+exports[`async action creator tests should fetch current exercises 1`] = `
 Array [
   Object {
     "type": "REQUEST_CURRENT_EXERCISES",
     "user": 5,
   },
   Object {
-    "CurrentExercises": Object {
-      "CurrentExercises": Array [
-        Object {
-          "reps": 12,
-          "sets": 2,
-          "type": "Bicep Curls",
-        },
-        Object {
-          "reps": 1,
-          "sets": 9,
-          "type": "Shoulder Press",
-        },
-        Object {
-          "reps": 6,
-          "sets": 4,
-          "type": "Lateral Raises",
-        },
-      ],
-    },
+    "data": Array [
+      Object {
+        "reps": 12,
+        "time": 1517968200,
+        "type": "Bicep Curls",
+      },
+      Object {
+        "reps": 1,
+        "time": 1517968200,
+        "type": "Shoulder Press",
+      },
+      Object {
+        "reps": 6,
+        "time": 1517968200,
+        "type": "Lateral Raises",
+      },
+    ],
     "type": "RECEIVE_CURRENT_EXERCISES",
     "user": 5,
   },

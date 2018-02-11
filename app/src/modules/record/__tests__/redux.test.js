@@ -5,45 +5,26 @@ import reducer, {
   TypeKeys,
   fetchCurrentExercises,
 } from '../redux';
+import { mapStateToProps } from '../App';
+import { API_URL } from '../../../../config';
+import { currentExercises } from '../../../api/db.json';
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
 
-describe('action creator tests', () => {
-  it('should fetch reddit slime', () => {
-    nock('https://www.fitlift_api.com')
-      .get('/5.json')
-      .reply(200, {
-        data: {
-          CurrentExercises: [
-            {
-              reps: 12,
-              sets: 2,
-              type: 'Bicep Curls',
-            },
-            {
-              reps: 1,
-              sets: 9,
-              type: 'Shoulder Press',
-            },
-            {
-              reps: 6,
-              sets: 4,
-              type: 'Lateral Raises',
-            },
-          ],
-        },
-      });
+describe('async action creator tests', () => {
+  it('should fetch current exercises', () => {
+    nock(API_URL)
+      .get('/currentExercises/5')
+      .reply(200, currentExercises);
 
     const store = mockStore();
     return store.dispatch(fetchCurrentExercises(5))
       .then(() => {
-        const actions = store.getActions();
-        expect(actions).toMatchSnapshot();
+        expect(store.getActions()).toMatchSnapshot();
       });
   });
 });
-
 
 describe('reducer tests', () => {
   it('TypeKeys.LOGIN should work', () => {
@@ -65,14 +46,31 @@ describe('reducer tests', () => {
     expect(reducer(
       {
         data: undefined,
-        isLoading: false,
+        isLoading: true,
       },
       {
+        data: currentExercises,
         type: TypeKeys.RECEIVE_CURRENT_EXERCISES,
       },
     )).toEqual({
-      data: undefined,
+      data: currentExercises,
       isLoading: false,
+    });
+  });
+});
+
+describe('mapStateToProps tests', () => {
+  it('should work', () => {
+    expect(mapStateToProps({
+      record: {
+        data: undefined,
+        isLoading: false,
+      },
+    })).toEqual({
+      record: {
+        data: undefined,
+        isLoading: false,
+      },
     });
   });
 });

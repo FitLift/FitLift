@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { fetchCurrentExercises } from './redux';
@@ -12,52 +12,53 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
   },
-  welcome: {
-    fontSize: 20,
-    margin: 10,
-    textAlign: 'center',
-  },
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   fetchCurrentExercises,
 }, dispatch);
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   record: state.record,
 });
 
-class record extends PureComponent { 
-
-  componentWillMount() {
+export class App extends PureComponent {
+  componentDidMount() {
     this.props.fetchCurrentExercises(5);
   }
 
   render() {
     const {
-      navigation,
+      record: {
+        data,
+        isLoading,
+      },
     } = this.props;
     return (
       <View style={styles.container}>
-        <Text style={styles.instructions}>
-          record
-        </Text>
-        <Button
-          onPress={() => navigation.dispatch({ type: 'record' })}
-          title="record"
-        />
+        {
+          data &&
+          data.map((x, i) => <Text key={i}>Exercise: {x.type} reps: {x.reps} </Text>)
+        }
+        {
+          (!data || isLoading) &&
+          <Text>Put a loader in here</Text>
+        }
       </View>
     );
   }
 }
 
-record.propTypes = {
+App.propTypes = {
   fetchCurrentExercises: PropTypes.func.isRequired,
-  navigation: PropTypes.object.isRequired,
+  record: PropTypes.shape({
+    data: PropTypes.any,
+    isLoading: PropTypes.bool.isRequired,
+  }).isRequired,
 };
 
-record.navigationOptions = {
+App.navigationOptions = {
   title: 'Record',
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(record);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
