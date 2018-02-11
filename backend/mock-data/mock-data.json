@@ -4,105 +4,73 @@
             "name": "Teemo",
             "password": "teemoisgod69"
         },
-        "kevanhn": {
-            "name": "Kevan",
+        "SAMPLE_USER": {
+            "name": "Sample User",
             "password": "asdfasdf1"
         }
     },
     "exercises": {
         "Swagmo996": {
             "bicep_curls": {
-                "last_set": "set2",
-                "sets": {
-                    "set1": {
-                        "weight": 45,
-                        "unit": "lbs",
-                        "repetitions": 5,
-                        "timestamp": 1516857363
-                    },
-                    "set2": {
-                        "weight": 45,
-                        "unit": "lbs",
-                        "repetitions": 7,
-                        "timestamp": 1516857963
-                    }
+                "-L51R8t-443wULWpdAAg": {
+                    "weight": 45,
+                    "unit": "lbs",
+                    "repetitions": 5,
+                    "timestamp": 1516857363
+                },
+                "-GasdfCa16245vvaSdas": {
+                    "weight": 45,
+                    "unit": "lbs",
+                    "repetitions": 7,
+                    "timestamp": 1516857963
                 }
             },
             "overhead_press": {
-                "last_set": "set4",
-                "sets": {
-                    "set1": {
-                        "weight": 70,
-                        "unit": "lbs",
-                        "repetitions": 8,
-                        "timestamp": 1516857363
-                    },
-                    "set2": {
-                        "weight": 70,
-                        "unit": "lbs",
-                        "repetitions": 4,
-                        "timestamp": 1516857963
-                    },
-                    "set3": {
-                        "weight": 70,
-                        "unit": "lbs",
-                        "repetitions": 7,
-                        "timestamp": 1516858963
-                    },
-                    "set4": {
-                        "weight": 70,
-                        "unit": "lbs",
-                        "repetitions": 3,
-                        "timestamp": 1516859963
-                    }
-                }
-            },
-            "chest_press": {
-                "last_set": "set3",
-                "sets": {
-                    "set1": {
-                        "weight": 55,
-                        "unit": "lbs",
-                        "repetitions": 12,
-                        "timestamp": 1516857363
-                    },
-                    "set2": {
-                        "weight": 55,
-                        "unit": "lbs",
-                        "repetitions": 11,
-                        "timestamp": 1516857963
-                    },
-                    "set3": {
-                        "weight": 55,
-                        "unit": "lbs",
-                        "repetitions": 9,
-                        "timestamp": 1516858963
-                    }
+                "-V23bSDVfdsdfgsBb34f": {
+                    "weight": 70,
+                    "unit": "lbs",
+                    "repetitions": 8,
+                    "timestamp": 1516857363
+                },
+                "-Ajxvc724fSdfv24Sdfg": {
+                    "weight": 70,
+                    "unit": "lbs",
+                    "repetitions": 4,
+                    "timestamp": 1516857963
+                },
+                "-H2vergvRsdfgvsdfg43": {
+                    "weight": 70,
+                    "unit": "lbs",
+                    "repetitions": 7,
+                    "timestamp": 1516858963
+                },
+                "-SJ3sdfgsdVsg42fgjsd": {
+                    "weight": 70,
+                    "unit": "lbs",
+                    "repetitions": 3,
+                    "timestamp": 1516859963
                 }
             }
         },
-        "Swagmo996": {
-            "bicep_curls": {
-                "last_set": "set3",
-                "sets": {
-                    "set1": {
-                        "weight": 40,
-                        "unit": "lbs",
-                        "repetitions": 5,
-                        "timestamp": 1516857363
-                    },
-                    "set2": {
-                        "weight": 40,
-                        "unit": "lbs",
-                        "repetitions": 7,
-                        "timestamp": 1516857963
-                    },
-                    "set3": {
-                        "weight": 40,
-                        "unit": "lbs",
-                        "repetitions": 7,
-                        "timestamp": 1516857963
-                    }
+        "SAMPLE_USER": {
+            "chest_press": {
+                "-Asdcf2345vSDGVsv323": {
+                    "weight": 55,
+                    "unit": "lbs",
+                    "repetitions": 12,
+                    "timestamp": 1516857363
+                },
+                "-Dbrte22frcasAc234gsr": {
+                    "weight": 55,
+                    "unit": "lbs",
+                    "repetitions": 11,
+                    "timestamp": 1516857963
+                },
+                "-Hsklcvblwe52Dgasdf2f": {
+                    "weight": 55,
+                    "unit": "lbs",
+                    "repetitions": 9,
+                    "timestamp": 1516858963
                 }
             }
         }
@@ -111,7 +79,7 @@
         "Swagmo996": {
             "kevanhn": true
         },
-        "kevanhn": {
+        "SAMPLE_USER": {
             "Swagmo996": true
         }
     }
