@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 import { RenderContainer, mapStateToProps } from '../App';
 import { new_exercises as newExercises } from '../../../api/db.json';
 
-describe('render tests', () => {
+describe.skip('render tests', () => {
   it('doesnt crash', () => {
     const props = {
       navigation: {},
