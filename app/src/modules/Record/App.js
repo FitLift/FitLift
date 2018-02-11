@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { StyleSheet, Text, View } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { fetchCurrentExercises } from './redux';
+import { fetchNewExercises } from '../../api/newExercises';
 
 const styles = StyleSheet.create({
   container: {
@@ -15,33 +15,34 @@ const styles = StyleSheet.create({
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  fetchCurrentExercises,
+  fetchNewExercises,
 }, dispatch);
 
 export const mapStateToProps = state => ({
+  newExercises: state.db.newExercises,
   record: state.record,
 });
 
 export class App extends PureComponent {
   componentDidMount() {
-    this.props.fetchCurrentExercises(5);
+    this.props.fetchNewExercises(1);
   }
 
   render() {
     const {
       record: {
-        data,
         isLoading,
       },
+      newExercises,
     } = this.props;
     return (
       <View style={styles.container}>
         {
-          data &&
-          data.map((x, i) => <Text key={i}>Exercise: {x.type} reps: {x.reps} </Text>)
+          newExercises &&
+          newExercises.map((x, i) => <Text key={i}>Exercise: {x.type} reps: {x.reps} </Text>)
         }
         {
-          (!data || isLoading) &&
+          (!newExercises || isLoading) &&
           <Text>Put a loader in here</Text>
         }
       </View>
@@ -50,9 +51,13 @@ export class App extends PureComponent {
 }
 
 App.propTypes = {
-  fetchCurrentExercises: PropTypes.func.isRequired,
+  fetchNewExercises: PropTypes.func.isRequired,
+  newExercises: PropTypes.arrayOf(PropTypes.shape({
+    reps: PropTypes.number.isRequired,
+    time: PropTypes.number.isRequired,
+    type: PropTypes.string.isRequired,
+  })).isRequired,
   record: PropTypes.shape({
-    data: PropTypes.any,
     isLoading: PropTypes.bool.isRequired,
   }).isRequired,
 };

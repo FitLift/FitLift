@@ -16,7 +16,33 @@ exports[`renders without crashing 1`] = `
     allowFontScaling={true}
     ellipsizeMode="tail"
   >
-    Put a loader in here
+    Exercise: 
+    Bicep Curls
+     reps: 
+    12
+     
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+  >
+    Exercise: 
+    Shoulder Press
+     reps: 
+    5
+     
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+  >
+    Exercise: 
+    Lateral Raises
+     reps: 
+    6
+     
   </Text>
 </View>
 `;
