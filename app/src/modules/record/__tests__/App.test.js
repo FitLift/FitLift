@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { App, mapStateToProps } from '../App';
+import { RenderContainer, mapStateToProps } from '../App';
 import { new_exercises as newExercises } from '../../../api/db.json';
 
 it('renders without crashing', () => {
@@ -12,7 +12,7 @@ it('renders without crashing', () => {
     },
   };
   const rendered = renderer.create(
-    <App
+    <RenderContainer
       fetchNewExercises={jest.fn()}
       {...props}
     />,

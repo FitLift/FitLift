@@ -23,7 +23,7 @@ export const mapStateToProps = state => ({
   record: state.record,
 });
 
-export class App extends PureComponent {
+export class RenderContainer extends PureComponent {
   componentDidMount() {
     this.props.fetchNewExercises(1);
   }
@@ -50,7 +50,7 @@ export class App extends PureComponent {
   }
 }
 
-App.propTypes = {
+RenderContainer.propTypes = {
   fetchNewExercises: PropTypes.func.isRequired,
   newExercises: PropTypes.arrayOf(PropTypes.shape({
     reps: PropTypes.number.isRequired,
@@ -62,8 +62,8 @@ App.propTypes = {
   }).isRequired,
 };
 
-App.navigationOptions = {
+RenderContainer.navigationOptions = {
   title: 'Record',
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(RenderContainer);
