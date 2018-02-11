@@ -36,7 +36,7 @@
     "db": "json-server --watch ./src/api/db.json"
   },
   "jest": {
-    "preset": "react-native",
+    "preset": "jest-expo",
     "transformIgnorePatterns": [
       "node_modules/(?!(jest-)?react-native|react-navigation)"
     ],
