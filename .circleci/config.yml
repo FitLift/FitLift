@@ -6,4 +6,4 @@ jobs:
     steps:
       - checkout
       - run: cd app && npm install
-      - run: cd app && npm test
+      - run: cd app && npm run test.all
