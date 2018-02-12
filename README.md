@@ -1,6 +1,4 @@
-[![CircleCI Status](https://circleci.com/gh/fitlift/fitlift.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/FitLift/FitLift)
-[![Coverage Status](https://coveralls.io/repos/github/FitLift/FitLift/badge.svg?branch=master)](https://coveralls.io/github/FitLift/FitLift?branch=master)
-
+[![Coverage Status](https://img.shields.io/coveralls/FitLift/FitLift/master.svg?style=flat)](https://coveralls.io/github/FitLift/FitLift?branch=master) [![CircleCI Status](https://circleci.com/gh/FitLift/FitLift.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/FitLift/FitLift)
 
 Repo of team FitLift
 
