@@ -35,6 +35,7 @@ export class App extends PureComponent {
       },
       newExercises,
     } = this.props;
+    console.log(newExercises)
     return (
       <View style={styles.container}>
         {
