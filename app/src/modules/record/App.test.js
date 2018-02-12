@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { mapStateToProps } from './App2';
-import { new_exercises as newExercises } from '../../../api/db.json';
+import { new_exercises as newExercises } from '../../api/db.json';
 
 describe.skip('render tests', () => {
   it('doesnt crash', () => {
