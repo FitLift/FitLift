@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render tests doesnt crash 1`] = `
+<TextInput
+  allowFontScaling={true}
+  keyboardType="numeric"
+  maxLength={2}
+  style={
+    Object {
+      "borderColor": "gray",
+      "borderRadius": 4,
+      "borderWidth": 1,
+      "fontSize": 15,
+      "height": 30,
+      "textAlign": "center",
+      "width": 30,
+    }
+  }
+  value="5"
+/>
+`;

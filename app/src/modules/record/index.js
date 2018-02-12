@@ -1,18 +1,10 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View, FlatList } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { fetchNewExercises } from '../../api/newExercises';
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-    flex: 1,
-    justifyContent: 'center',
-  },
-});
+import NewExercise from './components/NewExercise';
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   fetchNewExercises,
@@ -36,10 +28,19 @@ export class App extends PureComponent {
       newExercises,
     } = this.props;
     return (
-      <View style={styles.container}>
+      <View style={{ flex: 1 }}>
         {
           newExercises &&
-          newExercises.map((x, i) => <Text key={i}>Exercise: {x.type} reps: {x.reps} </Text>)
+          <FlatList
+            data={newExercises}
+            renderItem={({ item }) => (
+              <NewExercise
+                type={item.type}
+                reps={item.reps}
+                timeStamp={item.timeStamp}
+              />)}
+            keyExtractor={(item, index) => index}
+          />
         }
         {
           (!newExercises || isLoading) &&
@@ -54,7 +55,7 @@ App.propTypes = {
   fetchNewExercises: PropTypes.func.isRequired,
   newExercises: PropTypes.arrayOf(PropTypes.shape({
     reps: PropTypes.number.isRequired,
-    time: PropTypes.number.isRequired,
+    timeStamp: PropTypes.number.isRequired,
     type: PropTypes.string.isRequired,
   })).isRequired,
   record: PropTypes.shape({

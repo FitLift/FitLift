@@ -37,16 +37,16 @@ export const Navigation = StackNavigator({
   login: { screen: login },
 });
 
-const mapStateToProps = state => ({
-  navigation: state.navigation,
-});
-
 export const navigationMiddleware = createReactNavigationReduxMiddleware(
   'root',
   state => state.navigation,
 );
 
 const addListener = createReduxBoundAddListener('root');
+
+const mapStateToProps = state => ({
+  navigation: state.navigation,
+});
 
 class Router extends PureComponent {
   static propTypes = {

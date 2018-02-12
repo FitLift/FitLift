@@ -12,17 +12,17 @@
   "new_exercises": [
     {
       "reps": 12,
-      "time": 1517968200,
+      "timeStamp": 1518407604,
       "type": "Bicep Curls"
     },
     {
       "reps": 5,
-      "time": 1517968200,
+      "timeStamp": 1518407604,
       "type": "Shoulder Press"
     },
     {
       "reps": 6,
-      "time": 1517968200,
+      "timeStamp": 1518407604,
       "type": "Lateral Raises"
     }
   ],

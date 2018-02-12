@@ -52,6 +52,7 @@
   "dependencies": {
     "cross-fetch": "^1.1.1",
     "expo": "^25.0.0",
+    "moment-timezone": "^0.5.14",
     "nock": "^9.1.6",
     "react": "16.2.0",
     "react-native": "0.52.0",
