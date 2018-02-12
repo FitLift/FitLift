@@ -1,4 +1,4 @@
-https://circleci.com/gh/:FitLift/:FitLift.png?circle-token=:circle-token
+[![CircleCI Status](https://circleci.com/gh/fitlift/fitlift.svg?style=shield&circle-token=:circle-token)]
 [![Coverage Status](https://coveralls.io/repos/github/FitLift/FitLift/badge.svg?branch=master)](https://coveralls.io/github/FitLift/FitLift?branch=master)
 
 
