@@ -16,11 +16,6 @@ const styles = StyleSheet.create({
   },
 });
 
-export const mapStateToProps = state => ({
-  newExercises: state.db.newExercises,
-  record: state.record,
-});
-
 const profile = ({ navigation }) => (
   <View style={styles.container}>
     <Text style={styles.instructions}>

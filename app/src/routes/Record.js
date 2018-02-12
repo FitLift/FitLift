@@ -1,4 +1,4 @@
-import record from '../modules/record/App';
+import record from '../modules/record';
 import { recordTabIcon } from '../components/icons';
 
 export default {
