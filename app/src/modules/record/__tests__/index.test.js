@@ -1,9 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { mapStateToProps } from '../index';
+import { App, mapStateToProps } from '../index';
 import { new_exercises as newExercises } from '../../../api/db.json';
 
-describe.skip('render tests', () => {
+describe('render tests', () => {
   it('doesnt crash', () => {
     const props = {
       navigation: {},
@@ -13,7 +13,7 @@ describe.skip('render tests', () => {
       },
     };
     const rendered = renderer.create(
-      <RenderContainer
+      <App
         fetchNewExercises={jest.fn()}
         {...props}
       />,
