@@ -6,6 +6,7 @@ describe('render tests', () => {
   it('doesnt crash', () => {
     const rendered = renderer.create(
       <NumberInput
+        onChange={f => f}
         value={5}
       />,
     ).toJSON();

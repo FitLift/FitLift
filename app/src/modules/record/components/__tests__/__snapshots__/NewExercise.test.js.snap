@@ -46,6 +46,7 @@ exports[`render tests doesnt crash 1`] = `
     allowFontScaling={true}
     keyboardType="numeric"
     maxLength={2}
+    onChangeText={[Function]}
     style={
       Object {
         "borderColor": "gray",
@@ -70,6 +71,7 @@ exports[`render tests doesnt crash 1`] = `
     allowFontScaling={true}
     keyboardType="numeric"
     maxLength={2}
+    onChangeText={[Function]}
     style={
       Object {
         "borderColor": "gray",

@@ -5,6 +5,8 @@ import NewExercise from '../NewExercise';
 describe('render tests', () => {
   it('doesnt crash', () => {
     const props = {
+      index: 1,
+      onChange: f => f,
       reps: 10,
       timeStamp: 1518407604,
       type: 'bicep curls',

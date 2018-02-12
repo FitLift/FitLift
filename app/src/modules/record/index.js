@@ -5,9 +5,11 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { fetchNewExercises } from '../../api/newExercises';
 import NewExercise from './components/NewExercise';
+import { updateNewExercise } from './redux';
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   fetchNewExercises,
+  updateNewExercise,
 }, dispatch);
 
 export const mapStateToProps = state => ({
@@ -16,6 +18,23 @@ export const mapStateToProps = state => ({
 });
 
 export class App extends PureComponent {
+  static propTypes = {
+    fetchNewExercises: PropTypes.func.isRequired,
+    newExercises: PropTypes.arrayOf(PropTypes.shape({
+      reps: PropTypes.number.isRequired,
+      timeStamp: PropTypes.number.isRequired,
+      type: PropTypes.string.isRequired,
+    })).isRequired,
+    record: PropTypes.shape({
+      isLoading: PropTypes.bool.isRequired,
+    }).isRequired,
+    updateNewExercise: PropTypes.func.isRequired,
+  }
+
+  static navigationOptions = {
+    title: 'Record',
+  }
+
   componentDidMount() {
     this.props.fetchNewExercises(1);
   }
@@ -33,11 +52,13 @@ export class App extends PureComponent {
           newExercises &&
           <FlatList
             data={newExercises}
-            renderItem={({ item }) => (
+            renderItem={({ item, index }) => (
               <NewExercise
+                index={index}
                 type={item.type}
                 reps={item.reps}
                 timeStamp={item.timeStamp}
+                onChange={this.props.updateNewExercise}
               />)}
             keyExtractor={(item, index) => index}
           />
@@ -50,21 +71,5 @@ export class App extends PureComponent {
     );
   }
 }
-
-App.propTypes = {
-  fetchNewExercises: PropTypes.func.isRequired,
-  newExercises: PropTypes.arrayOf(PropTypes.shape({
-    reps: PropTypes.number.isRequired,
-    timeStamp: PropTypes.number.isRequired,
-    type: PropTypes.string.isRequired,
-  })).isRequired,
-  record: PropTypes.shape({
-    isLoading: PropTypes.bool.isRequired,
-  }).isRequired,
-};
-
-App.navigationOptions = {
-  title: 'Record',
-};
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

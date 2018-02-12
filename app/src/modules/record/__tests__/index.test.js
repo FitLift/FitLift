@@ -6,15 +6,16 @@ import { new_exercises as newExercises } from '../../../api/db.json';
 describe('render tests', () => {
   it('doesnt crash', () => {
     const props = {
+      fetchNewExercises: f => f,
       navigation: {},
-      newExercises,
+      newExercises: [],
       record: {
         isLoading: false,
       },
+      updateNewExercise: f => f,
     };
     const rendered = renderer.create(
       <App
-        fetchNewExercises={jest.fn()}
         {...props}
       />,
     ).toJSON();

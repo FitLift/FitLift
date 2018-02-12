@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
-  TouchableHighlight,
   Text,
   View,
 } from 'react-native';
@@ -11,6 +10,8 @@ import SubmitButton from './SubmitButton';
 
 export default class NewExercise extends PureComponent {
   static propTypes = {
+    index: PropTypes.number.isRequired,
+    onChange: PropTypes.func.isRequired,
     reps: PropTypes.number.isRequired,
     timeStamp: PropTypes.number.isRequired,
     type: PropTypes.string.isRequired,
@@ -24,8 +25,11 @@ export default class NewExercise extends PureComponent {
     weight: '',
   };
 
+  onChange = (index, key) => value => this.props.onChange(index, key, value);
+
   render() {
     const {
+      index,
       type,
       reps,
       timeStamp,
@@ -50,11 +54,17 @@ export default class NewExercise extends PureComponent {
           </Text>
         </View>
         <Text>reps:</Text>
-        <NumberInput value={reps} />
+        <NumberInput
+          onChange={this.onChange(index, 'reps')}
+          value={reps}
+        />
         <Text>weight:</Text>
-        <NumberInput value={weight} />
+        <NumberInput
+          onChange={this.onChange(index, 'weight')}
+          value={weight}
+        />
         <SubmitButton
-          onPress={console.log(5)}
+          onPress={f => f}
           opacity={1}
         />
       </View>

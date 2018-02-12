@@ -6,7 +6,7 @@ describe('render tests', () => {
   it('doesnt crash', () => {
     const rendered = renderer.create(
       <SubmitButton
-        onPress={console.log(5)}
+        onPress={f => f}
         opacity={1}
       />,
     ).toJSON();
