@@ -5,7 +5,10 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { fetchNewExercises } from '../../api/newExercises';
 import NewExercise from './components/NewExercise';
-import { updateNewExercise } from './redux';
+import {
+  exercisesToRecordSelector,
+  updateNewExercise,
+} from './redux';
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   fetchNewExercises,
@@ -13,18 +16,19 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch);
 
 export const mapStateToProps = state => ({
-  newExercises: state.db.newExercises,
+  exercisesToRecord: exercisesToRecordSelector(state),
   record: state.record,
 });
 
 export class App extends PureComponent {
   static propTypes = {
-    fetchNewExercises: PropTypes.func.isRequired,
-    newExercises: PropTypes.arrayOf(PropTypes.shape({
+    exercisesToRecord: PropTypes.arrayOf(PropTypes.shape({
       reps: PropTypes.number.isRequired,
       timeStamp: PropTypes.number.isRequired,
       type: PropTypes.string.isRequired,
+      weight: PropTypes.number,
     })).isRequired,
+    fetchNewExercises: PropTypes.func.isRequired,
     record: PropTypes.shape({
       isLoading: PropTypes.bool.isRequired,
     }).isRequired,
@@ -44,14 +48,14 @@ export class App extends PureComponent {
       record: {
         isLoading,
       },
-      newExercises,
+      exercisesToRecord,
     } = this.props;
     return (
       <View style={{ flex: 1 }}>
         {
-          newExercises &&
+          exercisesToRecord &&
           <FlatList
-            data={newExercises}
+            data={exercisesToRecord}
             renderItem={({ item, index }) => (
               <NewExercise
                 index={index}
@@ -64,7 +68,7 @@ export class App extends PureComponent {
           />
         }
         {
-          (!newExercises || isLoading) &&
+          (!exercisesToRecord || isLoading) &&
           <Text>Put a loader in here</Text>
         }
       </View>

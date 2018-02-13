@@ -6,9 +6,28 @@ import { new_exercises as newExercises } from '../../../api/db.json';
 describe('render tests', () => {
   it('doesnt crash', () => {
     const props = {
+      exercisesToRecord: [
+        {
+          reps: 12,
+          timeStamp: 1518407604,
+          type: 'Bicep Curls',
+          weight: 35,
+        },
+        {
+          reps: 5,
+          timeStamp: 1518407604,
+          type: 'Shoulder Press',
+          weight: 15,
+        },
+        {
+          reps: 6,
+          timeStamp: 1518407604,
+          type: 'Lateral Raises',
+          weight: 45,
+        },
+      ],
       fetchNewExercises: f => f,
       navigation: {},
-      newExercises: [],
       record: {
         isLoading: false,
       },
@@ -33,7 +52,7 @@ describe('mapStateToProps tests', () => {
         isLoading: false,
       },
     })).toEqual({
-      newExercises: [],
+      exercisesToRecord: [],
       record: {
         isLoading: false,
       },
@@ -49,7 +68,7 @@ describe('mapStateToProps tests', () => {
         isLoading: true,
       },
     })).toEqual({
-      newExercises: [],
+      exercisesToRecord: [],
       record: {
         isLoading: true,
       },
@@ -63,11 +82,58 @@ describe('mapStateToProps tests', () => {
       },
       record: {
         isLoading: false,
+        modifiedExercises: [
+          {
+            reps: 12,
+            weight: 35,
+          },
+          {
+            reps: 5,
+            weight: 15,
+          },
+          {
+            reps: 6,
+            weight: 45,
+          },
+        ],
       },
     })).toEqual({
-      newExercises,
+      exercisesToRecord: [
+        {
+          reps: 12,
+          timeStamp: 1518407604,
+          type: 'Bicep Curls',
+          weight: 35,
+        },
+        {
+          reps: 5,
+          timeStamp: 1518407604,
+          type: 'Shoulder Press',
+          weight: 15,
+        },
+        {
+          reps: 6,
+          timeStamp: 1518407604,
+          type: 'Lateral Raises',
+          weight: 45,
+        },
+      ],
       record: {
         isLoading: false,
+        modifiedExercises: [
+          {
+            reps: 12,
+            weight: 35,
+          },
+          {
+            reps: 5,
+            weight: 15,
+          },
+          {
+            reps: 6,
+            weight: 45,
+          },
+        ],
       },
     });
   });

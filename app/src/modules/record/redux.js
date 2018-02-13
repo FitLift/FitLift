@@ -1,8 +1,9 @@
+import { createSelector } from 'reselect';
 import { TypeKeys as api } from '../../api/newExercises';
 
 export const initialState = {
   isLoading: false,
-  modifiedExercises: {},
+  modifiedExercises: [],
 };
 
 export const TypeKeys = {
@@ -20,14 +21,30 @@ export const updateNewExercise = (index, key, value) => ({
   value,
 });
 
+// selectors
+
+const newExercisesSelector = state => state.db.newExercises;
+const modifiedExercisesSelector = state => state.record.modifiedExercises;
+
+export const exercisesToRecordSelector = createSelector(
+  newExercisesSelector,
+  modifiedExercisesSelector,
+  (newExercises, modifiedExercises) => newExercises.map((x, i) => ({
+    ...x,
+    ...modifiedExercises[i],
+  })),
+);
+
 // reducer
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case TypeKeys.RECEIVE_NEW_EXERCISES:
       return {
-        ...state,
         isLoading: false,
+        modifiedExercises: action.data.map(({ reps }) => ({
+          reps,
+        })),
       };
     case TypeKeys.UPDATE_NEW_EXERCISE:
       return {
