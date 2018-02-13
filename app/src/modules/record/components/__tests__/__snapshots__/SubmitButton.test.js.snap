@@ -28,7 +28,6 @@ exports[`render tests doesnt crash 1`] = `
         "borderRadius": 4,
         "height": 30,
         "justifyContent": "center",
-        "opacity": 1,
         "padding": 5,
       }
     }

@@ -13,10 +13,9 @@ const requestNewExercises = user => ({
   user,
 });
 
-const receiveNewExercises = (user, data) => ({
+const receiveNewExercises = data => ({
   data,
   type: TypeKeys.RECEIVE_NEW_EXERCISES,
-  user,
 });
 
 export const fetchNewExercises = user => (dispatch) => {
@@ -26,7 +25,7 @@ export const fetchNewExercises = user => (dispatch) => {
       response => response.json(),
       error => `An error occurred: ${error}`,
     )
-    .then(json => dispatch(receiveNewExercises(user, json)));
+    .then(json => dispatch(receiveNewExercises(json)));
 };
 
 export default (state = initialState, action) => {

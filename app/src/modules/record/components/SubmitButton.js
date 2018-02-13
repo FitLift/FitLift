@@ -8,6 +8,7 @@ import {
 
 export default class NumberInput extends PureComponent {
   static propTypes = {
+    submitButtonColor: PropTypes.string.isRequired,
   };
 
   onPress = (e) => {
@@ -15,17 +16,19 @@ export default class NumberInput extends PureComponent {
   }
 
   render() {
+    const {
+      submitButtonColor,
+    } = this.props;
     return (
       <TouchableHighlight
         underlayColor="white"
         onPress={this.onPress}
       >
         <View style={{
-          backgroundColor: '#9CCC65',
+          backgroundColor: submitButtonColor,
           borderRadius: 4,
           height: 30,
           justifyContent: 'center',
-          opacity: this.props.opacity,
           padding: 5,
         }}
         >

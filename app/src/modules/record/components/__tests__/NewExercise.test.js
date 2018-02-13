@@ -8,8 +8,10 @@ describe('render tests', () => {
       index: 1,
       onChange: f => f,
       reps: 10,
-      timeStamp: 1518407604,
+      submitButtonColor: '#9CCC65',
+      timeStamp: '7:53:24 pm',
       type: 'bicep curls',
+      weight: 10,
     };
     const rendered = renderer.create(
       <NewExercise {...props} />,

@@ -140,7 +140,7 @@ exports[`render tests doesnt crash 1`] = `
                 "width": 30,
               }
             }
-            value=""
+            value="35"
           />
           <View
             accessibilityComponentType={undefined}
@@ -169,7 +169,6 @@ exports[`render tests doesnt crash 1`] = `
                   "borderRadius": 4,
                   "height": 30,
                   "justifyContent": "center",
-                  "opacity": 1,
                   "padding": 5,
                 }
               }
@@ -276,7 +275,7 @@ exports[`render tests doesnt crash 1`] = `
                 "width": 30,
               }
             }
-            value=""
+            value="15"
           />
           <View
             accessibilityComponentType={undefined}
@@ -305,7 +304,6 @@ exports[`render tests doesnt crash 1`] = `
                   "borderRadius": 4,
                   "height": 30,
                   "justifyContent": "center",
-                  "opacity": 1,
                   "padding": 5,
                 }
               }
@@ -412,7 +410,7 @@ exports[`render tests doesnt crash 1`] = `
                 "width": 30,
               }
             }
-            value=""
+            value="45"
           />
           <View
             accessibilityComponentType={undefined}
@@ -441,7 +439,6 @@ exports[`render tests doesnt crash 1`] = `
                   "borderRadius": 4,
                   "height": 30,
                   "justifyContent": "center",
-                  "opacity": 1,
                   "padding": 5,
                 }
               }

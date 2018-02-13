@@ -7,7 +7,7 @@ describe('render tests', () => {
     const rendered = renderer.create(
       <SubmitButton
         onPress={f => f}
-        opacity={1}
+        submitButtonColor="#9CCC65"
       />,
     ).toJSON();
     expect(rendered).toMatchSnapshot();

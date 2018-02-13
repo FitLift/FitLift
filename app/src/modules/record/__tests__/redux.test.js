@@ -91,79 +91,105 @@ describe('reducer tests', () => {
     });
   });
 
-  // it('TypeKeys.UPDATE_NEW_EXERCISE should work', () => {
-  //   expect(reducer(
-  //     {
-  //       isLoading: false,
-  //       modifiedExercises: {},
-  //     },
-  //     updateNewExercise(1, 'weight', 25),
-  //   )).toEqual({
-  //     isLoading: false,
-  //     modifiedExercises: {
-  //       1: {
-  //         weight: 25,
-  //       },
-  //     },
-  //   });
-  // });
+  it('TypeKeys.UPDATE_NEW_EXERCISE should work', () => {
+    expect(reducer(
+      {
+        isLoading: false,
+        modifiedExercises: [
+          {
+            reps: 12,
+            timeStamp: 1518407604,
+            type: 'Bicep Curls',
+            weight: 35,
+          },
+          {
+            reps: 5,
+            timeStamp: 1518407604,
+            type: 'Shoulder Press',
+            weight: 85,
+          },
+        ],
+      },
+      updateNewExercise(1, 'weight', 25),
+    )).toEqual({
+      isLoading: false,
+      modifiedExercises: [
+        {
+          reps: 12,
+          timeStamp: 1518407604,
+          type: 'Bicep Curls',
+          weight: 35,
+        },
+        {
+          reps: 5,
+          timeStamp: 1518407604,
+          type: 'Shoulder Press',
+          weight: 25,
+        },
+      ],
+    });
+  });
 
-  // it('TypeKeys.UPDATE_NEW_EXERCISE should work', () => {
-  //   expect(reducer(
-  //     {
-  //       isLoading: false,
-  //       modifiedExercises: {
-  //         1: {
-  //           reps: 6,
-  //           weight: 25,
-  //         },
-  //       },
-  //     },
-  //     updateNewExercise(1, 'reps', 10),
-  //   )).toEqual({
-  //     isLoading: false,
-  //     modifiedExercises: {
-  //       1: {
-  //         reps: 10,
-  //         weight: 25,
-  //       },
-  //     },
-  //   });
-  // });
-
-  // it('TypeKeys.UPDATE_NEW_EXERCISE should work', () => {
-  //   expect(reducer(
-  //     {
-  //       isLoading: false,
-  //       modifiedExercises: {
-  //         1: {
-  //           reps: 6,
-  //           weight: 25,
-  //         },
-  //       },
-  //     },
-  //     updateNewExercise(1, 'reps', 10),
-  //   )).toEqual({
-  //     isLoading: false,
-  //     modifiedExercises: {
-  //       1: {
-  //         reps: 10,
-  //         weight: 25,
-  //       },
-  //     },
-  //   });
-  // });
-
-  // it('TypeKeys.RECEIVE_NEW_EXERCISES should work', () => {
-  //   expect(reducer(
-  //     {
-  //       isLoading: true,
-  //     },
-  //     {
-  //       type: TypeKeys.RECEIVE_NEW_EXERCISES,
-  //     },
-  //   )).toEqual({
-  //     isLoading: false,
-  //   });
-  // });
+  it('TypeKeys.UPDATE_NEW_EXERCISE should work', () => {
+    expect(reducer(
+      {
+        isLoading: false,
+        modifiedExercises: [
+          {
+            reps: 12,
+            timeStamp: 1518407604,
+            type: 'Bicep Curls',
+            weight: 35,
+          },
+          {
+            reps: 12,
+            timeStamp: 1518407604,
+            type: 'Bicep Curls',
+            weight: 35,
+          },
+          {
+            reps: 12,
+            timeStamp: 1518407604,
+            type: 'Bicep Curls',
+            weight: 35,
+          },
+          {
+            reps: 5,
+            timeStamp: 1518407604,
+            type: 'Shoulder Press',
+            weight: 85,
+          },
+        ],
+      },
+      updateNewExercise(2, 'reps', 25),
+    )).toEqual({
+      isLoading: false,
+      modifiedExercises: [
+        {
+          reps: 12,
+          timeStamp: 1518407604,
+          type: 'Bicep Curls',
+          weight: 35,
+        },
+        {
+          reps: 12,
+          timeStamp: 1518407604,
+          type: 'Bicep Curls',
+          weight: 35,
+        },
+        {
+          reps: 25,
+          timeStamp: 1518407604,
+          type: 'Bicep Curls',
+          weight: 35,
+        },
+        {
+          reps: 5,
+          timeStamp: 1518407604,
+          type: 'Shoulder Press',
+          weight: 85,
+        },
+      ],
+    });
+  });
 });

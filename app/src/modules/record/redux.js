@@ -46,17 +46,24 @@ export default (state = initialState, action) => {
           reps,
         })),
       };
-    case TypeKeys.UPDATE_NEW_EXERCISE:
+    case TypeKeys.UPDATE_NEW_EXERCISE: {
+      const {
+        index,
+        key,
+        value,
+      } = action;
       return {
         ...state,
-        modifiedExercises: {
-          ...state.modifiedExercises,
-          [action.index]: {
-            ...state.modifiedExercises[action.index],
-            [action.key]: action.value,
+        modifiedExercises: [
+          ...state.modifiedExercises.slice(0, index),
+          {
+            ...state.modifiedExercises[index],
+            [key]: value,
           },
-        },
+          ...state.modifiedExercises.slice(index + 1),
+        ],
       };
+    }
     case TypeKeys.LOGIN:
       return {
         ...state,

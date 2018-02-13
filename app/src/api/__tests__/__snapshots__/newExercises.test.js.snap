@@ -25,7 +25,6 @@ Array [
       },
     ],
     "type": "RECEIVE_NEW_EXERCISES",
-    "user": 5,
   },
 ]
 `;

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Text, View, FlatList } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import moment from 'moment-timezone';
 import { fetchNewExercises } from '../../api/newExercises';
 import NewExercise from './components/NewExercise';
 import {
@@ -23,10 +24,16 @@ export const mapStateToProps = state => ({
 export class App extends PureComponent {
   static propTypes = {
     exercisesToRecord: PropTypes.arrayOf(PropTypes.shape({
-      reps: PropTypes.number.isRequired,
+      reps: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+      ]),
       timeStamp: PropTypes.number.isRequired,
       type: PropTypes.string.isRequired,
-      weight: PropTypes.number,
+      weight: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+      ]),
     })).isRequired,
     fetchNewExercises: PropTypes.func.isRequired,
     record: PropTypes.shape({
@@ -61,7 +68,9 @@ export class App extends PureComponent {
                 index={index}
                 type={item.type}
                 reps={item.reps}
-                timeStamp={item.timeStamp}
+                timeStamp={moment.unix(item.timeStamp).utcOffset(-8).format('h:mm:ss a')}
+                weight={item.weight}
+                submitButtonColor={(item.weight && item.reps) ? '#9CCC65' : '#9E9E9E'}
                 onChange={this.props.updateNewExercise}
               />)}
             keyExtractor={(item, index) => index}

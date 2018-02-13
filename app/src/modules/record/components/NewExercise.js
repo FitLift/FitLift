@@ -4,7 +4,6 @@ import {
   Text,
   View,
 } from 'react-native';
-import moment from 'moment-timezone';
 import NumberInput from './NumberInput';
 import SubmitButton from './SubmitButton';
 
@@ -12,8 +11,12 @@ export default class NewExercise extends PureComponent {
   static propTypes = {
     index: PropTypes.number.isRequired,
     onChange: PropTypes.func.isRequired,
-    reps: PropTypes.number.isRequired,
-    timeStamp: PropTypes.number.isRequired,
+    reps: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
+    submitButtonColor: PropTypes.string.isRequired,
+    timeStamp: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     weight: PropTypes.oneOfType([
       PropTypes.string,
@@ -22,6 +25,7 @@ export default class NewExercise extends PureComponent {
   };
 
   static defaultProps = {
+    reps: '',
     weight: '',
   };
 
@@ -32,6 +36,7 @@ export default class NewExercise extends PureComponent {
       index,
       type,
       reps,
+      submitButtonColor,
       timeStamp,
       weight,
     } = this.props;
@@ -46,12 +51,8 @@ export default class NewExercise extends PureComponent {
         }}
       >
         <View style={{ width: 100 }}>
-          <Text>
-            {type}
-          </Text>
-          <Text>
-            {moment.unix(timeStamp).utcOffset(-8).format('h:mm:ss a')}
-          </Text>
+          <Text>{type}</Text>
+          <Text>{timeStamp}</Text>
         </View>
         <Text>reps:</Text>
         <NumberInput
@@ -65,7 +66,7 @@ export default class NewExercise extends PureComponent {
         />
         <SubmitButton
           onPress={f => f}
-          opacity={1}
+          submitButtonColor={submitButtonColor}
         />
       </View>
     );
