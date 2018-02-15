@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`selector tests it should work 1`] = `
+Array [
+  Object {
+    "id": "-L5GDNmo8uZxet9S7mE2",
+    "reps": 12,
+    "timeStamp": 1518407604,
+    "type": "Bicep Curls",
+    "weight": 35,
+  },
+  Object {
+    "id": "-L5GDeJnjbOj1SkQRJK8",
+    "reps": 5,
+    "timeStamp": 1518407604,
+    "type": "Shoulder Press",
+    "weight": 15,
+  },
+  Object {
+    "id": "-L5GDeeBKCPlTnm-yCiX",
+    "reps": 6,
+    "timeStamp": 1518407604,
+    "type": "Lateral Raises",
+    "weight": 45,
+  },
+]
+`;

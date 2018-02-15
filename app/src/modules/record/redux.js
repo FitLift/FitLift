@@ -1,21 +1,24 @@
 import { createSelector } from 'reselect';
+import omit from 'lodash/omit';
 import { TypeKeys as api } from '../../api/newExercises';
 
 export const initialState = {
   isLoading: false,
-  modifiedExercises: [],
+  modifiedExercises: {},
 };
 
 export const TypeKeys = {
   LOGIN: 'login',
+  POST_NEW_EXERCISE: api.POST_NEW_EXERCISE,
   RECEIVE_NEW_EXERCISES: api.RECEIVE_NEW_EXERCISES,
+  REMOVE_NEW_EXERCISE: api.REMOVE_NEW_EXERCISE,
   UPDATE_NEW_EXERCISE: 'UPDATE_NEW_EXERCISE',
 };
 
 // actions
 
-export const updateNewExercise = (index, key, value) => ({
-  index,
+export const updateNewExercise = (id, key, value) => ({
+  id,
   key,
   type: TypeKeys.UPDATE_NEW_EXERCISE,
   value,
@@ -29,9 +32,10 @@ const modifiedExercisesSelector = state => state.record.modifiedExercises;
 export const exercisesToRecordSelector = createSelector(
   newExercisesSelector,
   modifiedExercisesSelector,
-  (newExercises, modifiedExercises) => newExercises.map((x, i) => ({
-    ...x,
-    ...modifiedExercises[i],
+  (newExercises, modifiedExercises) => Object.keys(newExercises).map(x => ({
+    ...newExercises[x],
+    id: x,
+    ...modifiedExercises[x],
   })),
 );
 
@@ -42,28 +46,38 @@ export default (state = initialState, action) => {
     case TypeKeys.RECEIVE_NEW_EXERCISES:
       return {
         isLoading: false,
-        modifiedExercises: action.data.map(({ reps }) => ({
-          reps,
-        })),
+        modifiedExercises: {
+          ...state.modifiedExercises,
+          ...Object.keys(action.data).reduce((acc, x) => ({
+            ...acc,
+            [x]: {
+              reps: action.data[x].reps,
+            },
+          }), {}),
+        },
       };
     case TypeKeys.UPDATE_NEW_EXERCISE: {
       const {
-        index,
+        id,
         key,
         value,
       } = action;
       return {
         ...state,
-        modifiedExercises: [
-          ...state.modifiedExercises.slice(0, index),
-          {
-            ...state.modifiedExercises[index],
+        modifiedExercises: {
+          ...state.modifiedExercises,
+          [id]: {
+            ...state.modifiedExercises[id],
             [key]: value,
           },
-          ...state.modifiedExercises.slice(index + 1),
-        ],
+        },
       };
     }
+    case TypeKeys.REMOVE_NEW_EXERCISE:
+      return {
+        ...state,
+        modifiedExercises: omit(state.modifiedExercises, action.id),
+      };
     case TypeKeys.LOGIN:
       return {
         ...state,

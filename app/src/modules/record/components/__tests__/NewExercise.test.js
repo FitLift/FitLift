@@ -9,6 +9,7 @@ describe('render tests', () => {
       onChange: f => f,
       reps: 10,
       submitButtonColor: '#9CCC65',
+      submitButtonOnPress: f => f,
       timeStamp: '7:53:24 pm',
       type: 'bicep curls',
       weight: 10,

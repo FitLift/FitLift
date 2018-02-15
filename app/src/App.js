@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 import reducer from './rootReducer';
 import Router, { navigationMiddleware } from './routes';
 
-const store = createStore(
+export const store = createStore(
   reducer,
   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(
     applyMiddleware(thunk, navigationMiddleware),

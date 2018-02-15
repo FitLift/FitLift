@@ -9,6 +9,7 @@ import SubmitButton from './SubmitButton';
 
 export default class NewExercise extends PureComponent {
   static propTypes = {
+    id: PropTypes.string.isRequired,
     index: PropTypes.number.isRequired,
     onChange: PropTypes.func.isRequired,
     reps: PropTypes.oneOfType([
@@ -16,6 +17,7 @@ export default class NewExercise extends PureComponent {
       PropTypes.number,
     ]),
     submitButtonColor: PropTypes.string.isRequired,
+    submitButtonOnPress: PropTypes.func.isRequired,
     timeStamp: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     weight: PropTypes.oneOfType([
@@ -29,14 +31,15 @@ export default class NewExercise extends PureComponent {
     weight: '',
   };
 
-  onChange = (index, key) => value => this.props.onChange(index, key, value);
+  onChange = (id, key) => value => this.props.onChange(id, key, value);
 
   render() {
     const {
-      index,
+      id,
       type,
       reps,
       submitButtonColor,
+      submitButtonOnPress,
       timeStamp,
       weight,
     } = this.props;
@@ -56,17 +59,18 @@ export default class NewExercise extends PureComponent {
         </View>
         <Text>reps:</Text>
         <NumberInput
-          onChange={this.onChange(index, 'reps')}
+          onChange={this.onChange(id, 'reps')}
           value={reps}
         />
         <Text>weight:</Text>
         <NumberInput
-          onChange={this.onChange(index, 'weight')}
+          onChange={this.onChange(id, 'weight')}
           value={weight}
         />
         <SubmitButton
-          onPress={f => f}
-          submitButtonColor={submitButtonColor}
+          id={id}
+          color={submitButtonColor}
+          onPress={submitButtonOnPress}
         />
       </View>
     );

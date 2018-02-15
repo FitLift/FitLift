@@ -1,7 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { App, mapStateToProps } from '../index';
-import { new_exercises as newExercises } from '../../../api/db.json';
+import { new_exercises as allNewExercises } from '../../../api/db.json';
+
+const newExercises = allNewExercises.SAMPLE_USER;
 
 describe('render tests', () => {
   it('doesnt crash', () => {
@@ -27,6 +29,7 @@ describe('render tests', () => {
         },
       ],
       fetchNewExercises: f => f,
+      listenForNewExercises: f => f,
       navigation: {},
       record: {
         isLoading: false,
@@ -100,18 +103,21 @@ describe('mapStateToProps tests', () => {
     })).toEqual({
       exercisesToRecord: [
         {
+          id: '-L5GDNmo8uZxet9S7mE2',
           reps: 12,
           timeStamp: 1518407604,
           type: 'Bicep Curls',
           weight: 35,
         },
         {
+          id: '-L5GDeJnjbOj1SkQRJK8',
           reps: 5,
           timeStamp: 1518407604,
           type: 'Shoulder Press',
           weight: 15,
         },
         {
+          id: '-L5GDeeBKCPlTnm-yCiX',
           reps: 6,
           timeStamp: 1518407604,
           type: 'Lateral Raises',

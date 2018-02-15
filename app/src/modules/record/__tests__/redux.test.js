@@ -3,8 +3,9 @@ import reducer, {
   updateNewExercise,
   exercisesToRecordSelector,
 } from '../redux';
-import { new_exercises as newExercises } from '../../../api/db.json';
+import { new_exercises as allNewExercises } from '../../../api/db.json';
 
+const newExercises = allNewExercises.SAMPLE_USER;
 
 describe('selector tests', () => {
   it('it should work', () => {
@@ -13,41 +14,22 @@ describe('selector tests', () => {
         newExercises,
       },
       record: {
-        modifiedExercises: [
-          {
+        modifiedExercises: {
+          '-L5GDNmo8uZxet9S7mE2': {
             reps: 12,
             weight: 35,
           },
-          {
+          '-L5GDeJnjbOj1SkQRJK8': {
             reps: 5,
             weight: 15,
           },
-          {
+          '-L5GDeeBKCPlTnm-yCiX': {
             reps: 6,
             weight: 45,
           },
-        ],
+        },
       },
-    })).toEqual([
-      {
-        reps: 12,
-        timeStamp: 1518407604,
-        type: 'Bicep Curls',
-        weight: 35,
-      },
-      {
-        reps: 5,
-        timeStamp: 1518407604,
-        type: 'Shoulder Press',
-        weight: 15,
-      },
-      {
-        reps: 6,
-        timeStamp: 1518407604,
-        type: 'Lateral Raises',
-        weight: 45,
-      },
-    ]);
+    })).toMatchSnapshot();
   });
 });
 
@@ -69,7 +51,7 @@ describe('reducer tests', () => {
     expect(reducer(
       {
         isLoading: true,
-        modifiedExercises: [],
+        modifiedExercises: {},
       },
       {
         data: newExercises,
@@ -77,17 +59,17 @@ describe('reducer tests', () => {
       },
     )).toEqual({
       isLoading: false,
-      modifiedExercises: [
-        {
+      modifiedExercises: {
+        '-L5GDNmo8uZxet9S7mE2': {
           reps: 12,
         },
-        {
+        '-L5GDeJnjbOj1SkQRJK8': {
           reps: 5,
         },
-        {
+        '-L5GDeeBKCPlTnm-yCiX': {
           reps: 6,
         },
-      ],
+      },
     });
   });
 
