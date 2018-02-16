@@ -9,7 +9,6 @@ export const initialState = {
 
 export const TypeKeys = {
   LOGIN: 'login',
-  POST_NEW_EXERCISE: api.POST_NEW_EXERCISE,
   RECEIVE_NEW_EXERCISES: api.RECEIVE_NEW_EXERCISES,
   REMOVE_NEW_EXERCISE: api.REMOVE_NEW_EXERCISE,
   UPDATE_NEW_EXERCISE: 'UPDATE_NEW_EXERCISE',
@@ -82,6 +81,17 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isLoading: true,
+      };
+    case TypeKeys.CONFIRMING_NEW_EXERCISE:
+      return {
+        ...state,
+        modifiedExercises: {
+          ...state.modifiedExercises,
+          [action.id]: {
+            ...state.modifiedExercises[action.id],
+            isConfirming: true,
+          },
+        },
       };
     default:
       return state;

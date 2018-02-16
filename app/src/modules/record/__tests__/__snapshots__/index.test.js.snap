@@ -1,5 +1,50 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`mapStateToProps tests should work with new exercises 1`] = `
+Object {
+  "exercisesToRecord": Array [
+    Object {
+      "id": "-L5GDNmo8uZxet9S7mE2",
+      "reps": 12,
+      "timeStamp": 1518407604,
+      "type": "Bicep Curls",
+      "weight": 35,
+    },
+    Object {
+      "id": "-L5GDeJnjbOj1SkQRJK8",
+      "reps": 5,
+      "timeStamp": 1518407604,
+      "type": "Shoulder Press",
+      "weight": 15,
+    },
+    Object {
+      "id": "-L5GDeeBKCPlTnm-yCiX",
+      "reps": 6,
+      "timeStamp": 1518407604,
+      "type": "Lateral Raises",
+      "weight": 45,
+    },
+  ],
+  "record": Object {
+    "isLoading": false,
+    "modifiedExercises": Object {
+      "-L5GDNmo8uZxet9S7mE2": Object {
+        "reps": 12,
+        "weight": 35,
+      },
+      "-L5GDeJnjbOj1SkQRJK8": Object {
+        "reps": 5,
+        "weight": 15,
+      },
+      "-L5GDeeBKCPlTnm-yCiX": Object {
+        "reps": 6,
+        "weight": 45,
+      },
+    },
+  },
+}
+`;
+
 exports[`render tests doesnt crash 1`] = `
 <View
   style={
@@ -12,18 +57,21 @@ exports[`render tests doesnt crash 1`] = `
     data={
       Array [
         Object {
+          "id": "1",
           "reps": 12,
           "timeStamp": 1518407604,
           "type": "Bicep Curls",
           "weight": 35,
         },
         Object {
+          "id": "2",
           "reps": 5,
           "timeStamp": 1518407604,
           "type": "Shoulder Press",
           "weight": 15,
         },
         Object {
+          "id": "3",
           "reps": 6,
           "timeStamp": 1518407604,
           "type": "Lateral Raises",
@@ -461,5 +509,61 @@ exports[`render tests doesnt crash 1`] = `
       </View>
     </View>
   </RCTScrollView>
+  <View
+    accessibilityComponentType="button"
+    accessibilityLabel={undefined}
+    accessibilityTraits={
+      Array [
+        "button",
+      ]
+    }
+    accessible={true}
+    collapsable={undefined}
+    hasTVPreferredFocus={undefined}
+    hitSlop={undefined}
+    isTVSelectable={true}
+    nativeID={undefined}
+    onLayout={undefined}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+    testID={undefined}
+    tvParallaxProperties={undefined}
+  >
+    <View
+      style={
+        Array [
+          Object {},
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={undefined}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "color": "#007AFF",
+              "fontSize": 18,
+              "padding": 8,
+              "textAlign": "center",
+            },
+          ]
+        }
+      >
+        create fake exercise
+      </Text>
+    </View>
+  </View>
 </View>
 `;

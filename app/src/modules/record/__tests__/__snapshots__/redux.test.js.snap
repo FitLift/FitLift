@@ -1,5 +1,45 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`reducer tests TypeKeys.UPDATE_NEW_EXERCISE should work 1`] = `
+Object {
+  "isLoading": false,
+  "modifiedExercises": Object {
+    "-1": Object {
+      "reps": 12,
+      "timeStamp": 1518407604,
+      "type": "Bicep Curls",
+      "weight": 25,
+    },
+    "-2": Object {
+      "reps": 5,
+      "timeStamp": 1518407604,
+      "type": "Shoulder Press",
+      "weight": 85,
+    },
+  },
+}
+`;
+
+exports[`reducer tests TypeKeys.UPDATE_NEW_EXERCISE should work 2`] = `
+Object {
+  "isLoading": false,
+  "modifiedExercises": Object {
+    "-1": Object {
+      "reps": 12,
+      "timeStamp": 1518407604,
+      "type": "Bicep Curls",
+      "weight": 35,
+    },
+    "-2": Object {
+      "reps": 25,
+      "timeStamp": 1518407604,
+      "type": "Shoulder Press",
+      "weight": 85,
+    },
+  },
+}
+`;
+
 exports[`selector tests it should work 1`] = `
 Array [
   Object {

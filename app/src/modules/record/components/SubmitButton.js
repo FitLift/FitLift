@@ -13,7 +13,7 @@ export default class NumberInput extends PureComponent {
     onPress: PropTypes.func.isRequired,
   };
 
-  onPress = () => this.props.onPress(this.props.id);
+  onPress = () => this.props.onPress();
 
   render() {
     const {

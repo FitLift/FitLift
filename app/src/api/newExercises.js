@@ -1,7 +1,7 @@
 import fetch from 'cross-fetch';
 import firebase from 'firebase';
 import omit from 'lodash/omit';
-import { API_URL, FIREBASE_URL } from '../../config';
+import { FIREBASE_URL } from '../../config';
 
 const initialState = {};
 
@@ -14,6 +14,7 @@ const config = {
 firebase.initializeApp(config);
 
 export const TypeKeys = {
+  CONFIRMING_NEW_EXERCISE: 'CONFIRMING_NEW_EXERCISE',
   RECEIVE_NEW_EXERCISES: 'RECEIVE_NEW_EXERCISES',
   REMOVE_NEW_EXERCISE: 'REMOVE_NEW_EXERCISE',
   REQUEST_NEW_EXERCISES: 'REQUEST_NEW_EXERCISES',
@@ -33,6 +34,25 @@ const removeConfirmedExercise = id => ({
   id,
   type: TypeKeys.REMOVE_NEW_EXERCISE,
 });
+
+const confirmingNewExercise = id => ({
+  id,
+  type: TypeKeys.CONFIRMING_NEW_EXERCISE,
+});
+
+export const createNewExercise = (type, reps) => (dispatch) => {
+  return fetch(`${FIREBASE_URL}/new_exercises/SAMPLE_USER.json`, {
+    body: JSON.stringify({
+      reps,
+      timeStamp: Date.now(),
+      type,
+    }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    method: 'POST',
+  });
+};
 
 export const fetchNewExercises = user => (dispatch) => {
   dispatch(requestNewExercises(user));
@@ -56,44 +76,31 @@ export const listenForNewExercises = user => (dispatch) => {
     });
 };
 
-export const postConfirmedExercise = user => (dispatch) => {
-  // make loader action here.
-  return fetch(`${FIREBASE_URL}/exercises/${user}.json`, {
-    headers: {
-      "Content-Type": "application/json"
-    },
+export const deleteNewExercise = ({
+  user,
+  timeStamp,
+  id,
+  type,
+  reps,
+  weight,
+}) => (dispatch) => {
+  dispatch(confirmingNewExercise(id));
+  return Promise.all(fetch(`${FIREBASE_URL}/exercises/${user}.json`, {
     body: JSON.stringify({
-      id: '-L5GDeJnjbOj1SkQRJK8',
-      reps: 5,
-      timeStamp: 1518407604,
-      type: 'Shoulder Press',
-      weight: 15,
-    }),
-    method: 'POST',
-  }).then(
-    response => dispatch(removeConfirmedExercise()),
-    error => console.log(error),
-  );
-};
-
-export const deleteNewExercise = (user, exerciseID) => (dispatch) => {
-  // make loader action here.
-  return fetch(`${FIREBASE_URL}/exercises/${user}.json`, {
-    body: JSON.stringify({
-      id: exerciseID,
-      reps: 5,
-      timeStamp: 1518407604,
-      type: 'Shoulder Press',
-      weight: 15,
+      reps,
+      timeStamp,
+      type,
+      weight,
     }),
     headers: {
       'Content-Type': 'application/json',
     },
     method: 'POST',
-  }).then(
-    response => dispatch(removeConfirmedExercise(exerciseID)),
-    error => console.log(error),
-  );
+  }),
+  firebase.database()
+    .ref(`new_exercises/${user}/${id}`)
+    .remove())
+    .then(() => dispatch(removeConfirmedExercise(id)));
 };
 
 export default (state = initialState, action) => {

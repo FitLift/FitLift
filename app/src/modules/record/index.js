@@ -1,10 +1,11 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Text, View, FlatList } from 'react-native';
+import { Button, Text, View, FlatList } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import moment from 'moment-timezone';
 import {
+  createNewExercise,
   deleteNewExercise,
   fetchNewExercises,
   listenForNewExercises,
@@ -17,6 +18,7 @@ import {
 } from './redux';
 
 const mapDispatchToProps = dispatch => bindActionCreators({
+  createNewExercise,
   deleteNewExercise,
   fetchNewExercises,
   listenForNewExercises,
@@ -31,6 +33,7 @@ export const mapStateToProps = state => ({
 
 export class App extends PureComponent {
   static propTypes = {
+    createNewExercise: PropTypes.func.isRequired,
     deleteNewExercise: PropTypes.func.isRequired,
     exercisesToRecord: PropTypes.arrayOf(PropTypes.shape({
       reps: PropTypes.oneOfType([
@@ -61,7 +64,7 @@ export class App extends PureComponent {
     this.props.listenForNewExercises('SAMPLE_USER');
   }
 
-  submitButtonOnPress = user => exerciseID => this.props.deleteNewExercise(user, exerciseID);
+  submitButtonOnPress = exercise => () => this.props.deleteNewExercise(exercise);
 
   render() {
     const {
@@ -84,13 +87,17 @@ export class App extends PureComponent {
                 reps={item.reps}
                 timeStamp={moment.unix(item.timeStamp).utcOffset(-8).format('h:mm:ss a')}
                 weight={item.weight}
-                submitButtonColor={(item.weight && item.reps) ? '#9CCC65' : '#9E9E9E'}
-                submitButtonOnPress={this.submitButtonOnPress('SAMPLE_USER')}
+                submitButtonColor={(item.weight && item.reps && !item.isConfirming) ? '#9CCC65' : '#9E9E9E'}
+                submitButtonOnPress={this.submitButtonOnPress({ ...item, user: 'SAMPLE_USER' })}
                 onChange={this.props.updateNewExercise}
               />)}
             keyExtractor={(item, index) => index}
           />
         }
+        <Button
+          title="create fake exercise"
+          onPress={() => this.props.createNewExercise('bicep curls', 5)}
+        />
         {
           isLoading &&
           <Text>Put a loader in here</Text>

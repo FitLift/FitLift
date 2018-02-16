@@ -8,20 +8,24 @@ const newExercises = allNewExercises.SAMPLE_USER;
 describe('render tests', () => {
   it('doesnt crash', () => {
     const props = {
+      deleteNewExercise: f => f,
       exercisesToRecord: [
         {
+          id: '1',
           reps: 12,
           timeStamp: 1518407604,
           type: 'Bicep Curls',
           weight: 35,
         },
         {
+          id: '2',
           reps: 5,
           timeStamp: 1518407604,
           type: 'Shoulder Press',
           weight: 15,
         },
         {
+          id: '3',
           reps: 6,
           timeStamp: 1518407604,
           type: 'Lateral Raises',
@@ -85,62 +89,21 @@ describe('mapStateToProps tests', () => {
       },
       record: {
         isLoading: false,
-        modifiedExercises: [
-          {
+        modifiedExercises: {
+          '-L5GDNmo8uZxet9S7mE2': {
             reps: 12,
             weight: 35,
           },
-          {
+          '-L5GDeJnjbOj1SkQRJK8': {
             reps: 5,
             weight: 15,
           },
-          {
+          '-L5GDeeBKCPlTnm-yCiX': {
             reps: 6,
             weight: 45,
           },
-        ],
+        },
       },
-    })).toEqual({
-      exercisesToRecord: [
-        {
-          id: '-L5GDNmo8uZxet9S7mE2',
-          reps: 12,
-          timeStamp: 1518407604,
-          type: 'Bicep Curls',
-          weight: 35,
-        },
-        {
-          id: '-L5GDeJnjbOj1SkQRJK8',
-          reps: 5,
-          timeStamp: 1518407604,
-          type: 'Shoulder Press',
-          weight: 15,
-        },
-        {
-          id: '-L5GDeeBKCPlTnm-yCiX',
-          reps: 6,
-          timeStamp: 1518407604,
-          type: 'Lateral Raises',
-          weight: 45,
-        },
-      ],
-      record: {
-        isLoading: false,
-        modifiedExercises: [
-          {
-            reps: 12,
-            weight: 35,
-          },
-          {
-            reps: 5,
-            weight: 15,
-          },
-          {
-            reps: 6,
-            weight: 45,
-          },
-        ],
-      },
-    });
+    })).toMatchSnapshot();
   });
 });
