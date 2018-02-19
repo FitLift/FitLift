@@ -29,7 +29,15 @@ export default (state = initialState, action) => {
         state,
       );
     case 'logout':
-      return initialState;
+      return Navigation.router.getStateForAction(
+        NavigationActions.reset({
+          actions: [
+            NavigationActions.navigate({ routeName: 'login' }),
+          ],
+          index: 0,
+        }),
+        state,
+      );
     default:
       return Navigation.router.getStateForAction(action, state);
   }

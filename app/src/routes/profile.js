@@ -1,4 +1,4 @@
-import profile from '../modules/profile/App';
+import profile from '../modules/profile';
 import { profileTabIcon } from '../components/icons';
 
 export default {
