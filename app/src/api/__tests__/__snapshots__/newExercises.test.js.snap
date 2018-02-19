@@ -4,28 +4,29 @@ exports[`async action creator tests should fetch current exercises 1`] = `
 Array [
   Object {
     "type": "REQUEST_NEW_EXERCISES",
-    "user": 5,
+    "user": "SAMPLE_USER",
   },
   Object {
-    "data": Array [
-      Object {
-        "reps": 12,
-        "time": 1517968200,
-        "type": "Bicep Curls",
+    "data": Object {
+      "SAMPLE_USER": Object {
+        "-L5GDNmo8uZxet9S7mE2": Object {
+          "reps": 12,
+          "timeStamp": 1518407604,
+          "type": "Bicep Curls",
+        },
+        "-L5GDeJnjbOj1SkQRJK8": Object {
+          "reps": 5,
+          "timeStamp": 1518407604,
+          "type": "Shoulder Press",
+        },
+        "-L5GDeeBKCPlTnm-yCiX": Object {
+          "reps": 6,
+          "timeStamp": 1518407604,
+          "type": "Lateral Raises",
+        },
       },
-      Object {
-        "reps": 5,
-        "time": 1517968200,
-        "type": "Shoulder Press",
-      },
-      Object {
-        "reps": 6,
-        "time": 1517968200,
-        "type": "Lateral Raises",
-      },
-    ],
+    },
     "type": "RECEIVE_NEW_EXERCISES",
-    "user": 5,
   },
 ]
 `;

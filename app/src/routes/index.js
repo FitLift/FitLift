@@ -28,6 +28,12 @@ export const tabScreenNavigator = TabNavigator({
   swipeEnabled: true,
   tabBarOptions: {
     activeTintColor: '#fc4c02',
+    labelStyle: {
+      fontSize: 15,
+    },
+    style: {
+      height: 60,
+    },
   },
   tabBarPosition: 'bottom',
 });
@@ -37,16 +43,16 @@ export const Navigation = StackNavigator({
   login: { screen: login },
 });
 
-const mapStateToProps = state => ({
-  navigation: state.navigation,
-});
-
 export const navigationMiddleware = createReactNavigationReduxMiddleware(
   'root',
   state => state.navigation,
 );
 
 const addListener = createReduxBoundAddListener('root');
+
+const mapStateToProps = state => ({
+  navigation: state.navigation,
+});
 
 class Router extends PureComponent {
   static propTypes = {

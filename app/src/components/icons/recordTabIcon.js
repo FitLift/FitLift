@@ -6,7 +6,7 @@ export default function recordTabIcon({ tintColor }) {
   return (
     <Foundation
       name="record"
-      size={26}
+      size={33}
       style={{ color: tintColor }}
     />
   );

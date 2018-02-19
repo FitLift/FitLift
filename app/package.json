@@ -31,7 +31,7 @@
     "start": "react-native-scripts start",
     "eject": "react-native-scripts eject",
     "android": "react-native-scripts android",
-    "ios": "react-native-scripts ios",
+    "ios": "REACT_DEBUGGER=\"unset ELECTRON_RUN_AS_NODE && open -g 'rndebugger://set-debugger-loc?port=19001' ||\" npm start",
     "test": "node node_modules/jest/bin/jest.js --watch",
     "test.coverage": "node node_modules/jest/bin/jest.js --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "db": "json-server --watch ./src/api/db.json"
@@ -52,6 +52,9 @@
   "dependencies": {
     "cross-fetch": "^1.1.1",
     "expo": "^25.0.0",
+    "firebase": "^4.9.1",
+    "lodash": "^4.17.5",
+    "moment-timezone": "^0.5.14",
     "nock": "^9.1.6",
     "react": "16.2.0",
     "react-native": "0.52.0",
@@ -60,6 +63,7 @@
     "react-navigation-redux-helpers": "^1.0.1",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "reselect": "^3.0.1"
   }
 }

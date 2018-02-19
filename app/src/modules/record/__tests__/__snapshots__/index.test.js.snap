@@ -1,48 +1,569 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`mapStateToProps tests should work with new exercises 1`] = `
+Object {
+  "exercisesToRecord": Array [
+    Object {
+      "id": "-L5GDNmo8uZxet9S7mE2",
+      "reps": 12,
+      "timeStamp": 1518407604,
+      "type": "Bicep Curls",
+      "weight": 35,
+    },
+    Object {
+      "id": "-L5GDeJnjbOj1SkQRJK8",
+      "reps": 5,
+      "timeStamp": 1518407604,
+      "type": "Shoulder Press",
+      "weight": 15,
+    },
+    Object {
+      "id": "-L5GDeeBKCPlTnm-yCiX",
+      "reps": 6,
+      "timeStamp": 1518407604,
+      "type": "Lateral Raises",
+      "weight": 45,
+    },
+  ],
+  "record": Object {
+    "isLoading": false,
+    "modifiedExercises": Object {
+      "-L5GDNmo8uZxet9S7mE2": Object {
+        "reps": 12,
+        "weight": 35,
+      },
+      "-L5GDeJnjbOj1SkQRJK8": Object {
+        "reps": 5,
+        "weight": 15,
+      },
+      "-L5GDeeBKCPlTnm-yCiX": Object {
+        "reps": 6,
+        "weight": 45,
+      },
+    },
+  },
+}
+`;
+
 exports[`render tests doesnt crash 1`] = `
 <View
   style={
     Object {
-      "alignItems": "center",
-      "backgroundColor": "#F5FCFF",
       "flex": 1,
-      "justifyContent": "center",
     }
   }
 >
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
+  <RCTScrollView
+    data={
+      Array [
+        Object {
+          "id": "1",
+          "reps": 12,
+          "timeStamp": 1518407604,
+          "type": "Bicep Curls",
+          "weight": 35,
+        },
+        Object {
+          "id": "2",
+          "reps": 5,
+          "timeStamp": 1518407604,
+          "type": "Shoulder Press",
+          "weight": 15,
+        },
+        Object {
+          "id": "3",
+          "reps": 6,
+          "timeStamp": 1518407604,
+          "type": "Lateral Raises",
+          "weight": 45,
+        },
+      ]
+    }
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    numColumns={1}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={Array []}
+    updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
+    windowSize={21}
   >
-    Exercise: 
-    Bicep Curls
-     reps: 
-    12
-     
-  </Text>
-  <Text
+    <View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "borderBottomWidth": 1,
+              "flex": 1,
+              "flexDirection": "row",
+              "height": 70,
+              "justifyContent": "space-around",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "width": 100,
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+            >
+              Bicep Curls
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+            >
+              5:46:47 am
+            </Text>
+          </View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+          >
+            reps:
+          </Text>
+          <TextInput
+            allowFontScaling={true}
+            keyboardType="numeric"
+            maxLength={2}
+            onChangeText={[Function]}
+            style={
+              Object {
+                "borderColor": "gray",
+                "borderRadius": 4,
+                "borderWidth": 1,
+                "fontSize": 15,
+                "height": 30,
+                "textAlign": "center",
+                "width": 30,
+              }
+            }
+            value="12"
+          />
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+          >
+            weight:
+          </Text>
+          <TextInput
+            allowFontScaling={true}
+            keyboardType="numeric"
+            maxLength={2}
+            onChangeText={[Function]}
+            style={
+              Object {
+                "borderColor": "gray",
+                "borderRadius": 4,
+                "borderWidth": 1,
+                "fontSize": 15,
+                "height": 30,
+                "textAlign": "center",
+                "width": 30,
+              }
+            }
+            value="35"
+          />
+          <View
+            accessibilityComponentType={undefined}
+            accessibilityLabel={undefined}
+            accessibilityTraits={undefined}
+            accessible={true}
+            hasTVPreferredFocus={undefined}
+            hitSlop={undefined}
+            isTVSelectable={true}
+            nativeID={undefined}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={null}
+            testID={undefined}
+            tvParallaxProperties={undefined}
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#9CCC65",
+                  "borderRadius": 4,
+                  "height": 30,
+                  "justifyContent": "center",
+                  "padding": 5,
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "white",
+                  }
+                }
+              >
+                Submit
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "borderBottomWidth": 1,
+              "flex": 1,
+              "flexDirection": "row",
+              "height": 70,
+              "justifyContent": "space-around",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "width": 100,
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+            >
+              Shoulder Press
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+            >
+              5:46:47 am
+            </Text>
+          </View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+          >
+            reps:
+          </Text>
+          <TextInput
+            allowFontScaling={true}
+            keyboardType="numeric"
+            maxLength={2}
+            onChangeText={[Function]}
+            style={
+              Object {
+                "borderColor": "gray",
+                "borderRadius": 4,
+                "borderWidth": 1,
+                "fontSize": 15,
+                "height": 30,
+                "textAlign": "center",
+                "width": 30,
+              }
+            }
+            value="5"
+          />
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+          >
+            weight:
+          </Text>
+          <TextInput
+            allowFontScaling={true}
+            keyboardType="numeric"
+            maxLength={2}
+            onChangeText={[Function]}
+            style={
+              Object {
+                "borderColor": "gray",
+                "borderRadius": 4,
+                "borderWidth": 1,
+                "fontSize": 15,
+                "height": 30,
+                "textAlign": "center",
+                "width": 30,
+              }
+            }
+            value="15"
+          />
+          <View
+            accessibilityComponentType={undefined}
+            accessibilityLabel={undefined}
+            accessibilityTraits={undefined}
+            accessible={true}
+            hasTVPreferredFocus={undefined}
+            hitSlop={undefined}
+            isTVSelectable={true}
+            nativeID={undefined}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={null}
+            testID={undefined}
+            tvParallaxProperties={undefined}
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#9CCC65",
+                  "borderRadius": 4,
+                  "height": 30,
+                  "justifyContent": "center",
+                  "padding": 5,
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "white",
+                  }
+                }
+              >
+                Submit
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "borderBottomWidth": 1,
+              "flex": 1,
+              "flexDirection": "row",
+              "height": 70,
+              "justifyContent": "space-around",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "width": 100,
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+            >
+              Lateral Raises
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+            >
+              5:46:47 am
+            </Text>
+          </View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+          >
+            reps:
+          </Text>
+          <TextInput
+            allowFontScaling={true}
+            keyboardType="numeric"
+            maxLength={2}
+            onChangeText={[Function]}
+            style={
+              Object {
+                "borderColor": "gray",
+                "borderRadius": 4,
+                "borderWidth": 1,
+                "fontSize": 15,
+                "height": 30,
+                "textAlign": "center",
+                "width": 30,
+              }
+            }
+            value="6"
+          />
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+          >
+            weight:
+          </Text>
+          <TextInput
+            allowFontScaling={true}
+            keyboardType="numeric"
+            maxLength={2}
+            onChangeText={[Function]}
+            style={
+              Object {
+                "borderColor": "gray",
+                "borderRadius": 4,
+                "borderWidth": 1,
+                "fontSize": 15,
+                "height": 30,
+                "textAlign": "center",
+                "width": 30,
+              }
+            }
+            value="45"
+          />
+          <View
+            accessibilityComponentType={undefined}
+            accessibilityLabel={undefined}
+            accessibilityTraits={undefined}
+            accessible={true}
+            hasTVPreferredFocus={undefined}
+            hitSlop={undefined}
+            isTVSelectable={true}
+            nativeID={undefined}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={null}
+            testID={undefined}
+            tvParallaxProperties={undefined}
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#9CCC65",
+                  "borderRadius": 4,
+                  "height": 30,
+                  "justifyContent": "center",
+                  "padding": 5,
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "white",
+                  }
+                }
+              >
+                Submit
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+  <View
+    accessibilityComponentType="button"
+    accessibilityLabel={undefined}
+    accessibilityTraits={
+      Array [
+        "button",
+      ]
+    }
     accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
+    collapsable={undefined}
+    hasTVPreferredFocus={undefined}
+    hitSlop={undefined}
+    isTVSelectable={true}
+    nativeID={undefined}
+    onLayout={undefined}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+    testID={undefined}
+    tvParallaxProperties={undefined}
   >
-    Exercise: 
-    Shoulder Press
-     reps: 
-    5
-     
-  </Text>
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-  >
-    Exercise: 
-    Lateral Raises
-     reps: 
-    6
-     
-  </Text>
+    <View
+      style={
+        Array [
+          Object {},
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={undefined}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "color": "#007AFF",
+              "fontSize": 18,
+              "padding": 8,
+              "textAlign": "center",
+            },
+          ]
+        }
+      >
+        create fake exercise
+      </Text>
+    </View>
+  </View>
 </View>
 `;

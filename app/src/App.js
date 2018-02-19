@@ -1,16 +1,14 @@
 import React, { PureComponent } from 'react';
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import devToolsEnhancer from 'remote-redux-devtools';
-import reducer from './reducer';
+import reducer from './rootReducer';
 import Router, { navigationMiddleware } from './routes';
 
-const store = createStore(
+export const store = createStore(
   reducer,
-  compose(
+  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(
     applyMiddleware(thunk, navigationMiddleware),
-    devToolsEnhancer(),
   ),
 );
 

@@ -9,23 +9,25 @@
           "password": "asdfasdf1"
       }
   },
-  "new_exercises": [
-    {
-      "reps": 12,
-      "time": 1517968200,
-      "type": "Bicep Curls"
-    },
-    {
-      "reps": 5,
-      "time": 1517968200,
-      "type": "Shoulder Press"
-    },
-    {
-      "reps": 6,
-      "time": 1517968200,
-      "type": "Lateral Raises"
+  "new_exercises" : {
+    "SAMPLE_USER" : {
+      "-L5GDNmo8uZxet9S7mE2" : {
+        "reps" : 12,
+        "timeStamp" : 1518407604,
+        "type" : "Bicep Curls"
+      },
+      "-L5GDeJnjbOj1SkQRJK8" : {
+        "reps" : 5,
+        "timeStamp" : 1518407604,
+        "type" : "Shoulder Press"
+      },
+      "-L5GDeeBKCPlTnm-yCiX" : {
+        "reps" : 6,
+        "timeStamp" : 1518407604,
+        "type" : "Lateral Raises"
+      }
     }
-  ],
+  },
   "exercises": {
       "Swagmo996": {
           "bicep_curls": {

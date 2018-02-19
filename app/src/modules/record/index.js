@@ -1,69 +1,110 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, Text, View, FlatList } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { fetchNewExercises } from '../../api/newExercises';
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-    flex: 1,
-    justifyContent: 'center',
-  },
-});
+import moment from 'moment-timezone';
+import {
+  createNewExercise,
+  deleteNewExercise,
+  fetchNewExercises,
+  listenForNewExercises,
+  postConfirmedExercise,
+} from '../../api/newExercises';
+import NewExercise from './components/NewExercise';
+import {
+  exercisesToRecordSelector,
+  updateNewExercise,
+} from './redux';
 
 const mapDispatchToProps = dispatch => bindActionCreators({
+  createNewExercise,
+  deleteNewExercise,
   fetchNewExercises,
+  listenForNewExercises,
+  postConfirmedExercise,
+  updateNewExercise,
 }, dispatch);
 
 export const mapStateToProps = state => ({
-  newExercises: state.db.newExercises,
+  exercisesToRecord: exercisesToRecordSelector(state),
   record: state.record,
 });
 
 export class App extends PureComponent {
-  componentDidMount() {
-    this.props.fetchNewExercises(1);
+  static propTypes = {
+    createNewExercise: PropTypes.func.isRequired,
+    deleteNewExercise: PropTypes.func.isRequired,
+    exercisesToRecord: PropTypes.arrayOf(PropTypes.shape({
+      reps: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+      ]),
+      timeStamp: PropTypes.number.isRequired,
+      type: PropTypes.string.isRequired,
+      weight: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+      ]),
+    })).isRequired,
+    fetchNewExercises: PropTypes.func.isRequired,
+    listenForNewExercises: PropTypes.func.isRequired,
+    record: PropTypes.shape({
+      isLoading: PropTypes.bool.isRequired,
+    }).isRequired,
+    updateNewExercise: PropTypes.func.isRequired,
   }
+
+  static navigationOptions = {
+    title: 'Record',
+  }
+
+  componentDidMount() {
+    this.props.fetchNewExercises('SAMPLE_USER');
+    this.props.listenForNewExercises('SAMPLE_USER');
+  }
+
+  submitButtonOnPress = exercise => () => this.props.deleteNewExercise(exercise);
 
   render() {
     const {
       record: {
         isLoading,
       },
-      newExercises,
+      exercisesToRecord,
     } = this.props;
     return (
-      <View style={styles.container}>
+      <View style={{ flex: 1 }}>
         {
-          newExercises &&
-          newExercises.map((x, i) => <Text key={i}>Exercise: {x.type} reps: {x.reps} </Text>)
+          exercisesToRecord &&
+          <FlatList
+            data={exercisesToRecord}
+            renderItem={({ item, index }) => (
+              <NewExercise
+                id={item.id}
+                index={index}
+                type={item.type}
+                reps={item.reps}
+                timeStamp={moment.unix(item.timeStamp / 1000).tz('America/Los_Angeles').format('h:mm:ss a')}
+                weight={item.weight}
+                submitButtonColor={(item.weight && item.reps && !item.isConfirming) ? '#9CCC65' : '#9E9E9E'}
+                submitButtonOnPress={this.submitButtonOnPress({ ...item, user: 'SAMPLE_USER' })}
+                onChange={this.props.updateNewExercise}
+              />)}
+            keyExtractor={(item, index) => index}
+          />
         }
+        <Button
+          title="create fake exercise"
+          onPress={() => this.props.createNewExercise('bicep curls', 5)}
+        />
         {
-          (!newExercises || isLoading) &&
+          isLoading &&
           <Text>Put a loader in here</Text>
         }
       </View>
     );
   }
 }
-
-App.propTypes = {
-  fetchNewExercises: PropTypes.func.isRequired,
-  newExercises: PropTypes.arrayOf(PropTypes.shape({
-    reps: PropTypes.number.isRequired,
-    time: PropTypes.number.isRequired,
-    type: PropTypes.string.isRequired,
-  })).isRequired,
-  record: PropTypes.shape({
-    isLoading: PropTypes.bool.isRequired,
-  }).isRequired,
-};
-
-App.navigationOptions = {
-  title: 'Record',
-};
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
