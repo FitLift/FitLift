@@ -28,6 +28,9 @@ export const tabScreenNavigator = TabNavigator({
   swipeEnabled: true,
   tabBarOptions: {
     activeTintColor: '#fc4c02',
+    labelStyle: {
+      fontSize: 12,
+    },
   },
   tabBarPosition: 'bottom',
 });

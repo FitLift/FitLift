@@ -6,7 +6,7 @@ export default function feedTabIcon({ tintColor }) {
   return (
     <Foundation
       name="list-bullet"
-      size={26}
+      size={30}
       style={{ color: tintColor }}
     />
   );

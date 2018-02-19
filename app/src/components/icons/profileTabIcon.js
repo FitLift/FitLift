@@ -6,7 +6,7 @@ export default function profileTabIcon({ tintColor, focused }) {
   return (
     <MaterialIcons
       name={focused ? 'person' : 'person-outline'}
-      size={26}
+      size={30}
       style={{ color: tintColor }}
     />
   );
