@@ -1,7 +1,4 @@
 version: 2
-machine:
-  timezone:
-    America/Los_Angeles
 jobs:
   build:
     docker:
