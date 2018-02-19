@@ -8,6 +8,7 @@ const newExercises = allNewExercises.SAMPLE_USER;
 describe('render tests', () => {
   it('doesnt crash', () => {
     const props = {
+      createNewExercise: f => f,
       deleteNewExercise: f => f,
       exercisesToRecord: [
         {

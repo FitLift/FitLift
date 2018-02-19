@@ -68,7 +68,7 @@ export const listenForNewExercises = user => (dispatch) => {
   firebase.database()
     .ref(`new_exercises/${user}`)
     .orderByChild('timeStamp')
-    .startAt(Date.now() / 1000)
+    .startAt(Date.now())
     .on('child_added', (data) => {
       dispatch((receiveNewExercises({
         [data.key]: data.val(),

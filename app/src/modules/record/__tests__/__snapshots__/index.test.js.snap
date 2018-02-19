@@ -137,7 +137,7 @@ exports[`render tests doesnt crash 1`] = `
               allowFontScaling={true}
               ellipsizeMode="tail"
             >
-              7:53:24 pm
+              5:46:47 am
             </Text>
           </View>
           <Text
@@ -272,7 +272,7 @@ exports[`render tests doesnt crash 1`] = `
               allowFontScaling={true}
               ellipsizeMode="tail"
             >
-              7:53:24 pm
+              5:46:47 am
             </Text>
           </View>
           <Text
@@ -407,7 +407,7 @@ exports[`render tests doesnt crash 1`] = `
               allowFontScaling={true}
               ellipsizeMode="tail"
             >
-              7:53:24 pm
+              5:46:47 am
             </Text>
           </View>
           <Text
