@@ -10,7 +10,6 @@ import SubmitButton from './SubmitButton';
 export default class NewExercise extends PureComponent {
   static propTypes = {
     id: PropTypes.string.isRequired,
-    index: PropTypes.number.isRequired,
     onChange: PropTypes.func.isRequired,
     reps: PropTypes.oneOfType([
       PropTypes.string,

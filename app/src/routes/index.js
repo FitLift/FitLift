@@ -29,7 +29,10 @@ export const tabScreenNavigator = TabNavigator({
   tabBarOptions: {
     activeTintColor: '#fc4c02',
     labelStyle: {
-      fontSize: 12,
+      fontSize: 15,
+    },
+    style: {
+      height: 60,
     },
   },
   tabBarPosition: 'bottom',
