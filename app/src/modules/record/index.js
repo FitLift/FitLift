@@ -85,7 +85,7 @@ export class App extends PureComponent {
                 index={index}
                 type={item.type}
                 reps={item.reps}
-                timeStamp={moment.unix(item.timeStamp / 1000).format('h:mm:ss a')}
+                timeStamp={moment.unix(item.timeStamp / 1000).utc(-8).format('h:mm:ss a')}
                 weight={item.weight}
                 submitButtonColor={(item.weight && item.reps && !item.isConfirming) ? '#9CCC65' : '#9E9E9E'}
                 submitButtonOnPress={this.submitButtonOnPress({ ...item, user: 'SAMPLE_USER' })}
