@@ -3,6 +3,8 @@ jobs:
   build:
     docker:
       - image: node:9.2.0
+    timezone:
+      America/Los_Angeles
     steps:
       - checkout
       - run: cd app && npm install

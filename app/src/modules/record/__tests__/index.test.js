@@ -42,9 +42,7 @@ describe('render tests', () => {
       updateNewExercise: f => f,
     };
     const rendered = renderer.create(
-      <App
-        {...props}
-      />,
+      <App {...props} />,
     ).toJSON();
     expect(rendered).toMatchSnapshot();
   });
