@@ -32,8 +32,6 @@ const confirmingNewExercise = id => ({
   type: TypeKeys.CONFIRMING_NEW_EXERCISE,
 });
 
-console.log(firebase.options.databaseURL);
-
 export const createNewExercise = (type, reps) => () =>
   fetch(`${FIREBASE_URL}/new_exercises/SAMPLE_USER.json`, {
     body: JSON.stringify({
@@ -77,23 +75,13 @@ export const deleteNewExercise = ({
   reps,
   weight,
 }) => (dispatch) => {
-  dispatch(confirmingNewExercise(id));
-  return Promise.all(fetch(`${FIREBASE_URL}/exercises/${user}.json`, {
-    body: JSON.stringify({
-      reps,
-      timeStamp,
-      type,
-      weight,
-    }),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    method: 'POST',
-  }),
-  firebase.database()
-    .ref(`new_exercises/${user}/${id}`)
-    .remove())
-    .then(() => dispatch(removeConfirmedExercise(id)));
+  dispatch(confirmingNewExercise(id))
+  firebase.database().ref(`exercises/${user}/${id}`).set({
+    reps,
+    timeStamp,
+    type,
+    weight,
+  }).then(dispatch(removeConfirmedExercise(id)));
 };
 
 export default (state = initialState, action) => {
