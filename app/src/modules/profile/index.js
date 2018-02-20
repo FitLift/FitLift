@@ -1,24 +1,58 @@
 import React, { PureComponent } from 'react';
-import { Button, Text, View } from 'react-native';
+import PropTypes from 'prop-types';
+import { Button, FlatList } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import ExerciseDate from './components/ExerciseDate';
+import {
+  displayExerciseDay,
+} from './redux';
 
-export default class App extends PureComponent {
-  static navigationOptions = props => ({
+const data = [
+  '11/01/2017',
+  '11/02/2017',
+  '11/03/2017',
+  '11/04/2017',
+  '11/05/2017',
+  '11/06/2017',
+];
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  displayExerciseDay,
+}, dispatch);
+
+export const mapStateToProps = state => ({
+  state,
+});
+
+class App extends PureComponent {
+  static propTypes = {
+    displayExerciseDay: PropTypes.func.isRequired,
+  }
+
+  static navigationOptions = ({ navigation }) => ({
     headerRight: (
       <Button
         title="Logout"
-        onPress={() => props.navigation.dispatch({ type: 'logout' })}
+        onPress={() => navigation.dispatch({ type: 'logout' })}
       />
     ),
     title: 'Profile',
   })
 
+  onPress = (user, day) => this.props.displayExerciseDay(user, day)
+
   render() {
     return (
-      <View>
-        <Text>
-          This is where you will be able to view your previous workouts.
-        </Text>
-      </View>
+      <FlatList
+        data={data}
+        renderItem={({ item }) => (
+          <ExerciseDate item={item} onPress={this.onPress} />
+          )}
+        keyExtractor={(item, index) => index}
+      />
     );
   }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
