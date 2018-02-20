@@ -1,17 +1,9 @@
 import fetch from 'cross-fetch';
-import firebase from 'firebase';
 import omit from 'lodash/omit';
 import { FIREBASE_URL } from '../../config';
+import firebase from './firebase';
 
 const initialState = {};
-
-const config = {
-  apiKey: 'AIzaSyAOFwsIxlQSaONcrlNFKRKDp5W-Ug_QSuY',
-  authDomain: 'fitlift-38a0c.firebaseapp.com',
-  databaseURL: 'https://fitlift-38a0c.firebaseio.com',
-};
-
-firebase.initializeApp(config);
 
 export const TypeKeys = {
   CONFIRMING_NEW_EXERCISE: 'CONFIRMING_NEW_EXERCISE',
@@ -39,6 +31,8 @@ const confirmingNewExercise = id => ({
   id,
   type: TypeKeys.CONFIRMING_NEW_EXERCISE,
 });
+
+console.log(firebase.options.databaseURL);
 
 export const createNewExercise = (type, reps) => () =>
   fetch(`${FIREBASE_URL}/new_exercises/SAMPLE_USER.json`, {

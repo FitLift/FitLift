@@ -1,0 +1,11 @@
+{
+  "rules": {
+    ".read": true,
+    ".write": true,
+    "new_exercises": {
+      "$user": {
+        ".indexOn": "timeStamp"
+      }
+    }
+  }
+}
