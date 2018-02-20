@@ -11,6 +11,7 @@ import {
   createReduxBoundAddListener,
 } from 'react-navigation-redux-helpers';
 import login from '../modules/login/App';
+import exerciseDay from '../modules/exerciseDay/';
 import feed from './feed';
 import record from './record';
 import profile from './profile';
@@ -21,7 +22,7 @@ export const tabScreenNavigator = TabNavigator({
   ...profile,
 }, {
   animationEnabled: true,
-  initialRouteName: 'record',
+  initialRouteName: 'profile',
   paths: {
     record: 'feed',
   },
@@ -39,6 +40,7 @@ export const tabScreenNavigator = TabNavigator({
 });
 
 export const Navigation = StackNavigator({
+  exerciseDay: { screen: exerciseDay },
   loggedIn: { screen: tabScreenNavigator },
   login: { screen: login },
 });

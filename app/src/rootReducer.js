@@ -5,9 +5,11 @@ import feed from './modules/feed/redux';
 import login from './modules/login/redux';
 import profile from './modules/profile/redux';
 import record from './modules/record/redux';
+import exerciseDay from './modules/exerciseDay/redux';
 
 export default combineReducers({
   db,
+  exerciseDay,
   feed,
   login,
   navigation,

@@ -79,10 +79,9 @@ export class App extends PureComponent {
           exercisesToRecord &&
           <FlatList
             data={exercisesToRecord}
-            renderItem={({ item, index }) => (
+            renderItem={({ item }) => (
               <NewExercise
                 id={item.id}
-                index={index}
                 type={item.type}
                 reps={item.reps}
                 timeStamp={moment.unix(item.timeStamp / 1000).tz('America/Los_Angeles').format('h:mm:ss a')}
@@ -91,7 +90,7 @@ export class App extends PureComponent {
                 submitButtonOnPress={this.submitButtonOnPress({ ...item, user: 'SAMPLE_USER' })}
                 onChange={this.props.updateNewExercise}
               />)}
-            keyExtractor={(item, index) => index}
+            keyExtractor={({ id }) => id}
           />
         }
         <Button

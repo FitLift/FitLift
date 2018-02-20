@@ -40,8 +40,8 @@ const confirmingNewExercise = id => ({
   type: TypeKeys.CONFIRMING_NEW_EXERCISE,
 });
 
-export const createNewExercise = (type, reps) => (dispatch) => {
-  return fetch(`${FIREBASE_URL}/new_exercises/SAMPLE_USER.json`, {
+export const createNewExercise = (type, reps) => () =>
+  fetch(`${FIREBASE_URL}/new_exercises/SAMPLE_USER.json`, {
     body: JSON.stringify({
       reps,
       timeStamp: Date.now(),
@@ -52,7 +52,6 @@ export const createNewExercise = (type, reps) => (dispatch) => {
     },
     method: 'POST',
   });
-};
 
 export const fetchNewExercises = user => (dispatch) => {
   dispatch(requestNewExercises(user));
