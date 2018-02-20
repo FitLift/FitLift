@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Entypo } from 'react-native-vector-icons';
+import { Entypo } from '@expo/vector-icons';
 
 export default class ChevronRightIcon extends PureComponent {
   render() {

@@ -25,7 +25,7 @@ export const mapStateToProps = state => ({
   state,
 });
 
-class App extends PureComponent {
+export class App extends PureComponent {
   static propTypes = {
     displayExerciseDay: PropTypes.func.isRequired,
   }

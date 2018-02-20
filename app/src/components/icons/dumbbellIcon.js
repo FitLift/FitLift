@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
-import { MaterialCommunityIcons } from 'react-native-vector-icons';
-
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default class DumbbellIcon extends PureComponent {
   render() {

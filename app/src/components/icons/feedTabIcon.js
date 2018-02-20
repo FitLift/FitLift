@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Foundation } from 'react-native-vector-icons';
+import { Foundation } from '@expo/vector-icons';
 
 export default function feedTabIcon({ tintColor }) {
   return (
