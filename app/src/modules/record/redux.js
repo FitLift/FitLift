@@ -31,11 +31,16 @@ const modifiedExercisesSelector = state => state.record.modifiedExercises;
 export const exercisesToRecordSelector = createSelector(
   newExercisesSelector,
   modifiedExercisesSelector,
-  (newExercises, modifiedExercises) => Object.keys(newExercises).map(x => ({
-    ...newExercises[x],
-    id: x,
-    ...modifiedExercises[x],
-  })),
+  (newExercises, modifiedExercises) => {
+    if (Object.keys(newExercises).length !== 0) {
+      return Object.keys(newExercises).map(x => ({
+        ...newExercises[x],
+        id: x,
+        ...modifiedExercises[x],
+      }));
+    }
+    return null;
+  },
 );
 
 // reducer

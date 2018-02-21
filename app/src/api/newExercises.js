@@ -1,6 +1,4 @@
-import fetch from 'cross-fetch';
 import omit from 'lodash/omit';
-import { FIREBASE_URL } from '../../config';
 import firebase from './firebase';
 
 const initialState = {};
@@ -33,29 +31,22 @@ const confirmingNewExercise = id => ({
 });
 
 export const createNewExercise = (type, reps) => () =>
-  fetch(`${FIREBASE_URL}/new_exercises/SAMPLE_USER.json`, {
-    body: JSON.stringify({
-      reps,
-      timeStamp: Date.now(),
-      type,
-    }),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    method: 'POST',
+  firebase.database().ref('new_exercises/SAMPLE_USER/').push({
+    reps,
+    timeStamp: Date.now(),
+    type,
   });
 
 export const fetchNewExercises = user => (dispatch) => {
   dispatch(requestNewExercises(user));
-  return fetch(`${FIREBASE_URL}/new_exercises/${user}.json`)
-    .then(
-      response => response.json(),
-      error => `An error occurred: ${error}`,
-    )
-    .then(json => dispatch(receiveNewExercises(json)));
+  return firebase.database()
+    .ref(`new_exercises/${user}`)
+    .once('value', (data) => {
+      dispatch(receiveNewExercises(data.val() || {}));
+    });
 };
 
-export const listenForNewExercises = user => (dispatch) => {
+export const listenForNewExercises = user => dispatch =>
   firebase.database()
     .ref(`new_exercises/${user}`)
     .orderByChild('timeStamp')
@@ -65,7 +56,6 @@ export const listenForNewExercises = user => (dispatch) => {
         [data.key]: data.val(),
       })));
     });
-};
 
 export const deleteNewExercise = ({
   user,
@@ -75,7 +65,7 @@ export const deleteNewExercise = ({
   reps,
   weight,
 }) => (dispatch) => {
-  dispatch(confirmingNewExercise(id))
+  dispatch(confirmingNewExercise(id));
   firebase.database().ref(`exercises/${user}/${id}`).set({
     reps,
     timeStamp,
