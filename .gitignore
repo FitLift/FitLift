@@ -1,2 +1,7 @@
-/backend/functions/node_modules
-/backend/functions/package-lock.json
+.DS_Store
+
+app/coverage/
+app/.expo/
+
+package-lock.json
+**/node_modules
