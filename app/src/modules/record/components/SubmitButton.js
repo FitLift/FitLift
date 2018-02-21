@@ -9,11 +9,12 @@ import {
 export default class NumberInput extends PureComponent {
   static propTypes = {
     color: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
     onPress: PropTypes.func.isRequired,
   };
 
-  onPress = () => this.props.onPress();
+  onPress = () => {
+    if (this.props.color === '#9CCC65') this.props.onPress();
+  };
 
   render() {
     const {

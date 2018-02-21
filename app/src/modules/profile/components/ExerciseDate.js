@@ -1,43 +1,44 @@
 import React, { PureComponent } from 'react';
-import { TouchableHighlight, Text, View } from 'react-native';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { ChevronRightIcon, DumbbellIcon } from '../../../components/icons/';
 
-export default class ExerciseDate extends PureComponent {
+const Button = styled.TouchableHighlight`
+  backgroundColor: #F7F8FC;
+  borderRadius: 4;
+  marginHorizontal: 10;
+  marginVertical: 3;
+  paddingVertical: 10;
+`;
 
-  onPress = () => this.props.onPress('SAMPLE_USER', '11/01/2017')
+const View = styled.View`
+  alignItems: center;
+  flexDirection: row;
+  justifyContent: space-between;
+`;
+
+const Text = styled.Text`
+  fontSize: 20;
+`;
+
+export default class ExerciseDate extends PureComponent {
+  static propTypes = {
+    item: PropTypes.string.isRequired,
+    onPress: PropTypes.func.isRequired,
+  }
+
+  onPress = () => this.props.onPress('SAMPLE_USER', this.props.item)
 
   render() {
-    const {
-      item,
-    } = this.props;
+    const { item } = this.props;
     return (
-      <TouchableHighlight
-        underlayColor="white"
-        onPress={this.onPress}
-      >
-        <View
-          style={{
-            alignItems: 'center',
-            backgroundColor: '#F7F8FC',
-            borderRadius: 4,
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            marginHorizontal: 10,
-            marginVertical: 3,
-            paddingVertical: 10,
-          }}
-        >
+      <Button onPress={this.onPress} underlayColor="white">
+        <View>
           <DumbbellIcon />
-          <Text style={{
-            fontSize: 20,
-          }}
-          >
-            {item}
-          </Text>
+          <Text>{item}</Text>
           <ChevronRightIcon />
         </View>
-      </TouchableHighlight>
+      </Button>
     );
   }
 }
-

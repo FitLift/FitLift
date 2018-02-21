@@ -46,13 +46,17 @@ export class App extends PureComponent {
         PropTypes.string,
         PropTypes.number,
       ]),
-    })).isRequired,
+    })),
     fetchNewExercises: PropTypes.func.isRequired,
     listenForNewExercises: PropTypes.func.isRequired,
     record: PropTypes.shape({
       isLoading: PropTypes.bool.isRequired,
     }).isRequired,
     updateNewExercise: PropTypes.func.isRequired,
+  }
+
+  static defaultProps = {
+    exercisesToRecord: null,
   }
 
   static navigationOptions = {
@@ -93,14 +97,20 @@ export class App extends PureComponent {
             keyExtractor={({ id }) => id}
           />
         }
-        <Button
-          title="create fake exercise"
-          onPress={() => this.props.createNewExercise('bicep curls', 5)}
-        />
         {
           isLoading &&
           <Text>Put a loader in here</Text>
         }
+        {
+          !exercisesToRecord &&
+          <View style={{ flex: 1, justifyContent: 'center' }}>
+            <Text style={{ textAlign: 'center' }}>No exercises to show!  Go work out!</Text>
+          </View>
+        }
+        <Button
+          title="create fake exercise"
+          onPress={() => this.props.createNewExercise('bicep curls', 5)}
+        />
       </View>
     );
   }

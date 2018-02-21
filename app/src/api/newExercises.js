@@ -1,17 +1,7 @@
-import fetch from 'cross-fetch';
-import firebase from 'firebase';
 import omit from 'lodash/omit';
-import { FIREBASE_URL } from '../../config';
+import firebase from './firebase';
 
 const initialState = {};
-
-const config = {
-  apiKey: 'AIzaSyAOFwsIxlQSaONcrlNFKRKDp5W-Ug_QSuY',
-  authDomain: 'fitlift-38a0c.firebaseapp.com',
-  databaseURL: 'https://fitlift-38a0c.firebaseio.com',
-};
-
-firebase.initializeApp(config);
 
 export const TypeKeys = {
   CONFIRMING_NEW_EXERCISE: 'CONFIRMING_NEW_EXERCISE',
@@ -41,29 +31,22 @@ const confirmingNewExercise = id => ({
 });
 
 export const createNewExercise = (type, reps) => () =>
-  fetch(`${FIREBASE_URL}/new_exercises/SAMPLE_USER.json`, {
-    body: JSON.stringify({
-      reps,
-      timeStamp: Date.now(),
-      type,
-    }),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    method: 'POST',
+  firebase.database().ref('new_exercises/SAMPLE_USER/').push({
+    reps,
+    timeStamp: Date.now(),
+    type,
   });
 
 export const fetchNewExercises = user => (dispatch) => {
   dispatch(requestNewExercises(user));
-  return fetch(`${FIREBASE_URL}/new_exercises/${user}.json`)
-    .then(
-      response => response.json(),
-      error => `An error occurred: ${error}`,
-    )
-    .then(json => dispatch(receiveNewExercises(json)));
+  return firebase.database()
+    .ref(`new_exercises/${user}`)
+    .once('value', (data) => {
+      dispatch(receiveNewExercises(data.val() || {}));
+    });
 };
 
-export const listenForNewExercises = user => (dispatch) => {
+export const listenForNewExercises = user => dispatch =>
   firebase.database()
     .ref(`new_exercises/${user}`)
     .orderByChild('timeStamp')
@@ -73,7 +56,6 @@ export const listenForNewExercises = user => (dispatch) => {
         [data.key]: data.val(),
       })));
     });
-};
 
 export const deleteNewExercise = ({
   user,
@@ -84,22 +66,12 @@ export const deleteNewExercise = ({
   weight,
 }) => (dispatch) => {
   dispatch(confirmingNewExercise(id));
-  return Promise.all(fetch(`${FIREBASE_URL}/exercises/${user}.json`, {
-    body: JSON.stringify({
-      reps,
-      timeStamp,
-      type,
-      weight,
-    }),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    method: 'POST',
-  }),
-  firebase.database()
-    .ref(`new_exercises/${user}/${id}`)
-    .remove())
-    .then(() => dispatch(removeConfirmedExercise(id)));
+  firebase.database().ref(`exercises/${user}/${id}`).set({
+    reps,
+    timeStamp,
+    type,
+    weight,
+  }).then(dispatch(removeConfirmedExercise(id)));
 };
 
 export default (state = initialState, action) => {

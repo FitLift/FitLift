@@ -1,2 +1,5 @@
-export const API_URL = 'http://localhost:3000';
-export const FIREBASE_URL = 'https://fitlift-38a0c.firebaseio.com';
+export const FIREBASE_CONFIG = {
+  apiKey: 'AIzaSyAOFwsIxlQSaONcrlNFKRKDp5W-Ug_QSuY',
+  authDomain: 'fitlift-38a0c.firebaseapp.com',
+  databaseURL: 'https://fitlift-38a0c.firebaseio.com',
+};
