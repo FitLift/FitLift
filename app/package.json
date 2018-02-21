@@ -17,6 +17,7 @@
     "firebase-tools": "^3.17.4",
     "jest-expo": "^25.1.0",
     "jest-serializer-enzyme": "^1.0.0",
+    "jest-styled-components": "^4.11.0-1",
     "json-server": "^0.12.1",
     "nock": "^9.1.6",
     "prop-types": "^15.6.0",

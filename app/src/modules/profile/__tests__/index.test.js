@@ -1,6 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { App } from '../index';
+import 'jest-styled-components';
+// import { App } from '../index';
 
 describe('render tests', () => {
   // have to skip because react native development is terrible.

@@ -52,13 +52,13 @@ describe('mapStateToProps tests', () => {
   it('should work with intial state', () => {
     expect(mapStateToProps({
       db: {
-        newExercises: [],
+        newExercises: {},
       },
       record: {
         isLoading: false,
       },
     })).toEqual({
-      exercisesToRecord: [],
+      exercisesToRecord: null,
       record: {
         isLoading: false,
       },
@@ -68,13 +68,13 @@ describe('mapStateToProps tests', () => {
   it('should work when loading', () => {
     expect(mapStateToProps({
       db: {
-        newExercises: [],
+        newExercises: {},
       },
       record: {
         isLoading: true,
       },
     })).toEqual({
-      exercisesToRecord: [],
+      exercisesToRecord: null,
       record: {
         isLoading: true,
       },
