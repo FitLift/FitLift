@@ -11,6 +11,7 @@ export const TypeKeys = {
   LOGIN: 'login',
   RECEIVE_NEW_EXERCISES: api.RECEIVE_NEW_EXERCISES,
   REMOVE_NEW_EXERCISE: api.REMOVE_NEW_EXERCISE,
+  REQUEST_NEW_EXERCISES: api.REQUEST_NEW_EXERCISES,
   UPDATE_NEW_EXERCISE: 'UPDATE_NEW_EXERCISE',
 };
 
@@ -47,6 +48,11 @@ export const exercisesToRecordSelector = createSelector(
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case TypeKeys.REQUEST_NEW_EXERCISES:
+      return {
+        ...state,
+        isLoading: true,
+      };
     case TypeKeys.RECEIVE_NEW_EXERCISES:
       return {
         isLoading: false,
