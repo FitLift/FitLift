@@ -13,7 +13,6 @@ import {
 const RowStyle = styled.View`
   alignItems: center;
   borderBottomWidth: 1px;
-  flex: 1;
   flexDirection: row;
   height: 70px;
   justifyContent: space-around;

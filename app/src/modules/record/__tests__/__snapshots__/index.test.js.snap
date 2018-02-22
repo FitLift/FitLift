@@ -248,10 +248,7 @@ exports[`render tests doesnt crash 1`] = `
                 Object {
                   "alignItems": "center",
                   "borderBottomWidth": 1,
-                  "flexBasis": 0,
                   "flexDirection": "row",
-                  "flexGrow": 1,
-                  "flexShrink": 1,
                   "height": 70,
                   "justifyContent": "space-around",
                 },
@@ -452,10 +449,7 @@ exports[`render tests doesnt crash 1`] = `
                 Object {
                   "alignItems": "center",
                   "borderBottomWidth": 1,
-                  "flexBasis": 0,
                   "flexDirection": "row",
-                  "flexGrow": 1,
-                  "flexShrink": 1,
                   "height": 70,
                   "justifyContent": "space-around",
                 },
@@ -656,10 +650,7 @@ exports[`render tests doesnt crash 1`] = `
                 Object {
                   "alignItems": "center",
                   "borderBottomWidth": 1,
-                  "flexBasis": 0,
                   "flexDirection": "row",
-                  "flexGrow": 1,
-                  "flexShrink": 1,
                   "height": 70,
                   "justifyContent": "space-around",
                 },
