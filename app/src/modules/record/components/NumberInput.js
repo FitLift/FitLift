@@ -1,6 +1,16 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { TextInput } from 'react-native';
+import styled from 'styled-components';
+
+const StyledInput = styled.TextInput`
+  borderColor: gray;
+  borderRadius: 4px;
+  borderWidth: 1px;
+  fontSize: 18px;
+  height: 40px;
+  textAlign: center;
+  width: 40px;
+`;
 
 export default class NumberInput extends PureComponent {
   static propTypes = {
@@ -20,20 +30,11 @@ export default class NumberInput extends PureComponent {
       value,
     } = this.props;
     return (
-      <TextInput
+      <StyledInput
         maxLength={2}
         keyboardType="numeric"
         value={`${value}`}
         onChangeText={this.onChangeText}
-        style={{
-          borderColor: 'gray',
-          borderRadius: 4,
-          borderWidth: 1,
-          fontSize: 15,
-          height: 30,
-          textAlign: 'center',
-          width: 30,
-        }}
       />
     );
   }

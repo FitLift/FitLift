@@ -5,10 +5,10 @@ import { ChevronRightIcon, DumbbellIcon } from '../../../components/icons/';
 
 const Button = styled.TouchableHighlight`
   backgroundColor: #F7F8FC;
-  borderRadius: 4;
-  marginHorizontal: 10;
-  marginVertical: 3;
-  paddingVertical: 10;
+  borderRadius: 4px;
+  marginHorizontal: 10px;
+  marginVertical: 3px;
+  paddingVertical: 10px;
 `;
 
 const View = styled.View`
@@ -18,7 +18,7 @@ const View = styled.View`
 `;
 
 const Text = styled.Text`
-  fontSize: 20;
+  fontSize: 20px;
 `;
 
 export default class ExerciseDate extends PureComponent {

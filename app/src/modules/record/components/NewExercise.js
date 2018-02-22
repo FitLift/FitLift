@@ -1,21 +1,32 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import {
   Text,
-  View,
 } from 'react-native';
 import NumberInput from './NumberInput';
 import SubmitButton from './SubmitButton';
+import {
+  HeaderColumn, ExerciseColumn,
+} from './TableHeader';
+
+const RowStyle = styled.View`
+  alignItems: center;
+  borderBottomWidth: 1px;
+  flexDirection: row;
+  height: 70px;
+  justifyContent: space-around;
+`;
 
 export default class NewExercise extends PureComponent {
   static propTypes = {
+    display: PropTypes.bool,
     id: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     reps: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number,
     ]),
-    submitButtonColor: PropTypes.string.isRequired,
     submitButtonOnPress: PropTypes.func.isRequired,
     timeStamp: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
@@ -26,6 +37,7 @@ export default class NewExercise extends PureComponent {
   };
 
   static defaultProps = {
+    display: false,
     reps: '',
     weight: '',
   };
@@ -37,41 +49,37 @@ export default class NewExercise extends PureComponent {
       id,
       type,
       reps,
-      submitButtonColor,
+      display,
       submitButtonOnPress,
       timeStamp,
       weight,
     } = this.props;
     return (
-      <View style={{
-        alignItems: 'center',
-        borderBottomWidth: 1,
-        flex: 1,
-        flexDirection: 'row',
-        height: 70,
-        justifyContent: 'space-around',
-        }}
-      >
-        <View style={{ width: 100 }}>
+      <RowStyle>
+        <ExerciseColumn>
           <Text>{type}</Text>
           <Text>{timeStamp}</Text>
-        </View>
-        <Text>reps:</Text>
-        <NumberInput
-          onChange={this.onChange(id, 'reps')}
-          value={reps}
-        />
-        <Text>weight:</Text>
-        <NumberInput
-          onChange={this.onChange(id, 'weight')}
-          value={weight}
-        />
-        <SubmitButton
-          id={id}
-          color={submitButtonColor}
-          onPress={submitButtonOnPress}
-        />
-      </View>
+        </ExerciseColumn>
+        <HeaderColumn>
+          <NumberInput
+            onChange={this.onChange(id, 'reps')}
+            value={reps}
+          />
+        </HeaderColumn>
+        <HeaderColumn>
+          <NumberInput
+            onChange={this.onChange(id, 'weight')}
+            value={weight}
+          />
+        </HeaderColumn>
+        <HeaderColumn>
+          <SubmitButton
+            id={id}
+            display={display}
+            onPress={submitButtonOnPress}
+          />
+        </HeaderColumn>
+      </RowStyle>
     );
   }
 }

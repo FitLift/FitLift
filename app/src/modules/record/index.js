@@ -13,6 +13,11 @@ import {
 } from '../../api/newExercises';
 import NewExercise from './components/NewExercise';
 import {
+  Header,
+  ExerciseThing,
+  HeaderThing,
+} from './components/TableHeader';
+import {
   exercisesToRecordSelector,
   updateNewExercise,
 } from './redux';
@@ -81,28 +86,38 @@ export class App extends PureComponent {
       <View style={{ flex: 1 }}>
         {
           exercisesToRecord &&
-          <FlatList
-            data={exercisesToRecord}
-            renderItem={({ item }) => (
-              <NewExercise
-                id={item.id}
-                type={item.type}
-                reps={item.reps}
-                timeStamp={moment.unix(item.timeStamp / 1000).tz('America/Los_Angeles').format('h:mm:ss a')}
-                weight={item.weight}
-                submitButtonColor={(item.weight && item.reps && !item.isConfirming) ? '#9CCC65' : '#9E9E9E'}
-                submitButtonOnPress={this.submitButtonOnPress({ ...item, user: 'SAMPLE_USER' })}
-                onChange={this.props.updateNewExercise}
-              />)}
-            keyExtractor={({ id }) => id}
-          />
+          <View>
+            <Header>
+              <ExerciseThing text="Exercise" />
+              <HeaderThing text="Reps" />
+              <HeaderThing text="Weight" />
+              <HeaderThing text="Submit" />
+            </Header>
+            <FlatList
+              data={exercisesToRecord}
+              renderItem={({ item }) => (
+                <NewExercise
+                  id={item.id}
+                  type={item.type}
+                  reps={item.reps}
+                  timeStamp={moment.unix(item.timeStamp / 1000).tz('America/Los_Angeles').format('h:mm:ss a')}
+                  weight={item.weight}
+                  display={(item.weight && item.reps && !item.isConfirming)}
+                  submitButtonOnPress={this.submitButtonOnPress({ ...item, user: 'SAMPLE_USER' })}
+                  onChange={this.props.updateNewExercise}
+                />)}
+              keyExtractor={({ id }) => id}
+            />
+          </View>
         }
         {
           isLoading &&
-          <Text>Put a loader in here</Text>
+          <View style={{ flex: 1, justifyContent: 'center' }}>
+            <Text style={{ textAlign: 'center' }}>Put a Loader here</Text>
+          </View>
         }
         {
-          !exercisesToRecord &&
+          !exercisesToRecord && !isLoading &&
           <View style={{ flex: 1, justifyContent: 'center' }}>
             <Text style={{ textAlign: 'center' }}>No exercises to show!  Go work out!</Text>
           </View>

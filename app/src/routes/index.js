@@ -22,7 +22,7 @@ export const tabScreenNavigator = TabNavigator({
   ...profile,
 }, {
   animationEnabled: true,
-  initialRouteName: 'profile',
+  initialRouteName: 'record',
   paths: {
     record: 'feed',
   },

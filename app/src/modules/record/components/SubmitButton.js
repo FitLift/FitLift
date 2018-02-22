@@ -1,46 +1,58 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import {
   TouchableHighlight,
-  Text,
-  View,
 } from 'react-native';
+
+const OuterView = styled.View`
+  flex: 1;
+  justifyContent: center;
+`;
+
+const WhiteText = styled.Text`
+  color: white;
+  fontSize: 18px;
+`;
+
+const Button = styled.View`
+  backgroundColor: #9CCC65;
+  borderRadius: 4px;
+  height: 40px;
+  justifyContent: center;
+  padding: 5px;
+`;
 
 export default class NumberInput extends PureComponent {
   static propTypes = {
-    color: PropTypes.string.isRequired,
+    display: PropTypes.bool.isRequired,
     onPress: PropTypes.func.isRequired,
   };
 
   onPress = () => {
-    if (this.props.color === '#9CCC65') this.props.onPress();
+    this.props.onPress();
   };
 
   render() {
     const {
-      color,
+      display,
     } = this.props;
     return (
-      <TouchableHighlight
-        underlayColor="white"
-        onPress={this.onPress}
-      >
-        <View style={{
-          backgroundColor: color,
-          borderRadius: 4,
-          height: 30,
-          justifyContent: 'center',
-          padding: 5,
-        }}
-        >
-          <Text style={{
-            color: 'white',
-          }}
+      <OuterView>
+        {
+          display &&
+          <TouchableHighlight
+            underlayColor="white"
+            onPress={this.onPress}
           >
-            Submit
-          </Text>
-        </View>
-      </TouchableHighlight>
+            <Button>
+              <WhiteText>
+              Submit
+              </WhiteText>
+            </Button>
+          </TouchableHighlight>
+        }
+      </OuterView>
     );
   }
 }
