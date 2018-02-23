@@ -8,7 +8,7 @@ import NumberInput from './NumberInput';
 import SubmitButton from './SubmitButton';
 import {
   HeaderColumn, ExerciseColumn,
-} from './TableHeader';
+} from '../../../components/Header';
 
 const RowStyle = styled.View`
   alignItems: center;

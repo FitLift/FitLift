@@ -41,3 +41,13 @@ export const ExerciseThing = ({ text }) => (
     <HeaderText>{text}</HeaderText>
   </ExerciseColumn>
 );
+
+export const MainHeader = ({ names }) => (
+  <Header>
+    <ExerciseThing text={names[0]} />
+    <HeaderThing text={names[1]} />
+    <HeaderThing text={names[2]} />
+    <HeaderThing text={names[3]} />
+  </Header>
+);
+

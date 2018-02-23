@@ -192,137 +192,135 @@ exports[`render tests doesnt crash 1`] = `
         onLayout={[Function]}
         style={null}
       >
-        <View>
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderBottomWidth": 1,
+                "flexDirection": "row",
+                "height": 70,
+                "justifyContent": "space-around",
+              },
+              undefined,
+            ]
+          }
+        >
           <View
             style={
               Array [
                 Object {
-                  "alignItems": "center",
-                  "borderBottomWidth": 1,
-                  "flexDirection": "row",
+                  "alignItems": "flex-start",
                   "height": 70,
-                  "justifyContent": "space-around",
+                  "justifyContent": "center",
+                  "width": 100,
                 },
                 undefined,
               ]
             }
           >
-            <View
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
-                    "alignItems": "flex-start",
-                    "height": 70,
-                    "justifyContent": "center",
-                    "width": 100,
+                    "fontSize": 14,
                   },
                   undefined,
                 ]
               }
             >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontSize": 14,
-                    },
-                    undefined,
-                  ]
-                }
-              >
-                Bicep Curls
-              </Text>
-            </View>
-            <View
+              Bicep Curls
+            </Text>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "height": 70,
+                  "justifyContent": "center",
+                  "width": 75,
+                },
+                undefined,
+              ]
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
-                    "alignItems": "center",
-                    "height": 70,
-                    "justifyContent": "center",
-                    "width": 75,
+                    "fontSize": 14,
                   },
                   undefined,
                 ]
               }
             >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontSize": 14,
-                    },
-                    undefined,
-                  ]
-                }
-              >
-                2
-              </Text>
-            </View>
-            <View
+              2
+            </Text>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "height": 70,
+                  "justifyContent": "center",
+                  "width": 75,
+                },
+                undefined,
+              ]
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
-                    "alignItems": "center",
-                    "height": 70,
-                    "justifyContent": "center",
-                    "width": 75,
+                    "fontSize": 14,
                   },
                   undefined,
                 ]
               }
             >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontSize": 14,
-                    },
-                    undefined,
-                  ]
-                }
-              >
-                5
-              </Text>
-            </View>
-            <View
+              5
+            </Text>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "height": 70,
+                  "justifyContent": "center",
+                  "width": 75,
+                },
+                undefined,
+              ]
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
-                    "alignItems": "center",
-                    "height": 70,
-                    "justifyContent": "center",
-                    "width": 75,
+                    "fontSize": 14,
                   },
                   undefined,
                 ]
               }
             >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontSize": 14,
-                    },
-                    undefined,
-                  ]
-                }
-              >
-                5
-              </Text>
-            </View>
+              5
+            </Text>
           </View>
         </View>
       </View>
@@ -330,146 +328,142 @@ exports[`render tests doesnt crash 1`] = `
         onLayout={[Function]}
         style={null}
       >
-        <View>
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderBottomWidth": 1,
+                "flexDirection": "row",
+                "height": 70,
+                "justifyContent": "space-around",
+              },
+              undefined,
+            ]
+          }
+        >
           <View
             style={
               Array [
                 Object {
-                  "alignItems": "center",
-                  "borderBottomWidth": 1,
-                  "flexDirection": "row",
+                  "alignItems": "flex-start",
                   "height": 70,
-                  "justifyContent": "space-around",
+                  "justifyContent": "center",
+                  "width": 100,
                 },
                 undefined,
               ]
             }
           >
-            <View
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
-                    "alignItems": "flex-start",
-                    "height": 70,
-                    "justifyContent": "center",
-                    "width": 100,
+                    "fontSize": 14,
                   },
                   undefined,
                 ]
               }
             >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontSize": 14,
-                    },
-                    undefined,
-                  ]
-                }
-              >
-                Shoulder Press
-              </Text>
-            </View>
-            <View
+              Shoulder Press
+            </Text>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "height": 70,
+                  "justifyContent": "center",
+                  "width": 75,
+                },
+                undefined,
+              ]
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
-                    "alignItems": "center",
-                    "height": 70,
-                    "justifyContent": "center",
-                    "width": 75,
+                    "fontSize": 14,
                   },
                   undefined,
                 ]
               }
             >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontSize": 14,
-                    },
-                    undefined,
-                  ]
-                }
-              >
-                3
-              </Text>
-            </View>
-            <View
+              3
+            </Text>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "height": 70,
+                  "justifyContent": "center",
+                  "width": 75,
+                },
+                undefined,
+              ]
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
-                    "alignItems": "center",
-                    "height": 70,
-                    "justifyContent": "center",
-                    "width": 75,
+                    "fontSize": 14,
                   },
                   undefined,
                 ]
               }
             >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontSize": 14,
-                    },
-                    undefined,
-                  ]
-                }
-              >
-                12
-              </Text>
-            </View>
-            <View
+              12
+            </Text>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "height": 70,
+                  "justifyContent": "center",
+                  "width": 75,
+                },
+                undefined,
+              ]
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
-                    "alignItems": "center",
-                    "height": 70,
-                    "justifyContent": "center",
-                    "width": 75,
+                    "fontSize": 14,
                   },
                   undefined,
                 ]
               }
             >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontSize": 14,
-                    },
-                    undefined,
-                  ]
-                }
-              >
-                30
-              </Text>
-            </View>
+              30
+            </Text>
           </View>
         </View>
       </View>
       <View
         onLayout={[Function]}
         style={null}
-      >
-        <View />
-      </View>
+      />
     </View>
   </RCTScrollView>
 </View>

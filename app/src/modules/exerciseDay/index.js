@@ -3,18 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { FlatList, View } from 'react-native';
-import styled from 'styled-components';
 import {
   fetchExercises,
 } from '../../api/exercises';
 import {
-  Header,
-  ExerciseThing,
-  HeaderThing,
-  HeaderColumn,
-  ExerciseColumn,
-  ExerciseColumnHeader,
-} from '../record/components/TableHeader';
+  MainHeader,
+} from '../../components/Header';
+import Row from './components/Row';
 import { exercisesSelector } from './redux';
 
 const mapDispatchToProps = dispatch => bindActionCreators({
@@ -24,18 +19,6 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 export const mapStateToProps = state => ({
   exercises: exercisesSelector(state),
 });
-
-const RowStyle = styled.View`
-  alignItems: center;
-  borderBottomWidth: 1px;
-  flexDirection: row;
-  height: 70px;
-  justifyContent: space-around;
-`;
-
-const TextStyle = styled.Text`
-  font-size: 14;
-`;
 
 export class App extends PureComponent {
   static propTypes = {
@@ -78,36 +61,14 @@ export class App extends PureComponent {
     } = this.props;
     return (
       <View>
-        <Header>
-          <ExerciseThing text="Exercise" />
-          <HeaderThing text="Sets" />
-          <HeaderThing text="Reps" />
-          <HeaderThing text="Weight" />
-        </Header>
+        <MainHeader names={['Exercise', 'Sets', 'Reps', 'Weight']} />
         <FlatList
           data={exercises}
           renderItem={({ item }) => (
-            <View>
-              {
-                Object.values(item.values).map((x, index) => (
-                  <RowStyle key={index}>
-                    <ExerciseColumnHeader>
-                      <TextStyle>{x.type}</TextStyle>
-                    </ExerciseColumnHeader>
-                    <HeaderColumn>
-                      <TextStyle>{x.sets}</TextStyle>
-                    </HeaderColumn>
-                    <HeaderColumn>
-                      <TextStyle>{x.reps}</TextStyle>
-                    </HeaderColumn>
-                    <HeaderColumn>
-                      <TextStyle>{x.weight}</TextStyle>
-                    </HeaderColumn>
-                  </RowStyle>
-                ))
-              }
-            </View>
-            )}
+            Object.values(item.values).map((exercise, index) => (
+              <Row key={index} exercise={exercise} />
+            ))
+          )}
           keyExtractor={(item, index) => index}
         />
       </View>
