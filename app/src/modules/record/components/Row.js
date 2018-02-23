@@ -1,24 +1,17 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import {
   Text,
 } from 'react-native';
 import NumberInput from './NumberInput';
 import SubmitButton from './SubmitButton';
 import {
-  HeaderColumn, ExerciseColumn,
-} from './TableHeader';
+  StyledRowCell,
+  StyledExercise,
+  RowStyle,
+} from '../../../components/Row';
 
-const RowStyle = styled.View`
-  alignItems: center;
-  borderBottomWidth: 1px;
-  flexDirection: row;
-  height: 70px;
-  justifyContent: space-around;
-`;
-
-export default class NewExercise extends PureComponent {
+export default class Row extends PureComponent {
   static propTypes = {
     display: PropTypes.bool,
     id: PropTypes.string.isRequired,
@@ -56,29 +49,29 @@ export default class NewExercise extends PureComponent {
     } = this.props;
     return (
       <RowStyle>
-        <ExerciseColumn>
+        <StyledExercise>
           <Text>{type}</Text>
           <Text>{timeStamp}</Text>
-        </ExerciseColumn>
-        <HeaderColumn>
+        </StyledExercise>
+        <StyledRowCell>
           <NumberInput
             onChange={this.onChange(id, 'reps')}
             value={reps}
           />
-        </HeaderColumn>
-        <HeaderColumn>
+        </StyledRowCell>
+        <StyledRowCell>
           <NumberInput
             onChange={this.onChange(id, 'weight')}
             value={weight}
           />
-        </HeaderColumn>
-        <HeaderColumn>
+        </StyledRowCell>
+        <StyledRowCell>
           <SubmitButton
             id={id}
             display={display}
             onPress={submitButtonOnPress}
           />
-        </HeaderColumn>
+        </StyledRowCell>
       </RowStyle>
     );
   }

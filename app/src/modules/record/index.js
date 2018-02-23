@@ -11,16 +11,12 @@ import {
   listenForNewExercises,
   postConfirmedExercise,
 } from '../../api/newExercises';
-import NewExercise from './components/NewExercise';
-import {
-  Header,
-  ExerciseThing,
-  HeaderThing,
-} from './components/TableHeader';
+import Row from './components/Row';
 import {
   exercisesToRecordSelector,
   updateNewExercise,
 } from './redux';
+import Header from '../../components/Header';
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   createNewExercise,
@@ -83,20 +79,15 @@ export class App extends PureComponent {
       exercisesToRecord,
     } = this.props;
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, justifyContent: 'space-between' }}>
         {
           exercisesToRecord &&
           <View>
-            <Header>
-              <ExerciseThing text="Exercise" />
-              <HeaderThing text="Reps" />
-              <HeaderThing text="Weight" />
-              <HeaderThing text="Submit" />
-            </Header>
+            <Header names={['Exercise', 'Reps', 'Weight', 'Submit']} />
             <FlatList
               data={exercisesToRecord}
               renderItem={({ item }) => (
-                <NewExercise
+                <Row
                   id={item.id}
                   type={item.type}
                   reps={item.reps}
@@ -124,7 +115,7 @@ export class App extends PureComponent {
         }
         <Button
           title="create fake exercise"
-          onPress={() => this.props.createNewExercise('bicep curls', 5)}
+          onPress={() => this.props.createNewExercise('Shoulder Press', 5)}
         />
       </View>
     );
