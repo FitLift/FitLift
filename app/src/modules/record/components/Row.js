@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import {
   Text,
 } from 'react-native';
@@ -9,16 +8,11 @@ import SubmitButton from './SubmitButton';
 import {
   HeaderColumn, ExerciseColumn,
 } from '../../../components/Header';
+import {
+  RowStyle,
+} from '../../../components/Row';
 
-const RowStyle = styled.View`
-  alignItems: center;
-  borderBottomWidth: 1px;
-  flexDirection: row;
-  height: 70px;
-  justifyContent: space-around;
-`;
-
-export default class NewExercise extends PureComponent {
+export default class Row extends PureComponent {
   static propTypes = {
     display: PropTypes.bool,
     id: PropTypes.string.isRequired,

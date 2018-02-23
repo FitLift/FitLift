@@ -11,7 +11,7 @@ import {
   listenForNewExercises,
   postConfirmedExercise,
 } from '../../api/newExercises';
-import NewExercise from './components/NewExercise';
+import Row from './components/Row';
 import {
   exercisesToRecordSelector,
   updateNewExercise,
@@ -90,7 +90,7 @@ export class App extends PureComponent {
             <FlatList
               data={exercisesToRecord}
               renderItem={({ item }) => (
-                <NewExercise
+                <Row
                   id={item.id}
                   type={item.type}
                   reps={item.reps}

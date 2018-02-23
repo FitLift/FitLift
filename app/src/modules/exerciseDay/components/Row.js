@@ -5,14 +5,9 @@ import {
   HeaderColumn,
   ExerciseColumnHeader,
 } from '../../../components/Header';
-
-const RowStyle = styled.View`
-  alignItems: center;
-  borderBottomWidth: 1px;
-  flexDirection: row;
-  height: 70px;
-  justifyContent: space-around;
-`;
+import {
+  RowStyle,
+} from '../../../components/Row';
 
 const TextStyle = styled.Text`
   font-size: 14;
