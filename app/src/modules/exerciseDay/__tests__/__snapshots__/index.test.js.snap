@@ -211,7 +211,7 @@ exports[`render tests doesnt crash 1`] = `
               style={
                 Array [
                   Object {
-                    "alignItems": "center",
+                    "alignItems": "flex-start",
                     "height": 70,
                     "justifyContent": "center",
                     "width": 100,
@@ -227,7 +227,7 @@ exports[`render tests doesnt crash 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontSize": 18,
+                      "fontSize": 14,
                     },
                     undefined,
                   ]
@@ -256,7 +256,7 @@ exports[`render tests doesnt crash 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontSize": 18,
+                      "fontSize": 14,
                     },
                     undefined,
                   ]
@@ -285,7 +285,7 @@ exports[`render tests doesnt crash 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontSize": 18,
+                      "fontSize": 14,
                     },
                     undefined,
                   ]
@@ -314,7 +314,7 @@ exports[`render tests doesnt crash 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontSize": 18,
+                      "fontSize": 14,
                     },
                     undefined,
                   ]
@@ -349,7 +349,7 @@ exports[`render tests doesnt crash 1`] = `
               style={
                 Array [
                   Object {
-                    "alignItems": "center",
+                    "alignItems": "flex-start",
                     "height": 70,
                     "justifyContent": "center",
                     "width": 100,
@@ -365,7 +365,7 @@ exports[`render tests doesnt crash 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontSize": 18,
+                      "fontSize": 14,
                     },
                     undefined,
                   ]
@@ -394,7 +394,7 @@ exports[`render tests doesnt crash 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontSize": 18,
+                      "fontSize": 14,
                     },
                     undefined,
                   ]
@@ -423,7 +423,7 @@ exports[`render tests doesnt crash 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontSize": 18,
+                      "fontSize": 14,
                     },
                     undefined,
                   ]
@@ -452,7 +452,7 @@ exports[`render tests doesnt crash 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontSize": 18,
+                      "fontSize": 14,
                     },
                     undefined,
                   ]

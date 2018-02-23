@@ -13,6 +13,7 @@ import {
   HeaderThing,
   HeaderColumn,
   ExerciseColumn,
+  ExerciseColumnHeader,
 } from '../record/components/TableHeader';
 import { exercisesSelector } from './redux';
 
@@ -33,9 +34,8 @@ const RowStyle = styled.View`
 `;
 
 const TextStyle = styled.Text`
-  font-size: 18;
+  font-size: 14;
 `;
-
 
 export class App extends PureComponent {
   static propTypes = {
@@ -91,9 +91,9 @@ export class App extends PureComponent {
               {
                 Object.values(item.values).map((x, index) => (
                   <RowStyle key={index}>
-                    <ExerciseColumn>
+                    <ExerciseColumnHeader>
                       <TextStyle>{x.type}</TextStyle>
-                    </ExerciseColumn>
+                    </ExerciseColumnHeader>
                     <HeaderColumn>
                       <TextStyle>{x.sets}</TextStyle>
                     </HeaderColumn>

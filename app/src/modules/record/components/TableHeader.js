@@ -16,6 +16,11 @@ export const HeaderColumn = styled.View`
   alignItems: center;
 `;
 
+export const ExerciseColumnHeader = HeaderColumn.extend`
+  width: 100px;
+  alignItems: flex-start;
+`;
+
 export const ExerciseColumn = HeaderColumn.extend`
   width: 100px;
 `;
