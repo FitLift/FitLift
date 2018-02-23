@@ -7,7 +7,7 @@ const Button = styled.TouchableHighlight`
   backgroundColor: #F7F8FC;
   borderRadius: 4px;
   marginHorizontal: 10px;
-  marginVertical: 3px;
+  marginVertical: 5px;
   paddingVertical: 10px;
 `;
 

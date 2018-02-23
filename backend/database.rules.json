@@ -2,6 +2,11 @@
   "rules": {
     ".read": true,
     ".write": true,
+    "days_exercised": {
+      "$user": {
+        ".indexOn": "timeStamp"
+      }
+    },
     "exercises": {
       "$user": {
         ".indexOn": "timeStamp"

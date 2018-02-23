@@ -5,29 +5,33 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ExerciseDate from './components/ExerciseDate';
 import {
+  fetchDaysExercised,
+  listenForNewDays,
+} from '../../api/daysExercised';
+import {
+  daysExercisedArraySelector,
   displayExerciseDay,
 } from './redux';
 
-const data = [
-  '11/01/2017',
-  '11/02/2017',
-  '11/03/2017',
-  '11/04/2017',
-  '11/05/2017',
-  '11/06/2017',
-];
-
 const mapDispatchToProps = dispatch => bindActionCreators({
   displayExerciseDay,
+  fetchDaysExercised,
+  listenForNewDays,
 }, dispatch);
 
 export const mapStateToProps = state => ({
-  state,
+  pastDays: daysExercisedArraySelector(state),
 });
 
 export class App extends PureComponent {
   static propTypes = {
     displayExerciseDay: PropTypes.func.isRequired,
+    listenForNewDays: PropTypes.func.isRequired,
+    pastDays: PropTypes.arrayOf(PropTypes.string),
+  }
+
+  static defaultProps = {
+    pastDays: null,
   }
 
   static navigationOptions = ({ navigation }) => ({
@@ -40,12 +44,16 @@ export class App extends PureComponent {
     title: 'Profile',
   })
 
+  componentDidMount() {
+    this.props.listenForNewDays('SAMPLE_USER');
+  }
+
   onPress = (user, day) => this.props.displayExerciseDay(user, day)
 
   render() {
     return (
       <FlatList
-        data={data}
+        data={this.props.pastDays}
         renderItem={({ item }) => (
           <ExerciseDate item={item} onPress={this.onPress} />
           )}
