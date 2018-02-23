@@ -16,126 +16,78 @@ exports[`render tests doesnt crash 1`] = `
       ]
     }
   >
-    <View
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
       style={
         Array [
           Object {
-            "alignItems": "center",
-            "height": 70,
-            "justifyContent": "center",
+            "color": "#FBE9E7",
+            "fontSize": 20,
+            "textAlign": "center",
             "width": 100,
           },
           undefined,
         ]
       }
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Array [
-            Object {
-              "color": "#FBE9E7",
-              "fontSize": 20,
-            },
-            undefined,
-          ]
-        }
-      >
-        Exercise
-      </Text>
-    </View>
-    <View
+      Exercise
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
       style={
         Array [
           Object {
-            "alignItems": "center",
-            "height": 70,
-            "justifyContent": "center",
+            "color": "#FBE9E7",
+            "fontSize": 20,
+            "textAlign": "center",
             "width": 75,
           },
           undefined,
         ]
       }
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Array [
-            Object {
-              "color": "#FBE9E7",
-              "fontSize": 20,
-            },
-            undefined,
-          ]
-        }
-      >
-        Sets
-      </Text>
-    </View>
-    <View
+      Sets
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
       style={
         Array [
           Object {
-            "alignItems": "center",
-            "height": 70,
-            "justifyContent": "center",
+            "color": "#FBE9E7",
+            "fontSize": 20,
+            "textAlign": "center",
             "width": 75,
           },
           undefined,
         ]
       }
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Array [
-            Object {
-              "color": "#FBE9E7",
-              "fontSize": 20,
-            },
-            undefined,
-          ]
-        }
-      >
-        Reps
-      </Text>
-    </View>
-    <View
+      Reps
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
       style={
         Array [
           Object {
-            "alignItems": "center",
-            "height": 70,
-            "justifyContent": "center",
+            "color": "#FBE9E7",
+            "fontSize": 20,
+            "textAlign": "center",
             "width": 75,
           },
           undefined,
         ]
       }
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Array [
-            Object {
-              "color": "#FBE9E7",
-              "fontSize": 20,
-            },
-            undefined,
-          ]
-        }
-      >
-        Weight
-      </Text>
-    </View>
+      Weight
+    </Text>
   </View>
   <RCTScrollView
     data={
@@ -211,7 +163,7 @@ exports[`render tests doesnt crash 1`] = `
               Array [
                 Object {
                   "alignItems": "flex-start",
-                  "height": 70,
+                  "height": "100%",
                   "justifyContent": "center",
                   "width": 100,
                 },
@@ -240,7 +192,7 @@ exports[`render tests doesnt crash 1`] = `
               Array [
                 Object {
                   "alignItems": "center",
-                  "height": 70,
+                  "height": "100%",
                   "justifyContent": "center",
                   "width": 75,
                 },
@@ -269,7 +221,7 @@ exports[`render tests doesnt crash 1`] = `
               Array [
                 Object {
                   "alignItems": "center",
-                  "height": 70,
+                  "height": "100%",
                   "justifyContent": "center",
                   "width": 75,
                 },
@@ -298,7 +250,7 @@ exports[`render tests doesnt crash 1`] = `
               Array [
                 Object {
                   "alignItems": "center",
-                  "height": 70,
+                  "height": "100%",
                   "justifyContent": "center",
                   "width": 75,
                 },
@@ -347,7 +299,7 @@ exports[`render tests doesnt crash 1`] = `
               Array [
                 Object {
                   "alignItems": "flex-start",
-                  "height": 70,
+                  "height": "100%",
                   "justifyContent": "center",
                   "width": 100,
                 },
@@ -376,7 +328,7 @@ exports[`render tests doesnt crash 1`] = `
               Array [
                 Object {
                   "alignItems": "center",
-                  "height": 70,
+                  "height": "100%",
                   "justifyContent": "center",
                   "width": 75,
                 },
@@ -405,7 +357,7 @@ exports[`render tests doesnt crash 1`] = `
               Array [
                 Object {
                   "alignItems": "center",
-                  "height": 70,
+                  "height": "100%",
                   "justifyContent": "center",
                   "width": 75,
                 },
@@ -434,7 +386,7 @@ exports[`render tests doesnt crash 1`] = `
               Array [
                 Object {
                   "alignItems": "center",
-                  "height": 70,
+                  "height": "100%",
                   "justifyContent": "center",
                   "width": 75,
                 },

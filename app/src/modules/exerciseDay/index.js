@@ -6,9 +6,7 @@ import { FlatList, View } from 'react-native';
 import {
   fetchExercises,
 } from '../../api/exercises';
-import {
-  MainHeader,
-} from '../../components/Header';
+import Header from '../../components/Header';
 import Row from './components/Row';
 import { exercisesSelector } from './redux';
 
@@ -61,7 +59,7 @@ export class App extends PureComponent {
     } = this.props;
     return (
       <View>
-        <MainHeader names={['Exercise', 'Sets', 'Reps', 'Weight']} />
+        <Header names={['Exercise', 'Sets', 'Reps', 'Weight']} />
         <FlatList
           data={exercises}
           renderItem={({ item }) => (

@@ -16,10 +16,7 @@ import {
   exercisesToRecordSelector,
   updateNewExercise,
 } from './redux';
-
-import {
-  MainHeader,
-} from '../../components/Header';
+import Header from '../../components/Header';
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   createNewExercise,
@@ -86,7 +83,7 @@ export class App extends PureComponent {
         {
           exercisesToRecord &&
           <View>
-            <MainHeader names={['Exercise', 'Reps', 'Weight', 'Submit']}/>
+            <Header names={['Exercise', 'Reps', 'Weight', 'Submit']} />
             <FlatList
               data={exercisesToRecord}
               renderItem={({ item }) => (

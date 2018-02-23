@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export const Header = styled.View`
+const StyledHeader = styled.View`
   backgroundColor: #FB8C00;
   height: 50px;
   flexDirection: row;
@@ -9,45 +9,22 @@ export const Header = styled.View`
   alignItems: center;
 `;
 
-export const HeaderColumn = styled.View`
-  width: 75px;
-  height: 70px;
-  justifyContent: center;
-  alignItems: center;
-`;
-
-export const ExerciseColumnHeader = HeaderColumn.extend`
-  width: 100px;
-  alignItems: flex-start;
-`;
-
-export const ExerciseColumn = HeaderColumn.extend`
-  width: 100px;
-`;
-
-export const HeaderText = styled.Text`
+const HeaderText = styled.Text`
   fontSize: 20;
   color: #FBE9E7;
+  width: 75;
+  textAlign: center;
 `;
 
-export const HeaderThing = ({ text }) => (
-  <HeaderColumn>
-    <HeaderText>{text}</HeaderText>
-  </HeaderColumn>
-);
+const ExerciseHeaderText = HeaderText.extend`
+  width: 100;
+`;
 
-export const ExerciseThing = ({ text }) => (
-  <ExerciseColumn>
-    <HeaderText>{text}</HeaderText>
-  </ExerciseColumn>
+export default ({ names }) => (
+  <StyledHeader>
+    <ExerciseHeaderText>{names[0]}</ExerciseHeaderText>
+    <HeaderText>{names[1]}</HeaderText>
+    <HeaderText>{names[2]}</HeaderText>
+    <HeaderText>{names[3]}</HeaderText>
+  </StyledHeader>
 );
-
-export const MainHeader = ({ names }) => (
-  <Header>
-    <ExerciseThing text={names[0]} />
-    <HeaderThing text={names[1]} />
-    <HeaderThing text={names[2]} />
-    <HeaderThing text={names[3]} />
-  </Header>
-);
-

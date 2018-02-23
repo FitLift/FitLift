@@ -1,17 +1,10 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import {
-  HeaderColumn,
-  ExerciseColumnHeader,
-} from '../../../components/Header';
 import {
   RowStyle,
+  RowCell,
+  ExerciseRowCell,
 } from '../../../components/Row';
-
-const TextStyle = styled.Text`
-  font-size: 14;
-`;
 
 export default class Row extends PureComponent {
   static propTypes = {
@@ -34,18 +27,10 @@ export default class Row extends PureComponent {
     } = this.props;
     return (
       <RowStyle>
-        <ExerciseColumnHeader>
-          <TextStyle>{type}</TextStyle>
-        </ExerciseColumnHeader>
-        <HeaderColumn>
-          <TextStyle>{sets}</TextStyle>
-        </HeaderColumn>
-        <HeaderColumn>
-          <TextStyle>{reps}</TextStyle>
-        </HeaderColumn>
-        <HeaderColumn>
-          <TextStyle>{weight}</TextStyle>
-        </HeaderColumn>
+        <ExerciseRowCell text={type} />
+        <RowCell text={sets} />
+        <RowCell text={reps} />
+        <RowCell text={weight} />
       </RowStyle>
     );
   }

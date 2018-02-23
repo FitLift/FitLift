@@ -6,9 +6,8 @@ import {
 import NumberInput from './NumberInput';
 import SubmitButton from './SubmitButton';
 import {
-  HeaderColumn, ExerciseColumn,
-} from '../../../components/Header';
-import {
+  StyledRowCell,
+  StyledExercise,
   RowStyle,
 } from '../../../components/Row';
 
@@ -50,29 +49,29 @@ export default class Row extends PureComponent {
     } = this.props;
     return (
       <RowStyle>
-        <ExerciseColumn>
+        <StyledExercise>
           <Text>{type}</Text>
           <Text>{timeStamp}</Text>
-        </ExerciseColumn>
-        <HeaderColumn>
+        </StyledExercise>
+        <StyledRowCell>
           <NumberInput
             onChange={this.onChange(id, 'reps')}
             value={reps}
           />
-        </HeaderColumn>
-        <HeaderColumn>
+        </StyledRowCell>
+        <StyledRowCell>
           <NumberInput
             onChange={this.onChange(id, 'weight')}
             value={weight}
           />
-        </HeaderColumn>
-        <HeaderColumn>
+        </StyledRowCell>
+        <StyledRowCell>
           <SubmitButton
             id={id}
             display={display}
             onPress={submitButtonOnPress}
           />
-        </HeaderColumn>
+        </StyledRowCell>
       </RowStyle>
     );
   }
