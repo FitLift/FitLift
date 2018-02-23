@@ -83,7 +83,7 @@ export class App extends PureComponent {
       exercisesToRecord,
     } = this.props;
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, justifyContent: 'space-between' }}>
         {
           exercisesToRecord &&
           <View>
