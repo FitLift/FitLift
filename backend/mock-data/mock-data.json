@@ -1,86 +1,652 @@
 {
-    "users": {
-        "Swagmo996": {
-            "name": "Teemo",
-            "password": "teemoisgod69"
-        },
-        "SAMPLE_USER": {
-            "name": "Sample User",
-            "password": "asdfasdf1"
-        }
-    },
-    "exercises": {
-        "Swagmo996": {
-            "bicep_curls": {
-                "-L51R8t-443wULWpdAAg": {
-                    "weight": 45,
-                    "unit": "lbs",
-                    "repetitions": 5,
-                    "timestamp": 1516857363
-                },
-                "-GasdfCa16245vvaSdas": {
-                    "weight": 45,
-                    "unit": "lbs",
-                    "repetitions": 7,
-                    "timestamp": 1516857963
-                }
-            },
-            "overhead_press": {
-                "-V23bSDVfdsdfgsBb34f": {
-                    "weight": 70,
-                    "unit": "lbs",
-                    "repetitions": 8,
-                    "timestamp": 1516857363
-                },
-                "-Ajxvc724fSdfv24Sdfg": {
-                    "weight": 70,
-                    "unit": "lbs",
-                    "repetitions": 4,
-                    "timestamp": 1516857963
-                },
-                "-H2vergvRsdfgvsdfg43": {
-                    "weight": 70,
-                    "unit": "lbs",
-                    "repetitions": 7,
-                    "timestamp": 1516858963
-                },
-                "-SJ3sdfgsdVsg42fgjsd": {
-                    "weight": 70,
-                    "unit": "lbs",
-                    "repetitions": 3,
-                    "timestamp": 1516859963
-                }
-            }
-        },
-        "SAMPLE_USER": {
-            "chest_press": {
-                "-Asdcf2345vSDGVsv323": {
-                    "weight": 55,
-                    "unit": "lbs",
-                    "repetitions": 12,
-                    "timestamp": 1516857363
-                },
-                "-Dbrte22frcasAc234gsr": {
-                    "weight": 55,
-                    "unit": "lbs",
-                    "repetitions": 11,
-                    "timestamp": 1516857963
-                },
-                "-Hsklcvblwe52Dgasdf2f": {
-                    "weight": 55,
-                    "unit": "lbs",
-                    "repetitions": 9,
-                    "timestamp": 1516858963
-                }
-            }
-        }
-    },
-    "friends": {
-        "Swagmo996": {
-            "kevanhn": true
-        },
-        "SAMPLE_USER": {
-            "Swagmo996": true
-        }
+  "days_exercised" : {
+    "SAMPLE_USER" : {
+      "01-15-2018" : true,
+      "01-16-2018" : true,
+      "01-17-2018" : true,
+      "01-18-2018" : true,
+      "01-19-2018" : true,
+      "01-20-2018" : true,
+      "01-21-2018" : true,
+      "01-22-2018" : true,
+      "01-23-2018" : true,
+      "01-24-2018" : true,
+      "01-25-2018" : true,
+      "01-27-2018" : true,
+      "01-28-2018" : true,
+      "01-30-2018" : true,
+      "01-31-2018" : true,
+      "02-01-2018" : true,
+      "02-03-2018" : true,
+      "02-04-2018" : true,
+      "02-05-2018" : true,
+      "02-06-2018" : true,
+      "02-08-2018" : true,
+      "02-10-2018" : true,
+      "02-11-2018" : true,
+      "02-12-2018" : true,
+      "02-13-2018" : true,
+      "02-14-2018" : true,
+      "02-15-2018" : true,
+      "02-16-2018" : true,
+      "02-17-2018" : true,
+      "02-18-2018" : true,
+      "02-19-2018" : true,
+      "02-20-2018" : true,
+      "02-23-2018" : true
     }
+  },
+  "exercises" : {
+    "SAMPLE_USER" : {
+      "-L6-6wI5si8AZYWRKjn1" : {
+        "reps" : 8,
+        "timeStamp" : 1516550717583,
+        "type" : "Bicep Curls",
+        "weight" : "20"
+      },
+      "-L6-6wI7-KFoAAI3B8CC" : {
+        "reps" : 14,
+        "timeStamp" : 1516663739647,
+        "type" : "Lateral Raises",
+        "weight" : "25"
+      },
+      "-L6-6wI8WUIyD0iPcZhy" : {
+        "reps" : 10,
+        "timeStamp" : 1518599879026,
+        "type" : "Bicep Curls",
+        "weight" : "25"
+      },
+      "-L6-6wI9Temi04QtIyEk" : {
+        "reps" : 8,
+        "timeStamp" : 1517388893919,
+        "type" : "Lateral Raises",
+        "weight" : ""
+      },
+      "-L6-6wIBLxWcnc_O7Wyi" : {
+        "reps" : 14,
+        "timeStamp" : 1517050202497,
+        "type" : "Lateral Raises",
+        "weight" : "25"
+      },
+      "-L6-6wICtZzbA7iyUVR_" : {
+        "reps" : 10,
+        "timeStamp" : 1517637288032,
+        "type" : "Bicep Curls",
+        "weight" : "20"
+      },
+      "-L6-6wIDnxd5FY6rPjIa" : {
+        "reps" : 14,
+        "timeStamp" : 1516191120973,
+        "type" : "Shoulder Press",
+        "weight" : "30"
+      },
+      "-L6-6wIE3QomsiGF-5Hw" : {
+        "reps" : 10,
+        "timeStamp" : 1517347548499,
+        "type" : "Bicep Curls",
+        "weight" : "35"
+      },
+      "-L6-6wIG_GPTQum7YcD9" : {
+        "reps" : 10,
+        "timeStamp" : 1518942577988,
+        "type" : "Lateral Raises",
+        "weight" : "20"
+      },
+      "-L6-6wIHKaEoXkCFV_5M" : {
+        "reps" : 12,
+        "timeStamp" : 1517680853588,
+        "type" : "Bicep Curls",
+        "weight" : "20"
+      },
+      "-L6-6wII4oVV7htLyboe" : {
+        "reps" : 8,
+        "timeStamp" : 1517322504090,
+        "type" : "Bicep Curls",
+        "weight" : "20"
+      },
+      "-L6-6wIKv3rBcdUttxLm" : {
+        "reps" : 12,
+        "timeStamp" : 1518833893742,
+        "type" : "Shoulder Press",
+        "weight" : "35"
+      },
+      "-L6-6wIL23jqhjutpHjD" : {
+        "reps" : 12,
+        "timeStamp" : 1517337629125,
+        "type" : "Lateral Raises",
+        "weight" : "20"
+      },
+      "-L6-6wINWdjtVHv3Mj5l" : {
+        "reps" : 14,
+        "timeStamp" : 1517486215377,
+        "type" : "Bicep Curls",
+        "weight" : "40"
+      },
+      "-L6-6wIOP0FYFztX3Bm9" : {
+        "reps" : 10,
+        "timeStamp" : 1516234643094,
+        "type" : "Shoulder Press",
+        "weight" : "20"
+      },
+      "-L6-6wIPRFzmO1rpRqSV" : {
+        "reps" : 14,
+        "timeStamp" : 1517969915158,
+        "type" : "Shoulder Press",
+        "weight" : "40"
+      },
+      "-L6-6wIRMj9KtwczC-hN" : {
+        "reps" : 10,
+        "timeStamp" : 1518393071831,
+        "type" : "Lateral Raises",
+        "weight" : "20"
+      },
+      "-L6-6wISH5LFDVmLnyg0" : {
+        "reps" : 10,
+        "timeStamp" : 1516466459576,
+        "type" : "Lateral Raises",
+        "weight" : "30"
+      },
+      "-L6-6wITCTeuC8w_vpqI" : {
+        "reps" : 8,
+        "timeStamp" : 1517118048245,
+        "type" : "Bicep Curls",
+        "weight" : "25"
+      },
+      "-L6-6wIVxIHUeNfllqvT" : {
+        "reps" : 14,
+        "timeStamp" : 1518378748521,
+        "type" : "Bicep Curls",
+        "weight" : "40"
+      },
+      "-L6-6wIWWQYSaQ5h7LsZ" : {
+        "reps" : 14,
+        "timeStamp" : 1518376061769,
+        "type" : "Bicep Curls",
+        "weight" : "30"
+      },
+      "-L6-6wIXd1Tajx00tFYz" : {
+        "reps" : 14,
+        "timeStamp" : 1516893618429,
+        "type" : "Shoulder Press",
+        "weight" : "25"
+      },
+      "-L6-6wIY4zneqaBMXBrv" : {
+        "reps" : 10,
+        "timeStamp" : 1518730990751,
+        "type" : "Bicep Curls",
+        "weight" : "40"
+      },
+      "-L6-6wI_c2E7f53YH41l" : {
+        "reps" : 8,
+        "timeStamp" : 1516119420525,
+        "type" : "Lateral Raises",
+        "weight" : "25"
+      },
+      "-L6-6wIam6ucVBGeookC" : {
+        "reps" : 10,
+        "timeStamp" : 1518853788838,
+        "type" : "Shoulder Press",
+        "weight" : "30"
+      },
+      "-L6-6wIbrRkIxdMPjxYa" : {
+        "reps" : 14,
+        "timeStamp" : 1516713659374,
+        "type" : "Shoulder Press",
+        "weight" : "35"
+      },
+      "-L6-6wIdXe4zU2IOjN3-" : {
+        "reps" : 14,
+        "timeStamp" : 1516373128855,
+        "type" : "Shoulder Press",
+        "weight" : "40"
+      },
+      "-L6-6wIeLmomgbUR1VMV" : {
+        "reps" : 12,
+        "timeStamp" : 1518614744285,
+        "type" : "Shoulder Press",
+        "weight" : "20"
+      },
+      "-L6-6wIfdXOGr4-F-M55" : {
+        "reps" : 14,
+        "timeStamp" : 1516724801360,
+        "type" : "Bicep Curls",
+        "weight" : "30"
+      },
+      "-L6-6wIgnTenqTxZGB8k" : {
+        "reps" : 10,
+        "timeStamp" : 1517676142640,
+        "type" : "Shoulder Press",
+        "weight" : ""
+      },
+      "-L6-6wIiVws_8FqJSqHp" : {
+        "reps" : 10,
+        "timeStamp" : 1518678774763,
+        "type" : "Bicep Curls",
+        "weight" : "40"
+      },
+      "-L6-6wIjLEeEzEZNbI_R" : {
+        "reps" : 10,
+        "timeStamp" : 1516395585940,
+        "type" : "Shoulder Press",
+        "weight" : "30"
+      },
+      "-L6-6wIkBelAGBG4Ooud" : {
+        "reps" : 10,
+        "timeStamp" : 1517951955930,
+        "type" : "Shoulder Press",
+        "weight" : ""
+      },
+      "-L6-6wImUFJnl7GlvQZe" : {
+        "reps" : 14,
+        "timeStamp" : 1516479229697,
+        "type" : "Shoulder Press",
+        "weight" : "40"
+      },
+      "-L6-6wInmYWAPFnCo6Ii" : {
+        "reps" : 8,
+        "timeStamp" : 1516832068432,
+        "type" : "Bicep Curls",
+        "weight" : "35"
+      },
+      "-L6-6wIow51EzDLrl8qq" : {
+        "reps" : 14,
+        "timeStamp" : 1517734605444,
+        "type" : "Bicep Curls",
+        "weight" : "30"
+      },
+      "-L6-6wIqJCgN55GSon2i" : {
+        "reps" : 14,
+        "timeStamp" : 1516750916468,
+        "type" : "Shoulder Press",
+        "weight" : "20"
+      },
+      "-L6-6wIrLHFvT-dE_ARi" : {
+        "reps" : 10,
+        "timeStamp" : 1516354992447,
+        "type" : "Lateral Raises",
+        "weight" : "30"
+      },
+      "-L6-6wIs4i_FDGMj0plj" : {
+        "reps" : 14,
+        "timeStamp" : 1516589690169,
+        "type" : "Lateral Raises",
+        "weight" : "25"
+      },
+      "-L6-6wItFrwuXljfgZHz" : {
+        "reps" : 10,
+        "timeStamp" : 1517148582327,
+        "type" : "Lateral Raises",
+        "weight" : "30"
+      },
+      "-L6-6wIvwMbYjL0s2iTU" : {
+        "reps" : 14,
+        "timeStamp" : 1516489195518,
+        "type" : "Shoulder Press",
+        "weight" : "35"
+      },
+      "-L6-6wIwIW1VC7wH4kmJ" : {
+        "reps" : 14,
+        "timeStamp" : 1518405440864,
+        "type" : "Lateral Raises",
+        "weight" : "40"
+      },
+      "-L6-6wIxMFut7kliHUGI" : {
+        "reps" : 10,
+        "timeStamp" : 1516221401319,
+        "type" : "Bicep Curls",
+        "weight" : ""
+      },
+      "-L6-6wIyLbP9LDoTf-DH" : {
+        "reps" : 10,
+        "timeStamp" : 1517276965212,
+        "type" : "Shoulder Press",
+        "weight" : "20"
+      },
+      "-L6-6wJ-fD-O3TLUdASg" : {
+        "reps" : 14,
+        "timeStamp" : 1518400925103,
+        "type" : "Shoulder Press",
+        "weight" : ""
+      },
+      "-L6-6wJ0aZE44igInhhK" : {
+        "reps" : 10,
+        "timeStamp" : 1516339571079,
+        "type" : "Bicep Curls",
+        "weight" : "25"
+      },
+      "-L6-6wJ1AJDZG-HqVBIo" : {
+        "reps" : 14,
+        "timeStamp" : 1517620103355,
+        "type" : "Bicep Curls",
+        "weight" : "20"
+      },
+      "-L6-6wJ3V9NJe8MQ9Djk" : {
+        "reps" : 12,
+        "timeStamp" : 1516845495773,
+        "type" : "Lateral Raises",
+        "weight" : "20"
+      },
+      "-L6-6wJ47ezl2ri_oJeD" : {
+        "reps" : 12,
+        "timeStamp" : 1516398493097,
+        "type" : "Bicep Curls",
+        "weight" : "30"
+      },
+      "-L6-6wJ5IAVAyYOTxYal" : {
+        "reps" : 10,
+        "timeStamp" : 1518359240858,
+        "type" : "Shoulder Press",
+        "weight" : "30"
+      },
+      "-L6-6wJ68l34qzjDmYn3" : {
+        "reps" : 8,
+        "timeStamp" : 1518526828640,
+        "type" : "Bicep Curls",
+        "weight" : "25"
+      },
+      "-L6-6wJ84E-gg-vMmy4B" : {
+        "reps" : 14,
+        "timeStamp" : 1516355239627,
+        "type" : "Shoulder Press",
+        "weight" : "35"
+      },
+      "-L6-6wJ9c3_K5jdRB43e" : {
+        "reps" : 8,
+        "timeStamp" : 1518546346335,
+        "type" : "Bicep Curls",
+        "weight" : "40"
+      },
+      "-L6-6wJAO-BNHehl0NEx" : {
+        "reps" : 12,
+        "timeStamp" : 1517831401649,
+        "type" : "Lateral Raises",
+        "weight" : ""
+      },
+      "-L6-6wJBdb-uD5ZFiUzT" : {
+        "reps" : 12,
+        "timeStamp" : 1516713307558,
+        "type" : "Lateral Raises",
+        "weight" : "20"
+      },
+      "-L6-6wJDu4T-eBGaPiYp" : {
+        "reps" : 14,
+        "timeStamp" : 1516037111128,
+        "type" : "Lateral Raises",
+        "weight" : "35"
+      },
+      "-L6-6wJEDIZfmCvb3IkB" : {
+        "reps" : 14,
+        "timeStamp" : 1519064864046,
+        "type" : "Shoulder Press",
+        "weight" : ""
+      },
+      "-L6-6wJFXTgaU6GELfE2" : {
+        "reps" : 10,
+        "timeStamp" : 1517567013811,
+        "type" : "Bicep Curls",
+        "weight" : "35"
+      },
+      "-L6-6wJH39U4B0-mXhkn" : {
+        "reps" : 8,
+        "timeStamp" : 1516064091058,
+        "type" : "Lateral Raises",
+        "weight" : "35"
+      },
+      "-L6-6wJI1MrQ6SBWPZG3" : {
+        "reps" : 10,
+        "timeStamp" : 1517895962102,
+        "type" : "Shoulder Press",
+        "weight" : "40"
+      },
+      "-L6-6wJJPmzYYpZktAJV" : {
+        "reps" : 8,
+        "timeStamp" : 1519041335457,
+        "type" : "Bicep Curls",
+        "weight" : "35"
+      },
+      "-L6-6wJL7Sv1v1rOXO6p" : {
+        "reps" : 8,
+        "timeStamp" : 1516928484364,
+        "type" : "Lateral Raises",
+        "weight" : "30"
+      },
+      "-L6-6wJMRfoePFe3YOw7" : {
+        "reps" : 14,
+        "timeStamp" : 1516298880541,
+        "type" : "Lateral Raises",
+        "weight" : "35"
+      },
+      "-L6-6wJN-tjkN8gNKKdf" : {
+        "reps" : 14,
+        "timeStamp" : 1517688951379,
+        "type" : "Lateral Raises",
+        "weight" : "25"
+      },
+      "-L6-6wJP_v_KY9FQUBkE" : {
+        "reps" : 10,
+        "timeStamp" : 1517291626821,
+        "type" : "Lateral Raises",
+        "weight" : "20"
+      },
+      "-L6-6wJQ0j-7Yv0u4puM" : {
+        "reps" : 14,
+        "timeStamp" : 1516554136727,
+        "type" : "Lateral Raises",
+        "weight" : "25"
+      },
+      "-L6-6wJRAIRLEIjFPVRV" : {
+        "reps" : 12,
+        "timeStamp" : 1517861284691,
+        "type" : "Bicep Curls",
+        "weight" : ""
+      },
+      "-L6-6wJTrQjdVTecC6k8" : {
+        "reps" : 10,
+        "timeStamp" : 1518991068778,
+        "type" : "Shoulder Press",
+        "weight" : "40"
+      },
+      "-L6-6wJUu105kSuD7Y9Z" : {
+        "reps" : 14,
+        "timeStamp" : 1518239085276,
+        "type" : "Shoulder Press",
+        "weight" : "30"
+      },
+      "-L6-6wJVvyQz6GDjO4BW" : {
+        "reps" : 12,
+        "timeStamp" : 1518625537770,
+        "type" : "Shoulder Press",
+        "weight" : ""
+      },
+      "-L6-6wJXlmchU8tEG3On" : {
+        "reps" : 8,
+        "timeStamp" : 1516872444008,
+        "type" : "Bicep Curls",
+        "weight" : ""
+      },
+      "-L6-6wJYJl3cUeV5XHPm" : {
+        "reps" : 14,
+        "timeStamp" : 1516980651319,
+        "type" : "Bicep Curls",
+        "weight" : "20"
+      },
+      "-L6-6wJZb0tmX0YYbKb_" : {
+        "reps" : 14,
+        "timeStamp" : 1516903211235,
+        "type" : "Lateral Raises",
+        "weight" : "20"
+      },
+      "-L6-6wJ_IGu7nwRdeb0I" : {
+        "reps" : 12,
+        "timeStamp" : 1518134395460,
+        "type" : "Shoulder Press",
+        "weight" : "20"
+      },
+      "-L6-6wJbhCFTEIkmqGf6" : {
+        "reps" : 8,
+        "timeStamp" : 1516206144282,
+        "type" : "Bicep Curls",
+        "weight" : ""
+      },
+      "-L6-6wJcwxFgQ8PESOtL" : {
+        "reps" : 10,
+        "timeStamp" : 1518778116958,
+        "type" : "Shoulder Press",
+        "weight" : "40"
+      },
+      "-L6-6wJdBpzPNFoiM3jx" : {
+        "reps" : 14,
+        "timeStamp" : 1518784074050,
+        "type" : "Lateral Raises",
+        "weight" : "25"
+      },
+      "-L6-6wJfSWmrezI_hdDW" : {
+        "reps" : 14,
+        "timeStamp" : 1516212427727,
+        "type" : "Bicep Curls",
+        "weight" : "25"
+      },
+      "-L6-6wJgKFL8oGHMmfiG" : {
+        "reps" : 14,
+        "timeStamp" : 1519130092273,
+        "type" : "Bicep Curls",
+        "weight" : "30"
+      },
+      "-L6-6wJiPrDAMTJQeV1J" : {
+        "reps" : 8,
+        "timeStamp" : 1516013287496,
+        "type" : "Shoulder Press",
+        "weight" : "30"
+      },
+      "-L6-6wJjc12aw9vteqgU" : {
+        "reps" : 8,
+        "timeStamp" : 1517143754996,
+        "type" : "Lateral Raises",
+        "weight" : "35"
+      },
+      "-L6-6wJlU29uaN89bxis" : {
+        "reps" : 12,
+        "timeStamp" : 1516084995421,
+        "type" : "Bicep Curls",
+        "weight" : "20"
+      },
+      "-L6-6wJm0odGVYSRGtY_" : {
+        "reps" : 12,
+        "timeStamp" : 1518479126477,
+        "type" : "Shoulder Press",
+        "weight" : "35"
+      },
+      "-L6-6wJnVH44e1-1xhGK" : {
+        "reps" : 8,
+        "timeStamp" : 1516340666398,
+        "type" : "Shoulder Press",
+        "weight" : ""
+      },
+      "-L6-6wJpdyHiunwrgo-y" : {
+        "reps" : 12,
+        "timeStamp" : 1516346437650,
+        "type" : "Shoulder Press",
+        "weight" : "20"
+      },
+      "-L6-6wJqT_-fKHP9Rr1J" : {
+        "reps" : 8,
+        "timeStamp" : 1516022223886,
+        "type" : "Bicep Curls",
+        "weight" : ""
+      },
+      "-L6-6wJrN9V8SI-Dlr4R" : {
+        "reps" : 10,
+        "timeStamp" : 1516196934393,
+        "type" : "Shoulder Press",
+        "weight" : "35"
+      },
+      "-L6-6wJsZu4YH5stoNTE" : {
+        "reps" : 14,
+        "timeStamp" : 1516908499608,
+        "type" : "Lateral Raises",
+        "weight" : "20"
+      },
+      "-L6-6wJuNueu4Az8qVSv" : {
+        "reps" : 10,
+        "timeStamp" : 1517497367953,
+        "type" : "Lateral Raises",
+        "weight" : "20"
+      },
+      "-L6-6wJvXBKK4DFtw2d7" : {
+        "reps" : 8,
+        "timeStamp" : 1519019020616,
+        "type" : "Bicep Curls",
+        "weight" : "40"
+      },
+      "-L6-6wJxcF4j_RH9PJdR" : {
+        "reps" : 12,
+        "timeStamp" : 1517368176696,
+        "type" : "Shoulder Press",
+        "weight" : "30"
+      },
+      "-L6-6wJyJwv3tIReJ8F4" : {
+        "reps" : 8,
+        "timeStamp" : 1516775324646,
+        "type" : "Bicep Curls",
+        "weight" : "25"
+      },
+      "-L6-6wJz5jbA0UwTvibw" : {
+        "reps" : 8,
+        "timeStamp" : 1515984038679,
+        "type" : "Lateral Raises",
+        "weight" : "40"
+      },
+      "-L6-6wK0eCTOrfAFNBX7" : {
+        "reps" : 14,
+        "timeStamp" : 1518599818238,
+        "type" : "Lateral Raises",
+        "weight" : "40"
+      },
+      "-L6-6wK1g9REUKMNjmoi" : {
+        "reps" : 8,
+        "timeStamp" : 1517679282322,
+        "type" : "Lateral Raises",
+        "weight" : ""
+      },
+      "-L6-6wK23kVPilpqy36m" : {
+        "reps" : 14,
+        "timeStamp" : 1516556093721,
+        "type" : "Bicep Curls",
+        "weight" : "35"
+      },
+      "-L6-6wK43nkTmwVmVRlQ" : {
+        "reps" : 12,
+        "timeStamp" : 1518258438285,
+        "type" : "Shoulder Press",
+        "weight" : ""
+      },
+      "-L6-6wK5KVBAkl3vqMT_" : {
+        "reps" : 8,
+        "timeStamp" : 1516977379609,
+        "type" : "Lateral Raises",
+        "weight" : "30"
+      },
+      "-L6-6wK6Kl0m-hscsa-2" : {
+        "reps" : 14,
+        "timeStamp" : 1517707016880,
+        "type" : "Bicep Curls",
+        "weight" : "30"
+      },
+      "-L6-6wK8T0Vh4JlzgBa0" : {
+        "reps" : 12,
+        "timeStamp" : 1517419707878,
+        "type" : "Lateral Raises",
+        "weight" : "20"
+      }
+    }
+  },
+  "new_exercises" : {
+    "SAMPLE_USER" : {
+      "-L6-5PRSZ_FZIrZtwPf9" : {
+        "reps" : 5,
+        "timeStamp" : 1519346362205,
+        "type" : "Bicep Curls"
+      }
+    }
+  }
 }
