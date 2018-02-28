@@ -14,5 +14,5 @@ export default combineReducers({
   login,
   navigation,
   profile,
-  record,
+  record
 });

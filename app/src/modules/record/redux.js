@@ -4,7 +4,7 @@ import { TypeKeys as api } from '../../api/newExercises';
 
 export const initialState = {
   isLoading: false,
-  modifiedExercises: {},
+  modifiedExercises: {}
 };
 
 export const TypeKeys = {
@@ -12,7 +12,7 @@ export const TypeKeys = {
   RECEIVE_NEW_EXERCISES: api.RECEIVE_NEW_EXERCISES,
   REMOVE_NEW_EXERCISE: api.REMOVE_NEW_EXERCISE,
   REQUEST_NEW_EXERCISES: api.REQUEST_NEW_EXERCISES,
-  UPDATE_NEW_EXERCISE: 'UPDATE_NEW_EXERCISE',
+  UPDATE_NEW_EXERCISE: 'UPDATE_NEW_EXERCISE'
 };
 
 // actions
@@ -21,7 +21,7 @@ export const updateNewExercise = (id, key, value) => ({
   id,
   key,
   type: TypeKeys.UPDATE_NEW_EXERCISE,
-  value,
+  value
 });
 
 // selectors
@@ -37,11 +37,11 @@ export const exercisesToRecordSelector = createSelector(
       return Object.keys(newExercises).map(x => ({
         ...newExercises[x],
         id: x,
-        ...modifiedExercises[x],
+        ...modifiedExercises[x]
       }));
     }
     return null;
-  },
+  }
 );
 
 // reducer
@@ -51,47 +51,46 @@ export default (state = initialState, action) => {
     case TypeKeys.REQUEST_NEW_EXERCISES:
       return {
         ...state,
-        isLoading: true,
+        isLoading: true
       };
     case TypeKeys.RECEIVE_NEW_EXERCISES:
       return {
         isLoading: false,
         modifiedExercises: {
           ...state.modifiedExercises,
-          ...Object.keys(action.data).reduce((acc, x) => ({
-            ...acc,
-            [x]: {
-              reps: action.data[x].reps,
-            },
-          }), {}),
-        },
+          ...Object.keys(action.data).reduce(
+            (acc, x) => ({
+              ...acc,
+              [x]: {
+                reps: action.data[x].reps
+              }
+            }),
+            {}
+          )
+        }
       };
     case TypeKeys.UPDATE_NEW_EXERCISE: {
-      const {
-        id,
-        key,
-        value,
-      } = action;
+      const { id, key, value } = action;
       return {
         ...state,
         modifiedExercises: {
           ...state.modifiedExercises,
           [id]: {
             ...state.modifiedExercises[id],
-            [key]: value,
-          },
-        },
+            [key]: value
+          }
+        }
       };
     }
     case TypeKeys.REMOVE_NEW_EXERCISE:
       return {
         ...state,
-        modifiedExercises: omit(state.modifiedExercises, action.id),
+        modifiedExercises: omit(state.modifiedExercises, action.id)
       };
     case TypeKeys.LOGIN:
       return {
         ...state,
-        isLoading: true,
+        isLoading: true
       };
     case TypeKeys.CONFIRMING_NEW_EXERCISE:
       return {
@@ -100,9 +99,9 @@ export default (state = initialState, action) => {
           ...state.modifiedExercises,
           [action.id]: {
             ...state.modifiedExercises[action.id],
-            isConfirming: true,
-          },
-        },
+            isConfirming: true
+          }
+        }
       };
     default:
       return state;

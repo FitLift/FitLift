@@ -4,8 +4,8 @@ import { recordTabIcon } from '../components/icons';
 export default {
   record: {
     navigationOptions: {
-      tabBarIcon: recordTabIcon,
+      tabBarIcon: recordTabIcon
     },
-    screen: record,
-  },
+    screen: record
+  }
 };

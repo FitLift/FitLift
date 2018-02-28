@@ -12,9 +12,9 @@ describe('render tests', () => {
               reps: '5',
               sets: 2,
               type: 'Bicep Curls',
-              weight: '5',
-            },
-          ],
+              weight: '5'
+            }
+          ]
         },
         {
           values: [
@@ -22,27 +22,25 @@ describe('render tests', () => {
               reps: '12',
               sets: 3,
               type: 'Shoulder Press',
-              weight: '30',
-            },
-          ],
+              weight: '30'
+            }
+          ]
         },
         {
-          values: [],
-        },
+          values: []
+        }
       ],
       fetchExercises: f => f,
       navigation: {
         state: {
           params: {
             day: '02/11/2018',
-            user: 'SAMPLE_USER',
-          },
-        },
-      },
+            user: 'SAMPLE_USER'
+          }
+        }
+      }
     };
-    const rendered = renderer.create(
-      <App {...props} />,
-    ).toJSON();
+    const rendered = renderer.create(<App {...props} />).toJSON();
     expect(rendered).toMatchSnapshot();
   });
 });

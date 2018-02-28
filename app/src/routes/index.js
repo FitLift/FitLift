@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 import {
   addNavigationHelpers,
   TabNavigator,
-  StackNavigator,
+  StackNavigator
 } from 'react-navigation';
 import {
   createReactNavigationReduxMiddleware,
-  createReduxBoundAddListener,
+  createReduxBoundAddListener
 } from 'react-navigation-redux-helpers';
 import login from '../modules/login/App';
 import exerciseDay from '../modules/exerciseDay/';
@@ -16,44 +16,47 @@ import feed from './feed';
 import record from './record';
 import profile from './profile';
 
-export const tabScreenNavigator = TabNavigator({
-  ...feed,
-  ...record,
-  ...profile,
-}, {
-  animationEnabled: true,
-  initialRouteName: 'record',
-  paths: {
-    record: 'feed',
+export const tabScreenNavigator = TabNavigator(
+  {
+    ...feed,
+    ...record,
+    ...profile
   },
-  swipeEnabled: true,
-  tabBarOptions: {
-    activeTintColor: '#fc4c02',
-    labelStyle: {
-      fontSize: 15,
+  {
+    animationEnabled: true,
+    initialRouteName: 'record',
+    paths: {
+      record: 'feed'
     },
-    style: {
-      height: 60,
+    swipeEnabled: true,
+    tabBarOptions: {
+      activeTintColor: '#fc4c02',
+      labelStyle: {
+        fontSize: 15
+      },
+      style: {
+        height: 60
+      }
     },
-  },
-  tabBarPosition: 'bottom',
-});
+    tabBarPosition: 'bottom'
+  }
+);
 
 export const Navigation = StackNavigator({
   exerciseDay: { screen: exerciseDay },
   loggedIn: { screen: tabScreenNavigator },
-  login: { screen: login },
+  login: { screen: login }
 });
 
 export const navigationMiddleware = createReactNavigationReduxMiddleware(
   'root',
-  state => state.navigation,
+  state => state.navigation
 );
 
 const addListener = createReduxBoundAddListener('root');
 
 const mapStateToProps = state => ({
-  navigation: state.navigation,
+  navigation: state.navigation
 });
 
 class Router extends PureComponent {
@@ -61,25 +64,25 @@ class Router extends PureComponent {
     dispatch: PropTypes.func.isRequired,
     navigation: PropTypes.shape({
       index: PropTypes.number,
-      routes: PropTypes.arrayOf(PropTypes.shape({
-        key: PropTypes.any,
-        routeName: PropTypes.string,
-        type: PropTypes.any,
-      })),
-    }).isRequired,
+      routes: PropTypes.arrayOf(
+        PropTypes.shape({
+          key: PropTypes.any,
+          routeName: PropTypes.string,
+          type: PropTypes.any
+        })
+      )
+    }).isRequired
   };
 
   render() {
-    const {
-      dispatch,
-      navigation,
-    } = this.props;
+    const { dispatch, navigation } = this.props;
     return (
-      <Navigation navigation={addNavigationHelpers({
-        addListener,
-        dispatch,
-        state: navigation,
-      })}
+      <Navigation
+        navigation={addNavigationHelpers({
+          addListener,
+          dispatch,
+          state: navigation
+        })}
       />
     );
   }

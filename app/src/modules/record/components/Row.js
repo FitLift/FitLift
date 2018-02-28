@@ -1,14 +1,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import {
-  Text,
-} from 'react-native';
+import { Text } from 'react-native';
 import NumberInput from './NumberInput';
 import SubmitButton from './SubmitButton';
 import {
   StyledRowCell,
   StyledExercise,
-  RowStyle,
+  RowStyle
 } from '../../../components/Row';
 
 export default class Row extends PureComponent {
@@ -16,23 +14,17 @@ export default class Row extends PureComponent {
     display: PropTypes.bool,
     id: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
-    reps: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
+    reps: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     submitButtonOnPress: PropTypes.func.isRequired,
     timeStamp: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
-    weight: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
+    weight: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
   };
 
   static defaultProps = {
     display: false,
     reps: '',
-    weight: '',
+    weight: ''
   };
 
   onChange = (id, key) => value => this.props.onChange(id, key, value);
@@ -45,7 +37,7 @@ export default class Row extends PureComponent {
       display,
       submitButtonOnPress,
       timeStamp,
-      weight,
+      weight
     } = this.props;
     return (
       <RowStyle>
@@ -54,16 +46,10 @@ export default class Row extends PureComponent {
           <Text>{timeStamp}</Text>
         </StyledExercise>
         <StyledRowCell>
-          <NumberInput
-            onChange={this.onChange(id, 'reps')}
-            value={reps}
-          />
+          <NumberInput onChange={this.onChange(id, 'reps')} value={reps} />
         </StyledRowCell>
         <StyledRowCell>
-          <NumberInput
-            onChange={this.onChange(id, 'weight')}
-            value={weight}
-          />
+          <NumberInput onChange={this.onChange(id, 'weight')} value={weight} />
         </StyledRowCell>
         <StyledRowCell>
           <SubmitButton

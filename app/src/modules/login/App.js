@@ -3,9 +3,7 @@ import { Button, Text, View } from 'react-native';
 
 const login = ({ navigation }) => (
   <View>
-    <Text>
-      login
-    </Text>
+    <Text>login</Text>
     <Button
       onPress={() => navigation.dispatch({ type: 'login' })}
       title="Log in"
@@ -14,7 +12,7 @@ const login = ({ navigation }) => (
 );
 
 login.navigationOptions = {
-  title: 'Log In',
+  title: 'Log In'
 };
 
 export default login;
