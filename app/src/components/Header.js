@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+// prettier-ignore
 const StyledHeader = styled.View`
   backgroundColor: #FB8C00;
   height: 50px;
@@ -9,6 +10,7 @@ const StyledHeader = styled.View`
   alignItems: center;
 `;
 
+// prettier-ignore
 const HeaderText = styled.Text`
   fontSize: 20;
   color: #FBE9E7;
@@ -16,6 +18,7 @@ const HeaderText = styled.Text`
   textAlign: center;
 `;
 
+// prettier-ignore
 const ExerciseHeaderText = HeaderText.extend`
   width: 100;
 `;

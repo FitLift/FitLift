@@ -4,8 +4,8 @@ import { feedTabIcon } from '../components/icons';
 export default {
   feed: {
     navigationOptions: {
-      tabBarIcon: feedTabIcon,
+      tabBarIcon: feedTabIcon
     },
-    screen: feed,
-  },
+    screen: feed
+  }
 };

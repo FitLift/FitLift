@@ -4,8 +4,8 @@ import { profileTabIcon } from '../components/icons';
 export default {
   profile: {
     navigationOptions: {
-      tabBarIcon: profileTabIcon,
+      tabBarIcon: profileTabIcon
     },
-    screen: profile,
-  },
+    screen: profile
+  }
 };

@@ -8,11 +8,9 @@ describe('render tests', () => {
   it.skip('doesnt crash', () => {
     const props = {
       displayExerciseDay: f => f,
-      navigation: {},
+      navigation: {}
     };
-    const rendered = renderer.create(
-      <App {...props} />,
-    ).toJSON();
+    const rendered = renderer.create(<App {...props} />).toJSON();
     expect(rendered).toMatchSnapshot();
   });
 });

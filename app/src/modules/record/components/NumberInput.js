@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+// prettier-ignore
 const StyledInput = styled.TextInput`
   borderColor: gray;
   borderRadius: 4px;
@@ -15,20 +16,15 @@ const StyledInput = styled.TextInput`
 export default class NumberInput extends PureComponent {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
-    value: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]).isRequired,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired
   };
 
-  onChangeText = (e) => {
+  onChangeText = e => {
     this.props.onChange(e);
-  }
+  };
 
   render() {
-    const {
-      value,
-    } = this.props;
+    const { value } = this.props;
     return (
       <StyledInput
         maxLength={2}
