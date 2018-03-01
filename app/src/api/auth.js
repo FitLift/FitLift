@@ -61,10 +61,13 @@ export const loginUser = (email, password) => async dispatch => {
 export default (state = initialState, action) => {
   switch (action.type) {
     case TypeKeys.LOGIN_SUCCESS:
+    case TypeKeys.CREATE_USER_SUCCESS:
       return {
         ...state,
         user: action.user
       };
+    case 'logout':
+      return initialState;
     default:
       return state;
   }

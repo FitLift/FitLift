@@ -61,22 +61,34 @@ export const mapStateToProps = state => ({
   login: state.login
 });
 
-export default class App extends PureComponent {
-  static navigationOptions = ({ navigation }) => ({
-    title: 'Log In'
-  });
-
+export default class FormView extends PureComponent {
   onChangeText = type => letter => this.props.updateInput(type, letter);
 
   onPress = () => {
-    const { login: { username, password }, loginUser } = this.props;
-    loginUser(username, password);
+    const { username, password, loginUser } = this.props;
+    this.props.buttonOnPress(username, password);
   };
 
-  signUpOnPress = () => this.props.navigation.navigate({ routeName: 'signup' });
+  navigateToRoute = () => {
+    const { bottomButtonNavigationRouteName } = this.props;
+    if (bottomButtonNavigationRouteName === 'goBack') {
+      this.props.navigation.goBack();
+    } else {
+      this.props.navigation.navigate({
+        routeName: bottomButtonNavigationRouteName
+      });
+    }
+  };
 
   render() {
-    const { login: { username, password, error } } = this.props;
+    const {
+      username,
+      password,
+      error,
+      buttonText,
+      bottomText,
+      bottomButtonText
+    } = this.props;
     return (
       <StyledView>
         <LoginText>FitLift</LoginText>
@@ -115,12 +127,12 @@ export default class App extends PureComponent {
           underlayColor="white"
           onPress={this.onPress}
         >
-          <WhiteText>Login</WhiteText>
+          <WhiteText>{buttonText}</WhiteText>
         </LoginButton>
         <ErrorText>{error}</ErrorText>
         <SpanView>
-          <Text>Dont have an account?</Text>
-          <Button title="Sign up" onPress={this.signUpOnPress} />
+          <Text>{bottomText}</Text>
+          <Button title={bottomButtonText} onPress={this.navigateToRoute} />
         </SpanView>
       </StyledView>
     );

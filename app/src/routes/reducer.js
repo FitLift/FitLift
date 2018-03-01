@@ -2,22 +2,19 @@ import { NavigationActions } from 'react-navigation';
 import { Navigation } from './index';
 
 const initialState = Navigation.router.getStateForAction(
-  Navigation.router.getActionForPathAndParams('login')
+  Navigation.router.getActionForPathAndParams('login ')
 );
-
-// const initialState = Navigation.router.getStateForAction(
-//   NavigationActions.navigate({ routeName: 'loggedIn' })
-// );
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case 'LOGIN_SUCCESS':
+    case 'CREATE_USER_SUCCESS':
       return Navigation.router.getStateForAction(
         NavigationActions.navigate({ routeName: 'loggedIn' })
       );
     case 'logout':
       return Navigation.router.getStateForAction(
-        NavigationActions.navigate({ routeName: 'login' })
+        NavigationActions.navigate({ routeName: 'signup' })
       );
     case 'DISPLAY_EXERCISE_DAY':
       return Navigation.router.getStateForAction(

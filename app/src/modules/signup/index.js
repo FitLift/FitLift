@@ -1,18 +1,44 @@
-import React from 'react';
-import { Button, Text, View } from 'react-native';
+import React, { PureComponent } from 'react';
+import { TouchableHighlight, Text, Button } from 'react-native';
+import { bindActionCreators } from 'redux';
+import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { createNewUser } from '../../api/auth';
+import { updateInput } from './redux';
+import FormView from '../../components/FormView';
 
-const signup = ({ navigation }) => (
-  <View>
-    <Text>login</Text>
-    <Button
-      onPress={() => navigation.dispatch({ type: 'signup' })}
-      title="Sign up"
-    />
-  </View>
-);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      createNewUser,
+      updateInput
+    },
+    dispatch
+  );
 
-signup.navigationOptions = {
-  title: 'Sign up'
-};
+export const mapStateToProps = state => ({
+  username: state.signup.username,
+  password: state.signup.password,
+  error: state.signup.error
+});
 
-export default signup;
+export class App extends PureComponent {
+  static navigationOptions = ({ navigation }) => ({
+    title: 'Sign Up'
+  });
+
+  render() {
+    return (
+      <FormView
+        {...this.props}
+        buttonText="Sign up"
+        bottomText="Already have an account?"
+        bottomButtonText="Log in"
+        buttonOnPress={this.props.createNewUser}
+        bottomButtonNavigationRouteName="goBack"
+      />
+    );
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
