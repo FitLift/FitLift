@@ -30,7 +30,7 @@
 #define D8 15 // Blue LED
 
 // Network information
-const char* ssid = "ENTER NETWORK SSID HERE"
+const char* ssid = "ENTER NETWORK SSID HERE";
 const char* password = "ENTER NETWORK PASSWORD HERE";
 
 // Firebase database information
