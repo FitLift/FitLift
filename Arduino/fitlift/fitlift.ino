@@ -25,8 +25,8 @@
 #define D1 5  // I2C Bus SCL (clock)
 #define D2 4  // I2C Bus SDA (data)
 #define D5 14 // Pushbutton - 1k pulldown resistor
-#define D6 12 // Red LED
-#define D7 13 // Green LED
+#define D6 12 // Green LED
+#define D7 13 // Orange LED
 #define D8 15 // Blue LED
 
 // Network information
@@ -56,8 +56,8 @@ int16_t accelX, accelY, accelZ;
 float gForceX, gForceY, gForceZ;
 
 // Pushbutton / LED variables
-bool connectedToInternet;             // Red LED.     On if connected, off otherwise.
-bool currentExerciseState;            // Green LED.   On if user can start exercising, off otherwise.
+bool connectedToInternet;             // Green LED.     On if connected, off otherwise.
+bool currentExerciseState;            // Orange LED.   On if user can start exercising, off otherwise.
 bool lastExerciseState;
 bool canExercise;                     // Indiciates whether use can exercise or not. currentExerciseState
 unsigned long lastToggleTime = 0;     // Last time exercise pushbutton was toggled on/off
@@ -109,7 +109,7 @@ void setup()
   }
   
   Serial.println("Connection successful!\n");
-  connectedToInternet = true;     // Red LED on. Internet connected.
+  connectedToInternet = true;     // Green LED on. Internet connected.
   digitalWrite(D6, HIGH);
   
 
@@ -352,17 +352,34 @@ void exerciseComplete() {
   if (rep_count > 0) {
     Serial.println("Current exercise over, post and reset.");
     postData(exercise, rep_count);
-    // Blink green LED 5 times to indicate data has been posted
-    for (int i = 0; i < 5; i++) {
-      digitalWrite(D7, LOW);
-      delay(130);
-      digitalWrite(D7, HIGH);
-      delay(130);
+    
+    // Cascade blink all 3 LEDs to indicate data has been posted
+    digitalWrite(D7, LOW);
+    digitalWrite(D8, LOW);
+    for (int i = 0; i < 3; i++) {
+        digitalWrite(D6, HIGH);
+        delay(80);
+        digitalWrite(D7, HIGH);
+        delay(80);
+        digitalWrite(D8, HIGH);
+        delay(80);
+
+        delay(50);
+
+        digitalWrite(D6, LOW);
+        delay(50);
+        digitalWrite(D7, LOW);
+        delay(50);
+        digitalWrite(D8, LOW);
+        delay(50);
     }
   }
   rep_count = 0;
   exercise = "null";
-  
+
+  digitalWrite(D6, HIGH);  // Toggle green LED on (internet connection good)
+
+  digitalWrite(D8, LOW);  // Toggle blue LED off
   exercisesToBlink = 0;
   blinkOn = false;
 
