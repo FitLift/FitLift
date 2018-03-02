@@ -33,14 +33,16 @@ const confirmingNewExercise = id => ({
 export const createNewExercise = (type, reps) => () =>
   firebase
     .database()
-    .ref('new_exercises/SAMPLE_USER/')
+    .ref(`new_exercises/${firebase.auth().currentUser.email}`)
     .push({
       reps,
       timeStamp: Date.now(),
       type
     });
 
-export const fetchNewExercises = user => dispatch => {
+export const fetchNewExercises = (
+  user = firebase.auth().currentUser.email
+) => dispatch => {
   dispatch(requestNewExercises(user));
   return firebase
     .database()
@@ -65,13 +67,13 @@ export const listenForNewExercises = user => dispatch =>
     });
 
 export const deleteNewExercise = ({
-  user,
   timeStamp,
   id,
   type,
   reps,
   weight
 }) => dispatch => {
+  const user = firebase.auth().currentUser.email;
   dispatch(confirmingNewExercise(id));
   firebase
     .database()

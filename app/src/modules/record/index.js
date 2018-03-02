@@ -14,7 +14,7 @@ import {
 import Row from './components/Row';
 import { exercisesToRecordSelector, updateNewExercise } from './redux';
 import Header from '../../components/Header';
-
+import firebase from '../../api/firebase';
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
@@ -62,8 +62,8 @@ export class App extends PureComponent {
   };
 
   componentDidMount() {
-    this.props.fetchNewExercises('SAMPLE_USER');
-    this.props.listenForNewExercises('SAMPLE_USER');
+    this.props.fetchNewExercises();
+    this.props.listenForNewExercises();
   }
 
   submitButtonOnPress = exercise => () =>
@@ -89,10 +89,7 @@ export class App extends PureComponent {
                     .format('h:mm:ss a')}
                   weight={item.weight}
                   display={item.weight && item.reps && !item.isConfirming}
-                  submitButtonOnPress={this.submitButtonOnPress({
-                    ...item,
-                    user: 'SAMPLE_USER'
-                  })}
+                  submitButtonOnPress={this.submitButtonOnPress(item)}
                   onChange={this.props.updateNewExercise}
                 />
               )}

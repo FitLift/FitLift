@@ -2,7 +2,7 @@ import { NavigationActions } from 'react-navigation';
 import { Navigation } from './index';
 
 const initialState = Navigation.router.getStateForAction(
-  Navigation.router.getActionForPathAndParams('login ')
+  Navigation.router.getActionForPathAndParams('login')
 );
 
 export default (state = initialState, action) => {
