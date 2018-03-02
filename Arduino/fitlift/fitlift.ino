@@ -21,9 +21,17 @@
 #include <ArduinoJson.h>
 #include <Wire.h>
 
+//ESP 8266 PIN OUTS
+#define D1 5  // I2C Bus SCL (clock)
+#define D2 4  // I2C Bus SDA (data)
+#define D3 0  // Pushbutton - 1k pulldown resistor
+#define D6 12 // Red LED
+#define D7 13 // Green LED
+#define D8 15 // Blue LED
+
 // Network information
-const char* ssid = "Twink";
-const char* password = "dicksoutforharambe";
+const char* ssid = "ENTER NETWORK SSID HERE";
+const char* password = "ENTER NETWORK PASSWORD HERE";
 
 // Firebase database information
 const char* host = "https://fitlift-38a0c.firebaseio.com";
@@ -47,6 +55,19 @@ unsigned long timestampOffset = 0;  // GMT offset
 int16_t accelX, accelY, accelZ;
 float gForceX, gForceY, gForceZ;
 
+// Pushbutton / LED variables
+bool connectedToInternet;             // Red LED.     On if connected, off otherwise.
+bool currentExerciseState;            // Green LED.   On if user can start exercising, off otherwise.
+bool lastExerciseState;
+bool canExercise;                     // Indiciates whether use can exercise or not. currentExerciseState
+unsigned long lastToggleTime = 0;     // Last time exercise pushbutton was toggled on/off
+unsigned long exerciseDebounce = 100; // Minimum time pushbutton has to be held to register as a successful toggle
+byte exercisesToBlink;                // Blue LED.    Keeps track of how many more exericises in queue are left to blink.
+byte blinkOn;                         // Blue LED on or off
+unsigned long lastExerciseBlink;      // Last time exercise was turned on/off
+unsigned long blinkOnDelay = 550;     // Minimum time blue LED should be on. 0.55s. blinkOnDelay + blinkOff delay must equal exerciseDelay (0.8s)
+unsigned long blinkOffDelay = 250;    // Minimum time blue LED should be off. 0.25s
+
 int16_t gyroX, gyroY, gyroZ;
 float rotX, rotY, rotZ;
 
@@ -62,6 +83,22 @@ void setup()
 {
   Serial.begin(115200);   // Serial connection
 
+  // LED setup
+  pinMode(D3, INPUT);
+  pinMode(D6, OUTPUT);
+  pinMode(D7, OUTPUT);
+  pinMode(D8, OUTPUT);
+  digitalWrite(D6, LOW);
+  digitalWrite(D7, LOW);
+  digitalWrite(D8, LOW);
+  connectedToInternet = false;
+  canExercise = false;
+  currentExerciseState = LOW;
+  lastExerciseState = LOW;
+  exercisesToBlink = 0;
+  blinkOn = false;
+  lastExerciseBlink = millis();
+
   // Network connection
   Serial.println("Connecting to " + String(ssid));
   WiFi.begin(ssid, password);   //WiFi connection
@@ -72,14 +109,17 @@ void setup()
   }
   
   Serial.println("Connection successful!\n");
+  connectedToInternet = true;     // Red LED on. Internet connected.
+  digitalWrite(D6, HIGH);
+  
 
   // Set time variables
   lastTime = millis();
   lastRecordedExerciseTime = lastTime;
 
   // MPU-6050 setup
-  Wire.pins(0, 2);      // Wire.pins(SDA, SCL)
-  Wire.begin(0, 2);
+  Wire.pins(D2, D1);      // Wire.pins(SDA, SCL)
+  Wire.begin(D2, D1);
   setupMPU();
 }
 
@@ -92,84 +132,107 @@ String exercise = "null";
 
 void loop()
 { 
+  currentTime = millis();
+
   // Record accelerometer and gyroscope input
   recordAccelRegisters();
   recordGyroRegisters();
 
-  currentTime = millis();
-  if (currentTime >= lastTime + printDelay) {
-      lastTime = currentTime;
-//      printData();  // print accelerometer data
+//  // Print accelerometer data
+//  if (currentTime >= lastTime + printDelay) {
+//      lastTime = currentTime;
+//      printData();
+//  }
+
+  // Check exercise state
+  checkExerciseState();
+
+  // Turn on/off blue LED whenever successful rep count is detected
+  if (exercisesToBlink > 0 && !blinkOn && currentTime >= lastExerciseBlink + blinkOffDelay) {
+    digitalWrite(D8, HIGH);
+    lastExerciseBlink = currentTime;
+    exercisesToBlink--;
+    blinkOn = true;
+  }
+  if (blinkOn && currentTime >= lastExerciseBlink + blinkOnDelay) {
+    digitalWrite(D8, LOW);
+    lastExerciseBlink = currentTime;
+    blinkOn = false;
   }
 
-  if (currentTime >= lastRecordedExerciseTime + exerciseDelay)
-  {
-    // DUMBBELL CURLS
-    if ((rotX <= 0.0 || rotX >= 5.0) && rotZ >= 75.0 && gForceX <= 0.1 && gForceY <= 1.0 && gForceZ <= 0.1)
+  if (canExercise) {
+    if (currentTime >= lastRecordedExerciseTime + exerciseDelay)
     {
-      if ((exercise == "null" || exercise == "Bicep Curls"))
+      // DUMBBELL CURLS
+      if ((rotX <= 0.0 || rotX >= 5.0) && rotZ >= 75.0 && gForceX <= 0.1 && gForceY <= 1.0 && gForceZ <= 0.1)
       {
-        rep_count++;
-        exercise = "Bicep Curls";
-  
-        lastRecordedExerciseTime = currentTime;
-  
-        Serial.print("Current rep count: ");
-        Serial.print(rep_count);
-        Serial.println("   -----BICEP CURL-----");
-      }
-    }
-  
-    // LATERAL RAISES
-    else if (previousX <= 0.0 && previousZ >= 50.0 && gForceX <= 0.1 && gForceY <= 0.1 && gForceZ <= 0.1)
-    {
-      if (exercise == "null" || exercise == "Lateral Raises")
-      {
-        rep_count++;
-        previousX = 0.0;
-        previousZ = 0.0;
-        exercise = "Lateral Raises";
-  
-        lastRecordedExerciseTime = currentTime;
-  
-        Serial.print("Current LATERAL rep count: ");
-        Serial.print(rep_count);
-        Serial.println("    -----LATERAL RAISE-----");
-      }
-    }
-
-    // TRICEP EXTENSIONS
-    else if(rotX <= -50.0 && rotZ <= 10.0)
-    {
-      if((exercise == "null" || exercise == "Tricep Extensions"))
-      {
+        if ((exercise == "null" || exercise == "Bicep Curls"))
+        {
           rep_count++;
-          exercise = "Tricep Extensions";
-
+          exercise = "Bicep Curls";
+    
           lastRecordedExerciseTime = currentTime;
-          
-          Serial.print("Current TE rep count: ");
+  
+          exercisesToBlink++;
+    
+          Serial.print("Current rep count: ");
           Serial.print(rep_count);
-          Serial.println("    -----TRICEP EXTENSION-----");
+          Serial.println("   -----BICEP CURL-----");
+        }
       }
-    }
-    else
-    {
-      if (exercise == "null" || exercise == "Lateral Raises")
+    
+      // LATERAL RAISES
+      else if (previousX <= 0.0 && previousZ >= 50.0 && gForceX <= 0.1 && gForceY <= 0.1 && gForceZ <= 0.1)
       {
-        previousX = rotX;
-        previousZ = rotZ;
+        if (exercise == "null" || exercise == "Lateral Raises")
+        {
+          rep_count++;
+          previousX = 0.0;
+          previousZ = 0.0;
+          exercise = "Lateral Raises";
+    
+          lastRecordedExerciseTime = currentTime;
+  
+          exercisesToBlink++;
+    
+          Serial.print("Current LATERAL rep count: ");
+          Serial.print(rep_count);
+          Serial.println("    -----LATERAL RAISE-----");
+        }
       }
+  
+      // TRICEP EXTENSIONS
+      else if(rotX <= -50.0 && rotZ <= 10.0)
+      {
+        if((exercise == "null" || exercise == "Tricep Extensions"))
+        {
+            rep_count++;
+            exercise = "Tricep Extensions";
+  
+            lastRecordedExerciseTime = currentTime;
+  
+            exercisesToBlink++;
+            
+            Serial.print("Current TE rep count: ");
+            Serial.print(rep_count);
+            Serial.println("    -----TRICEP EXTENSION-----");
+        }
+      }
+      else
+      {
+        if (exercise == "null" || exercise == "Lateral Raises")
+        {
+          previousX = rotX;
+          previousZ = rotZ;
+        }
+      }
+    
     }
   
-  }
-
-  if ((currentTime >= lastRecordedExerciseTime + exerciseStopDelay)  && exercise != "null")
-  {
-    Serial.println("Current exercise over, post and reset.");
-    postData(exercise, rep_count);
-    rep_count = 0;
-    exercise = "null";
+    if ((currentTime >= lastRecordedExerciseTime + exerciseStopDelay)  && exercise != "null")
+    {
+      exerciseComplete();
+    }
   }
 }
 
@@ -260,6 +323,52 @@ void printData()
   Serial.print(gForceY);
   Serial.print(" Z=");
   Serial.println(gForceZ);
+}
+
+// Check if user can exercise or not
+void checkExerciseState() {
+  bool reading = digitalRead(D3);
+  if (reading == HIGH && lastExerciseState == LOW && millis() - lastToggleTime >= exerciseDebounce) {
+    // Toggle exercise state OFF
+    if (currentExerciseState == HIGH) {
+      canExercise = false;
+      currentExerciseState = LOW; 
+      exerciseComplete();
+    }
+    // Toggle exercise state ON
+    else {
+      canExercise = true;
+      currentExerciseState = HIGH; 
+    }
+    lastToggleTime = millis();
+  }
+  digitalWrite(D7, currentExerciseState);
+  lastExerciseState = reading;
+}
+
+// Called whenever user hasn't exercised for "exerciseStopDelay" seconds,
+// OR if user toggles exercise state off manually.
+void exerciseComplete() {
+  if (rep_count > 0) {
+    Serial.println("Current exercise over, post and reset.");
+    postData(exercise, rep_count);
+    // Blink green LED 5 times to indicate data has been posted
+    for (int i = 0; i < 5; i++) {
+      digitalWrite(D7, LOW);
+      delay(130);
+      digitalWrite(D7, HIGH);
+      delay(130);
+    }
+  }
+  rep_count = 0;
+  exercise = "null";
+  
+  exercisesToBlink = 0;
+  blinkOn = false;
+
+  canExercise = false;
+  currentExerciseState = LOW;
+  lastExerciseState = LOW;
 }
 
 // POST exercise data to Firebase database
