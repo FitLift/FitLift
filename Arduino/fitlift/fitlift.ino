@@ -24,7 +24,7 @@
 //ESP 8266 PIN OUTS
 #define D1 5  // I2C Bus SCL (clock)
 #define D2 4  // I2C Bus SDA (data)
-#define D3 0  // Pushbutton - 1k pulldown resistor
+#define D5 14 // Pushbutton - 1k pulldown resistor
 #define D6 12 // Red LED
 #define D7 13 // Green LED
 #define D8 15 // Blue LED
@@ -84,7 +84,7 @@ void setup()
   Serial.begin(115200);   // Serial connection
 
   // LED setup
-  pinMode(D3, INPUT);
+  pinMode(D5, INPUT);
   pinMode(D6, OUTPUT);
   pinMode(D7, OUTPUT);
   pinMode(D8, OUTPUT);
@@ -327,7 +327,7 @@ void printData()
 
 // Check if user can exercise or not
 void checkExerciseState() {
-  bool reading = digitalRead(D3);
+  bool reading = digitalRead(D5);
   if (reading == HIGH && lastExerciseState == LOW && millis() - lastToggleTime >= exerciseDebounce) {
     // Toggle exercise state OFF
     if (currentExerciseState == HIGH) {
