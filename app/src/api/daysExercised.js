@@ -18,7 +18,7 @@ const receiveDaysExercised = data => ({
 });
 
 export const listenForNewDays = (
-  user = firebase.auth().currentUser.email
+  user = firebase.auth().currentUser.uid
 ) => dispatch => {
   dispatch(requestDaysExercised(user));
   firebase

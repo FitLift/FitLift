@@ -14,7 +14,7 @@ export default (state = initialState, action) => {
       );
     case 'logout':
       return Navigation.router.getStateForAction(
-        NavigationActions.navigate({ routeName: 'signup' })
+        NavigationActions.navigate({ routeName: 'login' })
       );
     case 'DISPLAY_EXERCISE_DAY':
       return Navigation.router.getStateForAction(

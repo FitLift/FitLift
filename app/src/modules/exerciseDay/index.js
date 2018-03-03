@@ -44,8 +44,8 @@ export class App extends PureComponent {
   });
 
   componentDidMount() {
-    const { navigation: { state: { params: { day, user } } } } = this.props;
-    this.props.fetchExercises(user, day);
+    const { navigation: { state: { params: { day } } } } = this.props;
+    this.props.fetchExercises(day);
   }
 
   render() {

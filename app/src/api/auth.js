@@ -9,7 +9,8 @@ export const TypeKeys = {
   CREATE_USER_SUCCESS: 'CREATE_USER_SUCCESS',
   ATTEMPT_LOGIN: 'ATTEMPT_LOGIN',
   LOGIN_FAIL: 'LOGIN_FAIL',
-  LOGIN_SUCCESS: 'LOGIN_SUCCESS'
+  LOGIN_SUCCESS: 'LOGIN_SUCCESS',
+  LOGOUT: 'logout'
 };
 
 const attemptCreateUser = () => ({
@@ -39,6 +40,23 @@ const loginFail = error => ({
   type: TypeKeys.LOGIN_FAIL,
   error
 });
+
+const logout = () => ({
+  type: TypeKeys.LOGOUT
+});
+
+export const alreadyLoggedIn = user => dispatch => {
+  return dispatch(loginSuccess(user));
+};
+
+export const logoutUser = () => async dispatch => {
+  try {
+    await firebase.auth().signOut();
+    return dispatch(logout());
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const createNewUser = (email, password) => async dispatch => {
   try {

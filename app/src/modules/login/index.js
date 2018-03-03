@@ -2,15 +2,18 @@ import React, { PureComponent } from 'react';
 import { TouchableHighlight, Text, Button } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { loginUser } from '../../api/auth';
+import { loginUser, alreadyLoggedIn, logoutUser } from '../../api/auth';
 import { updateInput } from './redux';
 import FormView from '../../components/FormView';
+import firebase from '../../api/firebase';
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       loginUser,
-      updateInput
+      updateInput,
+      alreadyLoggedIn,
+      logoutUser
     },
     dispatch
   );
