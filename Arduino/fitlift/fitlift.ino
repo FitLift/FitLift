@@ -35,11 +35,17 @@ const char* password = "ENTER NETWORK PASSWORD HERE";
 
 // Firebase database information
 const char* host = "https://fitlift-38a0c.firebaseio.com";
-const int httpsPort = 443;
+const char* firebaseAPIKey = "AIzaSyAOFwsIxlQSaONcrlNFKRKDp5W-Ug_QSuY";
+
+// FitLift Heroku information 
+String fitliftHerokuUrl = "https://fitlift-firebase.herokuapp.com/login";
+String fitliftHerokuFingerprint = "08 3B 71 72 02 43 6E CA ED 42 86 93 BA 7E DF 81 C4 BC 62 30";
 
 // FitLift user information
-String fitLiftUser = "SAMPLE_USER";
-String postUrl = "/new_exercises/" + fitLiftUser + ".json";
+String fitLiftUserEmail = "sample_user@gmail.com";
+String fitLiftUserPassword = "123456";
+String fitLiftUserID;
+String postUrl;
 
 // SHA1 fingerprint of the database browser's certificate
 // Find out by using chrome dev tools -> security -> view certificate -> details -> SHA1 fingerprint
@@ -56,7 +62,7 @@ int16_t accelX, accelY, accelZ;
 float gForceX, gForceY, gForceZ;
 
 // Pushbutton / LED variables
-bool connectedToInternet;             // Green LED.     On if connected, off otherwise.
+bool connectedToFirebase;             // Green LED.     On if connected, off otherwise.
 bool currentExerciseState;            // Orange LED.   On if user can start exercising, off otherwise.
 bool lastExerciseState;
 bool canExercise;                     // Indiciates whether use can exercise or not. currentExerciseState
@@ -91,7 +97,7 @@ void setup()
   digitalWrite(D6, LOW);
   digitalWrite(D7, LOW);
   digitalWrite(D8, LOW);
-  connectedToInternet = false;
+  connectedToFirebase = false;
   canExercise = false;
   currentExerciseState = LOW;
   lastExerciseState = LOW;
@@ -108,10 +114,19 @@ void setup()
     Serial.println("Waiting for connection");
   }
   
-  Serial.println("Connection successful!\n");
-  connectedToInternet = true;     // Green LED on. Internet connected.
-  digitalWrite(D6, HIGH);
-  
+  Serial.println("Internet Connection successful!\n");
+
+
+  // Login to firebase
+  if (firebaseUserLogin()) {
+    connectedToFirebase = true; 
+    digitalWrite(D6, HIGH);       // Green LED on. Successful login to Firebase.
+  }
+  else {
+    connectedToFirebase = false;
+    Serial.println();
+    Serial.println("Cannot use FitLift without user sign in");
+  }
 
   // Set time variables
   lastTime = millis();
@@ -132,6 +147,10 @@ String exercise = "null";
 
 void loop()
 { 
+  // Don't execute if not even connected to Firebase
+  if (!connectedToFirebase)
+    return;
+  
   currentTime = millis();
 
   // Record accelerometer and gyroscope input
@@ -388,6 +407,81 @@ void exerciseComplete() {
   lastExerciseState = LOW;
 }
 
+
+// Login user to firebase. Return true if successful, false otherwise.
+bool firebaseUserLogin() {
+
+  Serial.println("Signing into Firebase...");
+  
+  // Login with username/password
+  if (WiFi.status() == WL_CONNECTED) { //Check WiFi connection status
+    HTTPClient http;    //Declare object of class HTTPClient
+    int httpCode;
+    String payload;
+
+    String JSONdata = "{\"email\":\"" + String(fitLiftUserEmail) + 
+                      "\",\"password\":\"" + String(fitLiftUserPassword) + "\"}";
+
+    http.begin(fitliftHerokuUrl, fitliftHerokuFingerprint);
+    http.addHeader("Content-Type", "application/json");  //Specify content-type header
+
+    httpCode = http.POST(JSONdata);
+    payload = http.getString();                                        //Get the response payload
+    http.end();
+
+    // status = "OK"
+    if (httpCode == 200) {
+      String localId = "\"localId\"";
+      bool foundLocalId = false;
+      bool foundFirstQuote = false;
+      int startIndex = 0;
+      int endIndex = 0;
+
+      // Extract the user ID from the payload response...
+      // Can't use ArduinoJSON because response is too big.
+      for (int i = 0; i <= payload.length() - localId.length(); i++) {
+        if (!foundLocalId) {
+          String substr = payload.substring(i, i + localId.length());
+          if (substr.equals(localId)) {
+            foundLocalId = true;
+            i += localId.length() - 1;
+          }
+        }
+        else if (foundLocalId && !foundFirstQuote) {
+          if (payload.charAt(i) == '"') {
+            foundFirstQuote = true;
+            startIndex = i + 1;
+          }
+        }
+        else {
+          if (payload.charAt(i) == '"') {
+            endIndex = i;
+            break;
+          }
+        }
+      }
+
+      // If user ID is found in response, that means user login was successful.
+      if (foundLocalId) {
+        fitLiftUserID = payload.substring(startIndex, endIndex);
+        postUrl = "/new_exercises/" + fitLiftUserID + ".json";
+        Serial.println("User login success!\n");
+        return true;
+      }
+      else {
+        Serial.println("***ERROR logging into user. Invalid username/password combination.***");
+        postUrl = "/new_exercises/UNKNOWN_USER.json";
+      }
+    }
+    else {
+      Serial.println("***ERROR connecting to FitLift Herokup app.***");
+      postUrl = "/new_exercises/UNKNOWN_USER.json";
+    }
+  }  
+
+  return false;
+}
+
 // POST exercise data to Firebase database
 void postData(String exerciseType, int reps) {
   // Get timestamp from timezone API
@@ -426,8 +520,6 @@ void postData(String exerciseType, int reps) {
     HTTPClient http;    //Declare object of class HTTPClient
     int httpCode;
     String payload;
-    char JSONmessageBuffer[300];
-    StaticJsonBuffer<300> JSONbuffer;
 
     String JSONdata = String("{\n") + 
                       String("  \"reps\": ") + String(reps) + String(",\n") +
