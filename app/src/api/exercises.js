@@ -18,7 +18,6 @@ const receiveExercises = data => ({
 });
 
 export const fetchExercises = day => dispatch => {
-  console.log(day);
   const user = firebase.auth().currentUser.uid;
   dispatch(requestExercises(user));
   const startTime = new Date(day).getTime();
@@ -30,8 +29,6 @@ export const fetchExercises = day => dispatch => {
     .startAt(startTime)
     .endAt(endTime)
     .on('value', data => {
-      console.log(data.val());
-      console.log(data.key);
       dispatch(receiveExercises(data.val()));
     });
 };
