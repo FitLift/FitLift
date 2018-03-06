@@ -46,7 +46,9 @@ export class App extends PureComponent {
     this.props.listenForNewDays();
   }
 
-  onPress = (user, day) => this.props.displayExerciseDay(user, day);
+  onPress = day => {
+    this.props.displayExerciseDay(day);
+  };
 
   render() {
     return (

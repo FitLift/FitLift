@@ -19,7 +19,6 @@ import profile from './profile';
 
 export const tabScreenNavigator = TabNavigator(
   {
-    ...feed,
     ...record,
     ...profile
   },

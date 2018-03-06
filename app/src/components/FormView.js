@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { createNewUser, loginUser } from '../api/auth';
 
-const StyledView = styled.View`
+const StyledView = styled.KeyboardAvoidingView`
   flex: 1;
   justify-content: center;
   align-items: center;
@@ -90,12 +90,11 @@ export default class FormView extends PureComponent {
       bottomButtonText
     } = this.props;
     return (
-      <StyledView>
+      <StyledView behavior="padding">
         <LoginText>FitLift</LoginText>
         <StyledInput
           autoCorrect={false}
           autoCapitalize="none"
-          autoFocus
           returnKeyType="next"
           placeholder="username"
           keyboardType="email-address"

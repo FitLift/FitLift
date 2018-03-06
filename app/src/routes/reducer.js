@@ -20,8 +20,7 @@ export default (state = initialState, action) => {
       return Navigation.router.getStateForAction(
         NavigationActions.navigate({
           params: {
-            day: action.day,
-            user: action.user
+            day: action.day
           },
           routeName: 'exerciseDay'
         }),
