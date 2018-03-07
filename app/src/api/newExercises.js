@@ -73,20 +73,29 @@ export const deleteNewExercise = ({
   id,
   type,
   reps,
-  weight
+  weight,
+  post = true
 }) => dispatch => {
   const user = firebase.auth().currentUser.uid;
   dispatch(confirmingNewExercise(id));
-  firebase
-    .database()
-    .ref(`exercises/${user}/${id}`)
-    .set({
-      reps,
-      timeStamp,
-      type,
-      weight
-    })
-    .then(dispatch(removeConfirmedExercise(id)));
+  if (post) {
+    firebase
+      .database()
+      .ref(`exercises/${user}/${id}`)
+      .set({
+        reps,
+        timeStamp,
+        type,
+        weight
+      })
+      .then(dispatch(removeConfirmedExercise(id)));
+  } else {
+    firebase
+      .database()
+      .ref(`new_exercises/${user}/${id}`)
+      .remove()
+      .then(dispatch(removeConfirmedExercise(id)));
+  }
 };
 
 export default (state = initialState, action) => {
