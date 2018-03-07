@@ -45,6 +45,7 @@ String fitliftHerokuFingerprint = "08 3B 71 72 02 43 6E CA ED 42 86 93 BA 7E DF 
 String fitLiftUserEmail = "sample_user@gmail.com";
 String fitLiftUserPassword = "123456";
 String fitLiftUserID;
+String fitLiftIdToken;      // Received when user successfully signs into firebase. Different every time (authentication purposes).
 String postUrl;
 
 // SHA1 fingerprint of the database browser's certificate
@@ -464,7 +465,38 @@ bool firebaseUserLogin() {
       // If user ID is found in response, that means user login was successful.
       if (foundLocalId) {
         fitLiftUserID = payload.substring(startIndex, endIndex);
-        postUrl = "/new_exercises/" + fitLiftUserID + ".json";
+
+        // Find ID token now (authentication).
+        String idToken = "\"idToken\"";
+        bool foundIdToken = false;
+        foundFirstQuote = false;
+        startIndex = endIndex;
+
+        // extract the ID token from the payload response
+        for(int i = startIndex; i <= payload.length() - idToken.length(); i++) {
+          if(!foundIdToken) {
+            String substr = payload.substring(i, i + idToken.length());
+            if (substr.equals(idToken)) {
+              foundIdToken = true;
+              i += localId.length() - 1;
+            }
+          }
+          else if(foundIdToken && !foundFirstQuote) {
+            if (payload.charAt(i) == '"') {
+              foundFirstQuote = true;
+              startIndex = i + 1;
+            }
+          }
+          else {
+            if(payload.charAt(i) == '"') {
+              endIndex = i;
+              break;
+            }
+          }
+        }
+
+        fitLiftIdToken = payload.substring(startIndex, endIndex);
+        postUrl = "/new_exercises/" + fitLiftUserID + ".json?auth=" + fitLiftIdToken;
         Serial.println("User login success!\n");
         return true;
       }
