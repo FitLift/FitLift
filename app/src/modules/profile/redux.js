@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect';
 import reverse from 'lodash/reverse';
+import firebase from '../../api/firebase';
 
 const initialState = {};
 
@@ -24,10 +25,9 @@ export const daysExercisedArraySelector = createSelector(
 
 // actions
 
-export const displayExerciseDay = (user, day) => ({
+export const displayExerciseDay = day => ({
   day,
-  type: TypeKeys.DISPLAY_EXERCISE_DAY,
-  user
+  type: TypeKeys.DISPLAY_EXERCISE_DAY
 });
 
 export default (state = initialState, action) => {

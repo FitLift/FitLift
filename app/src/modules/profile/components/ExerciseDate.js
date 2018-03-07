@@ -30,7 +30,7 @@ export default class ExerciseDate extends PureComponent {
     onPress: PropTypes.func.isRequired
   };
 
-  onPress = () => this.props.onPress('SAMPLE_USER', this.props.item);
+  onPress = () => this.props.onPress(this.props.item);
 
   render() {
     const { item } = this.props;

@@ -43,10 +43,12 @@ export class App extends PureComponent {
   });
 
   componentDidMount() {
-    this.props.listenForNewDays('SAMPLE_USER');
+    this.props.listenForNewDays();
   }
 
-  onPress = (user, day) => this.props.displayExerciseDay(user, day);
+  onPress = day => {
+    this.props.displayExerciseDay(day);
+  };
 
   render() {
     return (

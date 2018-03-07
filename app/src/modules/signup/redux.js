@@ -7,7 +7,7 @@ const initialState = {
 };
 
 export const TypeKeys = {
-  UPDATE_INPUT: 'LOGIN:UPDATE_INPUT'
+  UPDATE_INPUT: 'SIGNUP:UPDATE_INPUT'
 };
 
 export const updateInput = (key, value) => ({
@@ -23,12 +23,12 @@ export default (state = initialState, action) => {
         ...state,
         [action.key]: action.value
       };
-    case apiTypeKeys.LOGIN_FAIL:
+    case apiTypeKeys.CREATE_USER_FAIL:
       return {
         ...state,
         error: action.error
       };
-    case apiTypeKeys.LOGIN_SUCCESS:
+    case apiTypeKeys.CREATE_USER_SUCCESS:
       return initialState;
     default:
       return state;
