@@ -8,7 +8,7 @@ import Router, { navigationMiddleware } from './routes';
 export const store = createStore(
   reducer,
   // window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(
-    applyMiddleware(thunk, navigationMiddleware)
+  applyMiddleware(thunk, navigationMiddleware)
   // )
 );
 

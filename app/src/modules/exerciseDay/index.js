@@ -51,7 +51,7 @@ export class App extends PureComponent {
   render() {
     const { exercises } = this.props;
     return (
-      <View>
+      <View style={{ flex: 1 }}>
         <Header names={['Exercise', 'Sets', 'Reps', 'Weight']} />
         <FlatList
           data={exercises}

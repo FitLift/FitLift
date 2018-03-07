@@ -26,7 +26,7 @@ export const exercisesMapper = createSelector(
         {
           'Bicep Curls': {},
           'Lateral Raises': {},
-          'Shoulder Press': {}
+          'Tricep Extensions': {}
         }
       );
     }
