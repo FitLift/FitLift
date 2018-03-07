@@ -99,7 +99,7 @@ export class App extends PureComponent {
         )}
         {isLoading && (
           <View style={{ flex: 1, justifyContent: 'center' }}>
-            <Text style={{ textAlign: 'center' }}>Put a Loader here</Text>
+            <Text style={{ textAlign: 'center' }}>Loading...</Text>
           </View>
         )}
         {!exercisesToRecord &&
