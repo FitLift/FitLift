@@ -66,8 +66,8 @@ export class App extends PureComponent {
     this.props.listenForNewExercises();
   }
 
-  submitButtonOnPress = exercise => () =>
-    this.props.deleteNewExercise(exercise);
+  submitButtonOnPress = exercise => post =>
+    this.props.deleteNewExercise({ ...exercise, post });
 
   render() {
     const { record: { isLoading }, exercisesToRecord } = this.props;

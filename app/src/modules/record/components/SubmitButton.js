@@ -24,6 +24,10 @@ const Button = styled.View`
   padding: 5px;
 `;
 
+const DeleteButton = Button.extend`
+  background-color: #ff0000;
+`;
+
 export default class NumberInput extends PureComponent {
   static propTypes = {
     display: PropTypes.bool.isRequired,
@@ -32,6 +36,10 @@ export default class NumberInput extends PureComponent {
 
   onPress = () => {
     this.props.onPress();
+  };
+
+  onPressBad = () => {
+    this.props.onPress(false);
   };
 
   render() {
@@ -43,6 +51,13 @@ export default class NumberInput extends PureComponent {
             <Button>
               <WhiteText>Submit</WhiteText>
             </Button>
+          </TouchableHighlight>
+        )}
+        {!display && (
+          <TouchableHighlight underlayColor="white" onPress={this.onPressBad}>
+            <DeleteButton>
+              <WhiteText>Delete</WhiteText>
+            </DeleteButton>
           </TouchableHighlight>
         )}
       </OuterView>
