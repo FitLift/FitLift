@@ -71,13 +71,14 @@ export default (state = initialState, action) => {
       };
     case TypeKeys.UPDATE_NEW_EXERCISE: {
       const { id, key, value } = action;
+      const newValue = value ? value : undefined;
       return {
         ...state,
         modifiedExercises: {
           ...state.modifiedExercises,
           [id]: {
             ...state.modifiedExercises[id],
-            [key]: value
+            [key]: newValue
           }
         }
       };
