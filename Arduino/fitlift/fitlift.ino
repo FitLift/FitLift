@@ -1,3 +1,16 @@
+/*
+    ACCELEROMETER ORIENTATIONS:
+    ---------------------------
+    Bicep Curls
+    - accelerometer on rightside with INT pin facing up
+
+    Lateral Raises
+    - accelerometer on backside ( behind ) with INT pin facing up
+
+    Tricep Extensions
+    - accelerometer facing down with INT pin facing backside ( behind )
+*/
+
 #include <ESP8266HTTPClient.h>
 #include <ESP8266WiFi.h>
 #include <ArduinoJson.h>
@@ -12,8 +25,8 @@
 #define D8 15       // blue LED
 
 // network information
-const char * ssid = "What";                         // ENTER NETWORK SSID HERE
-const char * password = "whysh0uldigiveittoyou";    // ENTER NETWORK PASSWORD HERE
+const char * ssid = "Kevan's iPhone";
+const char * password = "fitliftUCI";
 
 // firebase database information
 const char * host = "https://fitlift-38a0c.firebaseio.com";
@@ -27,7 +40,7 @@ String fitliftHerokuFingerprint = "08 3B 71 72 02 43 6E CA ED 42 86 93 BA 7E DF 
 String fitLiftUserEmail = "sample_user@gmail.com";
 String fitLiftUserPassword = "123456";
 String fitLiftUserID;
-
+String fitLiftIdToken;                    // received when user successfully signs into firebase ( authentication purposes )
 String postUrl;
 
 // SHA1 fingerprint of the database browser's certificate
@@ -113,7 +126,7 @@ void setup()
         delay(1000);
         Serial.println("Waiting for connection.");
     }
-    Serial.println("Connection successful!\n");
+    Serial.println("Internet Connection successful!\n");
 
     // login to firebase
     if (firebaseUserLogin()) 
@@ -125,7 +138,7 @@ void setup()
     {
         connectedToFirebase = false;
         Serial.println();
-        Serial.println("Cannot use FitLift without user sign in");
+        Serial.println("Cannot use FitLift without user sign in.");
     }
     
     // set time variables
@@ -140,18 +153,25 @@ void setup()
 
 void loop() 
 {
-    // don't execute if not connected to Firebase
-    if (!connectedToFirebase)
+    // don't execute if NOT even connected to Firebase
+    if(!connectedToFirebase)
         return;
-
+        
     currentTime = millis();
 
     // record accelerometer and gyroscope input
-    recordGyroRegisters();
     recordAccelRegisters();
+    recordGyroRegisters();
 
     // check exercise state
     checkExerciseState();
+
+    // print accelerometer data
+    // if(currentTime >= lastTime + printDelay) 
+    // {
+    //     lastTime = currentTime;
+    //     printData();
+    // }
 
     // turn ON/OFF blue LED whenever successful rep count is detected
     if(exercisesToBlink > 0 && !blinkOn && currentTime >= lastExerciseBlink + blinkOffDelay) 
@@ -173,31 +193,34 @@ void loop()
         if(currentTime >= lastRecordedTime + exerciseDelay)
         {
             // TRICEP EXTENSIONS
-            if(rotX <= -50.0 && rotZ <= 10.0 && gForceX >= -0.5 && gForceY >= 0.0 && gForceZ >= 1.0)
+            // if(rotX <= -50.0 && rotZ <= 10.0 && gForceX >= -0.5 && gForceY >= 0.0 && gForceZ >= 1.0)
+            if(rotX <= -50.0 && rotZ <= 10.0)
             {
-                // HANDLES ERRONEOUS SENSOR DETECTIONS
-                if((exercise == "Lateral Raises" || exercise == "Bicep Curls") && rep_count == 2)
+                // INCREMENT REP COUNT ON SUCCESSFUL MOTION
+                if(exercise == "null" || exercise == "Tricep Extensions")
                 {
-                    exercise = "Tricep Extensions";
+                    rep_count++;
                     lastRecordedTime = currentTime;
-
+                    
+                    exercise = "Tricep Extensions";
                     exercisesToBlink++;
-
-                    previousX = 0.0;
-                    previousZ = 0.0;
 
                     Serial.print("    Current rep count: ");
                     Serial.print(rep_count);
                     Serial.println("    -----TRICEP EXTENSION-----"); 
                 }
-                // INCREMENT REP COUNT ON SUCCESSFUL MOTION
-                else if(exercise == "null" || exercise == "Tricep Extensions")
+
+                // HANDLES ERRONEOUS SENSOR DETECTIONS
+                else if((exercise == "Lateral Raises" || exercise == "Bicep Curls") && rep_count == 1)
                 {
-                    rep_count++;
-                    exercise = "Tricep Extensions";
+                    // rep_count++;
                     lastRecordedTime = currentTime;
-                    
+
+                    exercise = "Tricep Extensions";
                     exercisesToBlink++;
+
+                    previousX = 0.0;
+                    previousZ = 0.0;
 
                     Serial.print("    Current rep count: ");
                     Serial.print(rep_count);
@@ -208,30 +231,32 @@ void loop()
             // BICEP CURLS
             else if((rotX <= 0.0 || rotX >= 5.0) && rotZ >= 75.0 && gForceX <= 0.1 && gForceY <= 1.0 && gForceZ <= 0.1)
             {
-                // HANDLES ERRONEOUS SENSOR DETECTIONS
-                // if((exercise == "Lateral Raises" || exercise == "Tricep Extensions") && rep_count == 1)
-                if(exercise == "Tricep Extensions" && rep_count == 1)
+                // INCREMENT REP COUNT ON SUCCESSFUL MOTION
+                if(exercise == "null" || exercise == "Bicep Curls")
                 {
-                    exercise = "Bicep Curls";
+                    rep_count++;
                     lastRecordedTime = currentTime;
 
+                    exercise = "Bicep Curls";
                     exercisesToBlink++;
-
-                    previousX = 0.0;
-                    previousZ = 0.0;
 
                     Serial.print("Current rep count: ");
                     Serial.print(rep_count);
                     Serial.println("   -----BICEP CURL-----");
                 }
-                // INCREMENT REP COUNT ON SUCCESSFUL MOTION
-                else if(exercise == "null" || exercise == "Bicep Curls")
+
+                // HANDLES ERRONEOUS SENSOR DETECTIONS
+                else if(exercise == "Tricep Extensions" && rep_count == 1)
+                // if((exercise == "Lateral Raises" || exercise == "Tricep Extensions") && rep_count == 1)
                 {
-                    rep_count++;
-                    exercise = "Bicep Curls";
+                    // rep_count++;
                     lastRecordedTime = currentTime;
 
+                    exercise = "Bicep Curls";
                     exercisesToBlink++;
+
+                    previousX = 0.0;
+                    previousZ = 0.0;
 
                     Serial.print("Current rep count: ");
                     Serial.print(rep_count);
@@ -242,34 +267,36 @@ void loop()
             // LATERAL RAISES
             else if(previousX <= 0.0 && previousZ >= 50.0 && gForceX <= 0.1 && gForceY <= 0.1 && gForceZ <= 0.1)
             {
-                // HANDLES ERRONEOUS SENSOR DETECTIONS
-                // if((exercise == "Bicep Curls" || exercise == "Tricep Extensions") && rep_count == 1)
-                if(exercise == "Tricep Extensions" && rep_count == 1)
+                 // INCREMENT REP COUNT ON SUCCESSFUL MOTION
+                if(exercise == "null" || exercise == "Lateral Raises")
                 {
-                    exercise = "Lateral Raises";
+                    rep_count++;
                     lastRecordedTime = currentTime;
 
+                    exercise = "Lateral Raises";
+                    exercisesToBlink++;
+
+                    previousX = 0.0;
+                    previousZ = 0.0;
+
+                    Serial.print("Current rep count: ");
+                    Serial.print(rep_count);
+                    Serial.println("    -----LATERAL RAISE-----");
+                }
+
+                // HANDLES ERRONEOUS SENSOR DETECTIONS
+                else if(exercise == "Tricep Extensions" && rep_count == 1)
+                // if((exercise == "Bicep Curls" || exercise == "Tricep Extensions") && rep_count == 1)
+                {
+                    // rep_count++;
+                    lastRecordedTime = currentTime;
+
+                    exercise = "Lateral Raises";
                     exercisesToBlink++;
 
                     previousX = 0.0;
                     previousZ = 0.0;
                     
-                    Serial.print("Current rep count: ");
-                    Serial.print(rep_count);
-                    Serial.println("    -----LATERAL RAISE-----");
-                }
-                // INCREMENT REP COUNT ON SUCCESSFUL MOTION
-                else if(exercise == "null" || exercise == "Lateral Raises")
-                {
-                    rep_count++;
-                    exercise = "Lateral Raises";
-                    lastRecordedTime = currentTime;
-
-                    exercisesToBlink++;
-
-                    previousX = 0.0;
-                    previousZ = 0.0;
-
                     Serial.print("Current rep count: ");
                     Serial.print(rep_count);
                     Serial.println("    -----LATERAL RAISE-----");
@@ -285,15 +312,6 @@ void loop()
                     previousZ = rotZ; 
                 }
             }
-        }
-
-        // HANDLES ERRONEOUS SENSOR DETECTIONS
-        if((currentTime >= lastRecordedTime + erroneousDelay) && exercise != "null" && rep_count <= 3)
-        {
-            rep_count = 0;
-            exercise = "null";
-
-            Serial.println("Erroneous data detected and thrown out.");
         }
 
         // EXCEEDS TIMER COUNT AND RESETS
@@ -332,9 +350,9 @@ void recordAccelRegisters()
     Wire.requestFrom(0b1101000,6);        // request accel registers ( 3B - 40 )
 
     while(Wire.available() < 6);
-    accelX = Wire.read()<<8|Wire.read();  // store first two bytes into accelX
-    accelY = Wire.read()<<8|Wire.read();  // store middle two bytes into accelY
-    accelZ = Wire.read()<<8|Wire.read();  // store last two bytes into accelZ
+    accelX = Wire.read() << 8 | Wire.read();  // store first two bytes into accelX
+    accelY = Wire.read() << 8 | Wire.read();  // store middle two bytes into accelY
+    accelZ = Wire.read() << 8 | Wire.read();  // store last two bytes into accelZ
 
     processAccelData();
 }
@@ -356,9 +374,9 @@ void recordGyroRegisters()
     Wire.requestFrom(0b1101000,6);        // request gyro registers ( 43 - 48 )
 
     while(Wire.available() < 6);
-    gyroX = Wire.read()<<8|Wire.read();  // store first two bytes into accelX
-    gyroY = Wire.read()<<8|Wire.read();  // store middle two bytes into accelY
-    gyroZ = Wire.read()<<8|Wire.read();  // store last two bytes into accelZ
+    gyroX = Wire.read() << 8 | Wire.read();  // store first two bytes into accelX
+    gyroY = Wire.read() << 8 | Wire.read();  // store middle two bytes into accelY
+    gyroZ = Wire.read() << 8 | Wire.read();  // store last two bytes into accelZ
 
     processGyroData();
 }
@@ -397,7 +415,7 @@ void checkExerciseState()
 {
     bool reading = digitalRead(D5);
 
-    if (reading == HIGH && lastExerciseState == LOW && millis() - lastToggleTime >= exerciseDebounce) 
+    if(reading == HIGH && lastExerciseState == LOW && millis() - lastToggleTime >= exerciseDebounce) 
     {
         // toggle exercise state OFF
         if (currentExerciseState == HIGH) 
@@ -440,7 +458,6 @@ void exerciseComplete()
             delay(80);
 
             delay(50);
-
             digitalWrite(D6, LOW);
             delay(50);
             digitalWrite(D7, LOW);
@@ -452,6 +469,8 @@ void exerciseComplete()
     
     rep_count = 0;
     exercise = "null";
+    previousX = 0.0;
+    previousZ = 0.0;
 
     digitalWrite(D6, HIGH);     // toggle green LED ON ( internet connection good )
     digitalWrite(D8, LOW);      // toggle blue LED OFF
@@ -507,8 +526,8 @@ void postData(String exerciseType, int reps)
         int httpCode;
 
         String payload;
-        char JSONmessageBuffer[300];
-        StaticJsonBuffer<300> JSONbuffer;
+        // char JSONmessageBuffer[300];
+        // StaticJsonBuffer<300> JSONbuffer;
 
         String JSONdata = String("{\n") + 
                           String("  \"reps\": ") + String(reps) + String(",\n") +
@@ -604,7 +623,45 @@ bool firebaseUserLogin()
             if(foundLocalId) 
             {
                 fitLiftUserID = payload.substring(startIndex, endIndex);
-                postUrl = "/new_exercises/" + fitLiftUserID + ".json";
+
+                // find ID token now ( authentication )
+                String idToken = "\"idToken\"";
+                bool foundIdToken = false;
+                foundFirstQuote = false;
+                startIndex = endIndex;
+
+                // extract the ID token from the payload response
+                for(int i = startIndex; i <= payload.length() - idToken.length(); i++) 
+                {
+                    if(!foundIdToken) 
+                    {
+                        String substr = payload.substring(i, i + idToken.length());
+                        if(substr.equals(idToken)) 
+                        {
+                            foundIdToken = true;
+                            i += localId.length() - 1;
+                        }
+                    }
+                    else if(foundIdToken && !foundFirstQuote) 
+                    {
+                        if(payload.charAt(i) == '"') 
+                        {
+                            foundFirstQuote = true;
+                            startIndex = i + 1;
+                        }
+                    }
+                    else 
+                    {
+                        if(payload.charAt(i) == '"') 
+                        {
+                            endIndex = i;
+                            break;
+                        }
+                    }
+                }
+
+                fitLiftIdToken = payload.substring(startIndex, endIndex);
+                postUrl = "/new_exercises/" + fitLiftUserID + ".json?auth=" + fitLiftIdToken;
                 Serial.println("User login success!\n");
 
                 return true;
