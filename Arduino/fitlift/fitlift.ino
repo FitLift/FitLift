@@ -1,13 +1,15 @@
 /*
     ACCELEROMETER ORIENTATIONS:
     ---------------------------
-    Bicep Curls
-    - accelerometer on rightside with INT pin facing up
+    Bicep Curls ( R )
+    - accelerometer on RIGHTSIDE with INT pin and 10LB sign facing up
+     Bicep Curls ( L )
+    - accelerometer on LEFTSIDE with INT pin and 10LB sign facing up
 
-    Lateral Raises
-    - accelerometer on backside ( behind ) with INT pin facing up
+    Lateral Raises ( R & L )
+    - accelerometer on backside ( behind ) with INT and 10LB pin facing up
 
-    Tricep Extensions
+    Tricep Extensions ( R & L )
     - accelerometer facing down with INT pin facing backside ( behind )
 */
 
@@ -25,8 +27,8 @@
 #define D8 15       // blue LED
 
 // network information
-const char * ssid = "Kevan's iPhone";
-const char * password = "fitliftUCI";
+const char * ssid = "ENTER_NETWORK_HERE";
+const char * password = "ENTER_PASSWORD_HERE";
 
 // firebase database information
 const char * host = "https://fitlift-38a0c.firebaseio.com";
@@ -87,7 +89,6 @@ unsigned long lastRecordedTime;
 unsigned long printDelay = 250;           // 0.25 second delay for printing
 unsigned long exerciseDelay = 800;        // 0.8 second delay before NEXT same exercise registered
 unsigned long exerciseStopDelay = 5000;   // 5.0 seconds to halt after NO exercise registered
-unsigned long erroneousDelay = 3500;      // 3.5 seconds to flush erroneous input
 
 // exercise algorithm storage variables
 int rep_count = 0;
@@ -193,7 +194,6 @@ void loop()
         if(currentTime >= lastRecordedTime + exerciseDelay)
         {
             // TRICEP EXTENSIONS
-            // if(rotX <= -50.0 && rotZ <= 10.0 && gForceX >= -0.5 && gForceY >= 0.0 && gForceZ >= 1.0)
             if(rotX <= -50.0 && rotZ <= 10.0)
             {
                 // INCREMENT REP COUNT ON SUCCESSFUL MOTION
@@ -205,24 +205,10 @@ void loop()
                     exercise = "Tricep Extensions";
                     exercisesToBlink++;
 
-                    Serial.print("    Current rep count: ");
-                    Serial.print(rep_count);
-                    Serial.println("    -----TRICEP EXTENSION-----"); 
-                }
+                    // previousX = 0.0;
+                    // previousZ = 0.0;
 
-                // HANDLES ERRONEOUS SENSOR DETECTIONS
-                else if((exercise == "Lateral Raises" || exercise == "Bicep Curls") && rep_count == 1)
-                {
-                    // rep_count++;
-                    lastRecordedTime = currentTime;
-
-                    exercise = "Tricep Extensions";
-                    exercisesToBlink++;
-
-                    previousX = 0.0;
-                    previousZ = 0.0;
-
-                    Serial.print("    Current rep count: ");
+                    Serial.print("Current rep count: ");
                     Serial.print(rep_count);
                     Serial.println("    -----TRICEP EXTENSION-----"); 
                 }
@@ -238,7 +224,11 @@ void loop()
                     lastRecordedTime = currentTime;
 
                     exercise = "Bicep Curls";
+                    delay(250);
                     exercisesToBlink++;
+
+                    // previousX = 0.0;
+                    // previousZ = 0.0;
 
                     Serial.print("Current rep count: ");
                     Serial.print(rep_count);
@@ -246,13 +236,13 @@ void loop()
                 }
 
                 // HANDLES ERRONEOUS SENSOR DETECTIONS
-                else if(exercise == "Tricep Extensions" && rep_count == 1)
-                // if((exercise == "Lateral Raises" || exercise == "Tricep Extensions") && rep_count == 1)
+                if((exercise == "Lateral Raises" || exercise == "Tricep Extensions") && rep_count == 1)
                 {
                     // rep_count++;
                     lastRecordedTime = currentTime;
 
                     exercise = "Bicep Curls";
+                    // delay(100);
                     exercisesToBlink++;
 
                     previousX = 0.0;
@@ -283,27 +273,9 @@ void loop()
                     Serial.print(rep_count);
                     Serial.println("    -----LATERAL RAISE-----");
                 }
-
-                // HANDLES ERRONEOUS SENSOR DETECTIONS
-                else if(exercise == "Tricep Extensions" && rep_count == 1)
-                // if((exercise == "Bicep Curls" || exercise == "Tricep Extensions") && rep_count == 1)
-                {
-                    // rep_count++;
-                    lastRecordedTime = currentTime;
-
-                    exercise = "Lateral Raises";
-                    exercisesToBlink++;
-
-                    previousX = 0.0;
-                    previousZ = 0.0;
-                    
-                    Serial.print("Current rep count: ");
-                    Serial.print(rep_count);
-                    Serial.println("    -----LATERAL RAISE-----");
-                }
             }
 
-            // NO EXERCISE IN MOTION
+            // KEEPS TRACK OF PREVIOUS SENSOR DATA FOR LATERAL RAISE DETECTION
             else
             {
                 if(exercise == "null" || exercise == "Lateral Raises" || ((exercise == "Bicep Curls" || exercise == "Tricep Extensions") && rep_count == 1))
@@ -311,10 +283,16 @@ void loop()
                     previousX = rotX;
                     previousZ = rotZ; 
                 }
+
+                else if((exercise == "Bicep Curls" || exercise == "Tricep Extensions") && rep_count > 1)
+                {
+                    previousX = 0.0;
+                    previousZ = 0.0;
+                }
             }
         }
 
-        // EXCEEDS TIMER COUNT AND RESETS
+        // EXCEEDS TIMER COUNT, POSTS AND RESETS
         if((currentTime >= lastRecordedTime + exerciseStopDelay) && exercise != "null")
         {
             exerciseComplete();
