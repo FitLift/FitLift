@@ -88,7 +88,13 @@ export class App extends PureComponent {
                     .tz('America/Los_Angeles')
                     .format('h:mm:ss a')}
                   weight={item.weight}
-                  display={item.weight && item.reps && !item.isConfirming}
+                  display={
+                    item.weight && item.reps && !item.isConfirming
+                      ? 'green'
+                      : !item.weight && !item.reps && !item.isConfirming
+                        ? 'red'
+                        : null
+                  }
                   submitButtonOnPress={this.submitButtonOnPress(item)}
                   onChange={this.props.updateNewExercise}
                 />
