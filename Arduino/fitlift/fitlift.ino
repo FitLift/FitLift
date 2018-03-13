@@ -11,6 +11,9 @@
 
     Tricep Extensions ( R & L )
     - accelerometer facing down with INT pin facing backside ( behind )
+
+    Single Front Raises 
+    - accelerometer facing down with INT pin point away from user ( front )
 */
 
 #include <ESP8266HTTPClient.h>
@@ -193,8 +196,29 @@ void loop()
     {
         if(currentTime >= lastRecordedTime + exerciseDelay)
         {
+            // TRICEP EXTENSIONS
+            if(rotX <= -50.0 && rotZ <= 10.0)
+            {
+                // INCREMENT REP COUNT ON SUCCESSFUL MOTION
+                if(exercise == "null" || exercise == "Tricep Extensions")
+                {
+                    rep_count++;
+                    lastRecordedTime = currentTime;
+                    
+                    exercise = "Tricep Extensions";
+                    exercisesToBlink++;
+
+                    // previousX = 0.0;
+                    // previousZ = 0.0;
+
+                    Serial.print("Current rep count: ");
+                    Serial.print(rep_count);
+                    Serial.println("    -----TRICEP EXTENSION-----"); 
+                }
+            }
+
             // SINGLE FRONT RAISES
-            if(rotX >= 125.0 && gForceX <= 0.5 && gForceY <= 0.0 && gForceZ <= 0.0)
+            else if(rotX >= 125.0 && rotY <= 25.0 && rotZ <= 25.0 && gForceX <= 0.5 && gForceY <= 0.0 && gForceZ <= 0.0)
             {
                 // INCREMENT REP COUNT ON SUCCESSFUL MOTION
                 if(exercise == "null" || exercise == "Single Front Raises")
@@ -212,26 +236,22 @@ void loop()
                     Serial.print(rep_count);
                     Serial.println("    -----SINGLE FRONT RAISE-----"); 
                 }
-            }
 
-            // TRICEP EXTENSIONS
-            else if(rotX <= -50.0 && rotZ <= 10.0)
-            {
-                // INCREMENT REP COUNT ON SUCCESSFUL MOTION
-                if(exercise == "null" || exercise == "Tricep Extensions")
+                // HANDLES ERRONEOUS SENSOR DETECTIONS
+                else if(exercise == "Lateral Raises" && rep_count == 1)
                 {
-                    rep_count++;
+                    // rep_count++;
                     lastRecordedTime = currentTime;
-                    
-                    exercise = "Tricep Extensions";
+
+                    exercise = "Single Front Raises";
                     exercisesToBlink++;
 
-                    // previousX = 0.0;
-                    // previousZ = 0.0;
+                    previousX = 0.0;
+                    previousZ = 0.0;
 
                     Serial.print("Current rep count: ");
                     Serial.print(rep_count);
-                    Serial.println("    -----TRICEP EXTENSION-----"); 
+                    Serial.println("   -----SINGLE FRONT RAISE-----");
                 }
             }
 
@@ -257,7 +277,7 @@ void loop()
                 }
 
                 // HANDLES ERRONEOUS SENSOR DETECTIONS
-                if((exercise == "Lateral Raises" || exercise == "Tricep Extensions") && rep_count == 1)
+                else if((exercise == "Lateral Raises" || exercise == "Tricep Extensions") && rep_count == 1)
                 {
                     // rep_count++;
                     lastRecordedTime = currentTime;
