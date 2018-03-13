@@ -11,7 +11,7 @@ import {
 
 export default class Row extends PureComponent {
   static propTypes = {
-    display: PropTypes.bool,
+    display: PropTypes.string,
     id: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     reps: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
