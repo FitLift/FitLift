@@ -193,8 +193,29 @@ void loop()
     {
         if(currentTime >= lastRecordedTime + exerciseDelay)
         {
+            // SINGLE FRONT RAISES
+            if(rotX >= 125.0 && gForceX <= 0.5 && gForceY <= 0.0 && gForceZ <= 0.0)
+            {
+                // INCREMENT REP COUNT ON SUCCESSFUL MOTION
+                if(exercise == "null" || exercise == "Single Front Raises")
+                {
+                    rep_count++;
+                    lastRecordedTime = currentTime;
+                    
+                    exercise = "Single Front Raises";
+                    exercisesToBlink++;
+
+                    // previousX = 0.0;
+                    // previousZ = 0.0;
+
+                    Serial.print("Current rep count: ");
+                    Serial.print(rep_count);
+                    Serial.println("    -----SINGLE FRONT RAISE-----"); 
+                }
+            }
+
             // TRICEP EXTENSIONS
-            if(rotX <= -50.0 && rotZ <= 10.0)
+            else if(rotX <= -50.0 && rotZ <= 10.0)
             {
                 // INCREMENT REP COUNT ON SUCCESSFUL MOTION
                 if(exercise == "null" || exercise == "Tricep Extensions")
