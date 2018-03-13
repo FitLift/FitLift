@@ -116,10 +116,10 @@ export class App extends PureComponent {
               </Text>
             </View>
           )}
-        <Button
+        {/* <Button
           title="create fake exercise"
           onPress={() => this.props.createNewExercise('Bicep Curls', 5)}
-        />
+        /> */}
       </View>
     );
   }
