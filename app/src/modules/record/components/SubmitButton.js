@@ -28,9 +28,9 @@ const DeleteButton = Button.extend`
   background-color: #ff0000;
 `;
 
-export default class NumberInput extends PureComponent {
+export default class SubmitButton extends PureComponent {
   static propTypes = {
-    display: PropTypes.string.isRequired,
+    display: PropTypes.string,
     onPress: PropTypes.func.isRequired
   };
 
