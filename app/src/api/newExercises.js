@@ -100,6 +100,8 @@ export const deleteNewExercise = ({
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case 'logout':
+      return initialState;
     case TypeKeys.RECEIVE_NEW_EXERCISES:
       return {
         ...state,

@@ -35,6 +35,8 @@ export const listenForNewDays = (
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case 'logout':
+      return initialState;
     case TypeKeys.RECEIVE_DAYS_EXERCISED:
       return {
         ...state,
