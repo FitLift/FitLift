@@ -84,7 +84,7 @@ export const deleteNewExercise = ({
       .ref(`exercises/${user}/${id}`)
       .set({
         reps,
-        timeStamp,
+        timeStamp: timeStamp - 25200000,
         type,
         weight
       })

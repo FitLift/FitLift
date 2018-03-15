@@ -1,5 +1,5 @@
+import moment from 'moment-timezone';
 import firebase from './firebase';
-const moment = require('moment');
 
 const initialState = {};
 
@@ -21,11 +21,15 @@ const receiveExercises = data => ({
 export const fetchExercises = day => dispatch => {
   const user = firebase.auth().currentUser.uid;
   dispatch(requestExercises(user));
+  const dayArray = day.split('-');
+  const formattedDate = [dayArray[2], dayArray[0], dayArray[1]].join('-');
 
-  const startTime = Number(moment('2018-03-06').format('x'));
+  const startTime = Number(
+    moment(formattedDate)
+      .tz('America/Los_Angeles')
+      .format('x')
+  );
   const endTime = startTime + 86400000;
-  console.log(startTime);
-  console.log(endTime);
   firebase
     .database()
     .ref(`exercises/${user}`)
