@@ -1,20 +1,25 @@
 {
   "rules": {
-    ".read": true,
+    ".read": false,
     ".write": false,
     "days_exercised": {
       "$user": {
+        ".read": "$user === auth.uid",
+        ".write": "$user === auth.uid",
         ".indexOn": "timeStamp"
       }
     },
     "exercises": {
       "$user": {
+        ".read": "$user === auth.uid",
+        ".write": "$user === auth.uid",
         ".indexOn": "timeStamp"
       }
     },
     "new_exercises": {
       "$user": {
-        ".write": "$user === auth.token.email",
+        ".read": "$user === auth.uid",
+        ".write": "$user === auth.uid",
         ".indexOn": "timeStamp"
       }
     }
